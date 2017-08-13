@@ -80,28 +80,10 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-/*Shared styling*/
+/*General styling*/
 
 .overflow {
     overflow-x: hidden;
-}
-
-.navbar-brand {
-    padding-top:0;
-    padding-bottom: 0;
-}
-
-.logo {
-    height:100%;
-    width: auto;
-}
-
-.email {
-    text-align: center;
-    margin-right: 20px;
-    margin-top: 12px;
-    margin-left: 0;
-    color: #777;
 }
 
 .row {
@@ -138,6 +120,53 @@ textarea {
     border-bottom: 1px #c0c0c0 solid;
 }
 
+ul {
+    font-family: "Gill Sans MT", "Open Sans", Arial, sans-serif;
+    font-weight: 300;
+}
+
+p {
+    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
+    font-weight: 300;
+    text-align: left;
+}
+
+li {
+    text-align: left;
+    font-size: 18px;
+}
+
+h1 {
+    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
+    font-weight: 300;
+}
+
+/*Navbar Styling*/
+.navbar-brand {
+    padding-top:0;
+    padding-bottom: 0;
+}
+
+.logo {
+    height:100%;
+    width: auto;
+}
+
+.email {
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 12px;
+    margin-left: 0;
+    color: #777;
+}
+
+/*Footer Styling*/
 .icon-row {
     margin-top: 20px;
     margin-bottom:20px;
@@ -165,37 +194,9 @@ textarea {
     margin-bottom: 0;
 } 
 
-
 .vert-center {
     padding-top: 15px;
     text-align: center;
-}
-
-ul {
-    font-family: "Gill Sans MT", "Open Sans", Arial, sans-serif;
-    font-weight: 300;
-}
-
-p {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
-    text-align: left;
-}
-
-li {
-    text-align: left;
-    font-size: 18px;
-}
-
-h1 {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
-    text-align: center;
-}
-
-h2 {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
 }
 
 /* ==========================================================================

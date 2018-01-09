@@ -199,6 +199,22 @@ h2 {
     text-align: center;
 }
 
+.main_quote{
+    font-size: 25px;
+    font-weight: 200;
+    text-align: center;
+    margin: 30px 20px 30px 20px;
+}
+
+.quote_container {
+    color: #603D20;
+    background-color: #DDDDDD;
+}
+
+.pop {
+    font-weight: 400;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

@@ -3,7 +3,7 @@ var fs = require('fs');
 var express = require('express');
 var app = express(); 
 
-app.use('/', express.static('public'));
+app.use('/', express.static('public', {maxAge: 86400}));
 app.listen(process.env.PORT || 8080);
 
 app.get('/', function(req,res) {

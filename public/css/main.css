@@ -96,6 +96,10 @@ textarea {
     padding-bottom: 50px;
 }
 
+.group-container{
+    background: #EEEEEE;
+}
+
 .info-col {
     padding-top: 50px;
     padding-left: 0;
@@ -215,7 +219,7 @@ h2 {
 
 .quote_container {
     color: #603D20;
-    background-color: #DDDDDD;
+    background-color: #EEEEEE;
 }
 
 .pop {

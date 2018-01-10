@@ -106,6 +106,10 @@ textarea {
     padding-right: 0;
 }
 
+.info-col-less {
+    padding-top: 20px
+}
+
 .half-image-text {
     margin-top: 0;
     text-align: center;
@@ -125,30 +129,32 @@ textarea {
 }
 
 ul {
-    font-family: "Gill Sans MT", "Open Sans", Arial, sans-serif;
-    font-weight: 300;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
 }
 
 p {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
     text-align: left;
 }
 
 li {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
     text-align: left;
     font-size: 18px;
 }
 
 h1 {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
     text-align: center;
 }
 
 h2 {
-    font-family: "Gill Sans MT", "Open Sans",  Arial, sans-serif;
-    font-weight: 300;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
 }
 
 /*Navbar Styling*/

@@ -29,3 +29,11 @@ app.get('/contact', function(req,res) {
         res.end();
     })
 });
+
+app.get('/projects', function(req,res) {
+    fs.readFile('public/html/projects.html', function(err, data) {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.write(data);
+        res.end();
+    })
+});

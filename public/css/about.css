@@ -11,3 +11,25 @@
     display: block;
     margin: auto;
 }
+
+.info-row{
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 850px) {
+    .info-row {
+        flex-wrap: wrap;
+    }
+}
+
+.dan-image {
+    padding: 50px 30px 0px 30px;
+}
+
+.dan-text {
+    padding: 50px 30px 0px 30px;
+    width: auto;
+    max-width: 700px;
+    min-width: 500px;
+}

@@ -2,7 +2,7 @@
 .top-item {
     margin-top: 80px;
     padding:50px 0px 50px 0px;
-    background: url(../img/fire11.jpg);
+    background: url(../img/Woodland_Venture_Fire_Pit.jpg);
     background-size: cover;
     background-position: 15%;
     -moz-background-size: cover;
@@ -18,7 +18,7 @@
 }
 
 .party-picture-col {
-    background: url("../img/fire3.jpg") no-repeat center top scroll;
+    background: url("../img/Woodland_Venture_Family_Toast_Marshmallows.jpg") no-repeat center top scroll;
     background-position: center;
     background-size: cover;
 }
@@ -37,7 +37,7 @@ a.anchor {
 }
 
 .group-picture-col {
-    background: url("../img/fire2.jpg") no-repeat center top scroll;
+    background: url("../img/Woodland_Venture_Family_Kettle.jpg") no-repeat center top scroll;
     background-position: center;
     background-size: cover;
 }
@@ -48,7 +48,7 @@ a.anchor {
 }
 
 .corp-picture-col {
-    background: url("../img/bucket.jpg") no-repeat center top scroll;
+    background: url("../img/Woodland_Venture_Bucket_Activity.jpg") no-repeat center top scroll;
     background-position: 7%;
     background-size: cover;
 }
@@ -58,20 +58,20 @@ a.anchor {
 }
 
 .sch1-picture-col {
-    background: url("../img/rope.jpg") no-repeat center top scroll;
+    background: url("../img/Woodland_Venture_Child_Rope_Activity.jpg") no-repeat center top scroll;
     background-position: 25%;
     background-size: cover;
 }
 
 .sch2-picture-col {
-    background: url("../img/log.jpg") no-repeat center top scroll;
+    background: url("../img/Woodland_Venture_Children_Play_Tree.jpg") no-repeat center top scroll;
     background-position: center;
     background-size: cover;
 }
 
 #image-row-1 {
     height: 500px;
-    background: url(../img/firestill500.jpg);
+    background: url(../img/Woodland_Venture_Fire_Lighting_Activity.jpg);
     background-size: cover;
     background-position: 40%;
     -moz-background-size: cover;

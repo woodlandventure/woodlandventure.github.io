@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var express = require('express');
+require('newrelic');
 var app = express(); 
 
 app.use('/', express.static('public', {maxAge: 86400}));

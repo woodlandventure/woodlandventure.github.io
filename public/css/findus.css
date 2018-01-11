@@ -7,3 +7,17 @@ iframe {
 .center {
     text-align: center;
 }
+
+.find-top-item {
+    margin-top: 110px;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding-top: 20px;
+    }
+
+    .find-top-item {
+        margin-top: 80px;
+    }
+}

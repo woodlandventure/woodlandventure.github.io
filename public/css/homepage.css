@@ -9,12 +9,20 @@
 }
 
 .quote_row {
-    padding-top: 80px;
+    padding-top: 60px;
     padding-bottom: 80px;
+    display: flex;
+    justify-content: center;
 }
 
 .logo_panel {
     max-width: 100% ;
+    text-align: center;
+}
+
+.panel {
+    max-width: 400px;
+    margin: 20px 20px 20px 20px;
 }
 
 .party-picture-col {

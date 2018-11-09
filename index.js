@@ -1,7 +1,6 @@
 var http = require('http');
 var fs = require('fs');
 var express = require('express');
-require('newrelic');
 var app = express(); 
 
 app.use('/', express.static('public', {maxAge: 86400}));
@@ -38,8 +37,3 @@ app.get('/projects', function(req,res) {
         res.end();
     })
 });
-
-//Keep the website awake
-setInterval(function() {
-    http.get("http://woodlandventure.co.uk");
-}, 300000); // every 5 minutes (300000)

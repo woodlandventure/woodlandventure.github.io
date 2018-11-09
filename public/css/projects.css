@@ -70,6 +70,16 @@ p.quote-text {
 
 .panel-image:hover, .panel-image-clickable:hover {opacity: 0.7;}
 
+#modal-image-content-description {
+  margin: auto;
+  display: block;
+  text-align: center;
+  background: black;
+  width: 80%;
+  max-width: 700px;
+  font-size: 18px;
+}
+
 /* The Modal (background) */
 .modal, .modalClickable {
     display: none; /* Hidden by default */
@@ -136,5 +146,8 @@ p.quote-text {
 @media only screen and (max-width: 700px){
     .modal-content, .modal-content-clickable {
         width: 100%;
+    }
+    #modal-image-content-description {
+      width:100%;
     }
 }

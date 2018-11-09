@@ -27,6 +27,7 @@ var modalClickable = document.getElementById('myModalClickable');
 
 var imagesClickable = document.getElementsByClassName("panel-image-clickable");
 var modalImgClickable = document.getElementById("modal-image-clickable");
+var modalImgClickableDescription = document.getElementById("modal-image-clickable-description");
 
 for (var i = 0; i < imagesClickable.length; i++) {
   imagesClickable[i].onclick = function(){

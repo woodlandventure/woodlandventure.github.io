@@ -9,6 +9,18 @@
   justify-content: center;
 }
 
+.shelter-hero-container {
+  padding-top: 80px;
+  height: 500px;
+  background: url(../img/projects/Forest_School_Woodland_Playground_After.JPG);
+  background-size: cover;
+  background-position: 50% 0%;
+  -moz-background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+
 .description-container {
   background: #EEEEEE;
   text-align: center;

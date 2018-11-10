@@ -37,7 +37,7 @@ for (var i = 0; i < imagesClickable.length; i++) {
 
     var imageId = this.getAttribute("id");
     var clickablehref = document.getElementById("clickablehref");
-    clickablehref.setAttribute("href", "/project/" + imageId + '.html');
+    clickablehref.setAttribute("href", "/public/project/" + imageId + '.html');
   }
 }
 

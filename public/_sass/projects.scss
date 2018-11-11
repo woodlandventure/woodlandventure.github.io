@@ -1,6 +1,9 @@
 .hero-container {
   padding-top: 80px;
   height: 500px;
+  @media (max-width: 680px) {
+    height: 350px;
+  }
   background: url(/public/img/projects/Forest_School_Woodland_Kitchen.JPG);
   background-size: cover;
   background-position: 93% 0%;

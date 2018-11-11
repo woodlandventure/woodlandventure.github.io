@@ -164,16 +164,9 @@ h2 {
 }
 
 .logo {
-    height:100%;
+    padding: 5px 0px 5px 0px;
+    height:80px;
     width: auto;
-}
-
-@media (min-width:768px) {
-    .logo{
-        padding: 5px 0px 5px 0px;
-        height: 80px;
-        width: auto;
-    }
 }
 
 .email {
@@ -240,10 +233,17 @@ h2 {
     font-weight: 400;
 }
 
+.navbar-default, .navbar-header {
+    min-height:80px;
+}
+
+.navbar-toggle {
+    margin-top: 23px;
+    margin-right: 15px;
+    margin-bottom: 23px;
+}
+
 @media (min-width:768px) {
-    .navbar-default {
-        min-height:80px;
-    }
     .navbar-default .navbar-nav > li > a,
     .navbar-brand {
         padding-top: 0;

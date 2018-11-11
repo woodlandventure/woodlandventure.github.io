@@ -1,0 +1,3 @@
+sass:
+  sass_dir: ./public/_sass
+  style: :compressed

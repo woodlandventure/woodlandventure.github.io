@@ -90,12 +90,6 @@ p.quote-text {
   width: 80%;
   max-width: 700px;
   font-size: 18px;
-
-      
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
 }
 
 /* The Modal (background) */
@@ -113,6 +107,13 @@ p.quote-text {
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
+.modal-zoomer {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
 /* Modal Content (image) */
 .modal-content, .modal-content-clickable {
     margin: auto;
@@ -121,14 +122,6 @@ p.quote-text {
     width: 80%;
     max-width: 700px;
     border-radius: 0px;
-}
-
-/* Add Animation */
-.modal-content, .modal-content-clickable {    
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
 }
 
 @-webkit-keyframes zoom {

@@ -16,10 +16,12 @@ for (var i = 0; i < images.length; i++) {
 // Get the <span> element that closes the modal
 var span = document.getElementById("close");
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
+const closeWindow = function() {
   modal.style.display = "none";
 }
+// When the user clicks on <span> (x), close the modal
+span.onclick = closeWindow
+modal.onclick = closeWindow
 
 //For images that take you to another page
 // Get the modal
@@ -46,8 +48,11 @@ var spanClickable = document.getElementById("closeClickable");
 
 if (spanClickable != null) {
   // When the user clicks on <span> (x), close the modal
-  spanClickable.onclick = function() { 
+  const closeWindowClickable = function() {
     modalClickable.style.display = "none";
   }
+  // When the user clicks on <span> (x), close the modal
+  spanClickable.onclick = closeWindowClickable
+  modalClickable.onclick = closeWindowClickable
 }
   

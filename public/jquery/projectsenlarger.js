@@ -44,7 +44,10 @@ for (var i = 0; i < imagesClickable.length; i++) {
 // Get the <span> element that closes the modal
 var spanClickable = document.getElementById("closeClickable");
 
-// When the user clicks on <span> (x), close the modal
-spanClickable.onclick = function() { 
-  modalClickable.style.display = "none";
+if (spanClickable != null) {
+  // When the user clicks on <span> (x), close the modal
+  spanClickable.onclick = function() { 
+    modalClickable.style.display = "none";
+  }
 }
+  

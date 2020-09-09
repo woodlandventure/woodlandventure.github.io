@@ -1,8 +1,19 @@
 .hero-container {
-  padding-top: 80px;
+  padding-top: 180px;
   height: 500px;
   @media (max-width: 680px) {
     height: 350px;
+  }
+
+  $breakpoint-tablet: 768px;
+  @media (min-width: $breakpoint-tablet) {
+      margin-top: 180px;
+  }
+  @media (max-width: $breakpoint-tablet) {
+      margin-top: 200px;
+  }
+  @media (max-width: 400px) {
+    margin-top: 300px;
   }
   background: url(/public/img/projects/Forest_School_Woodland_Kitchen.JPG);
   background-size: cover;
@@ -21,6 +32,16 @@
   -moz-background-size: cover;
   display: flex;
   justify-content: center;
+  $breakpoint-tablet: 768px;
+  @media (min-width: $breakpoint-tablet) {
+      margin-top: 180px;
+  }
+  @media (max-width: $breakpoint-tablet) {
+      margin-top: 200px;
+  }
+  @media (max-width: 400px) {
+    margin-top: 300px;
+  }
 }
 
 

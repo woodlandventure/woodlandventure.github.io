@@ -9,7 +9,13 @@ iframe {
 }
 
 .find-top-item {
-    margin-top: 110px;
+    $breakpoint-tablet: 768px;
+    @media (min-width: $breakpoint-tablet) {
+        margin-top: 200px;
+    }
+    @media (max-width: $breakpoint-tablet) {
+        margin-top: 260px;
+    }
 }
 
 @media (max-width: 768px) {

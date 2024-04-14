@@ -4,6 +4,13 @@
   @media (max-width: 680px) {
     height: 350px;
   }
+  $breakpoint-mobile: 312px;
+  @media (min-width: $breakpoint-mobile) {
+      margin-top: 80px;
+  }
+  @media (max-width: $breakpoint-mobile) {
+      margin-top: 130px;
+  }
   background: url(/public/img/projects/Forest_School_Woodland_Kitchen.JPG);
   background-size: cover;
   background-position: 93% 0%;
@@ -21,6 +28,13 @@
   -moz-background-size: cover;
   display: flex;
   justify-content: center;
+  $breakpoint-mobile: 312px;
+  @media (min-width: $breakpoint-mobile) {
+      margin-top: 80px;
+  }
+  @media (max-width: $breakpoint-mobile) {
+      margin-top: 130px;
+  }
 }
 
 
@@ -167,7 +181,7 @@ p.quote-text {
     }
 }
 
-.find-top-item-no-warning {
+.find-top-item {
   margin-top: 80px;
 }
 

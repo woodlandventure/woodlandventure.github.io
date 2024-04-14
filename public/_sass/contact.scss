@@ -11,16 +11,6 @@ iframe {
 .find-top-item {
     $breakpoint-tablet: 768px;
     @media (min-width: $breakpoint-tablet) {
-        margin-top: 220px;
-    }
-    @media (max-width: $breakpoint-tablet) {
-        margin-top: 350px;
-    }
-}
-
-.find-top-item-no-warning {
-    $breakpoint-tablet: 768px;
-    @media (min-width: $breakpoint-tablet) {
         margin-top: 180px;
     }
     @media (max-width: $breakpoint-tablet) {
@@ -32,4 +22,8 @@ iframe {
     .contact {
         padding-top: 20px;
     }
+}
+
+.contact {
+    margin-top: 10px;
 }

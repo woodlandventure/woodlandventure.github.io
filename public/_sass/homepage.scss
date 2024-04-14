@@ -8,12 +8,6 @@
     -moz-background-size: cover;
 }
 
-.warning_container {
-    margin-bottom: 0px;
-    font-size: 18px;
-    font-weight: 200;
-}
-
 .quote_row {
     padding-top: 60px;
     padding-bottom: 80px;
@@ -31,12 +25,6 @@
     margin: 20px 20px 20px 20px;
 }
 
-.party-picture-col {
-    background: url("/public/img/Woodland_Venture_Family_Toast_Marshmallows.jpg") no-repeat center top scroll;
-    background-position: center;
-    background-size: cover;
-}
-
 .picture-col {
     max-width: 800px;
     margin-left: 30px;
@@ -50,8 +38,8 @@ a.anchor {
     visibility: hidden;
 }
 
-.group-picture-col {
-    background: url("/public/img/Woodland_Venture_Family_Kettle.jpg") no-repeat center top scroll;
+.itservices-picture-col {
+    background: url("/public/img/pexels-brett-sayles-2881224.jpg") no-repeat center top scroll;
     background-position: center;
     background-size: cover;
 }
@@ -61,9 +49,8 @@ a.anchor {
   box-shadow: none;
 }
 
-.corp-picture-col {
-    background: url("/public/img/Woodland_Venture_Bucket_Activity.jpg") no-repeat center top scroll;
-    background-position: 7%;
+.proj-picture-col {
+    background: url("/public/img/projects/Forest_School_Woodland_Parachute.JPG") no-repeat center top scroll;
     background-size: cover;
 }
 

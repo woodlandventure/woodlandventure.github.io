@@ -1,5 +1,5 @@
-import { Link } from '@tanstack/react-router'
 import { css } from '../../styled-system/css'
+import { ServiceCard } from '../components/ServiceCard'
 
 export function Home() {
   return (
@@ -75,107 +75,27 @@ export function Home() {
             gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
             gap: '8'
           })}>
-            {/* Schools */}
-            <Link to="/schools">
-            <div id="schools" className={css({
-              bg: 'white',
-              rounded: 'lg',
-              overflow: 'hidden',
-              shadow: 'md',
-              transition: 'transform 0.2s',
-              _hover: { transform: 'translateY(-4px)' }
-            })}>
-              <div className={css({
-                h: '250px',
-                bg: 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)',
-                bgSize: 'cover',
-                backgroundPosition: '25% center'
-              })} />
-              <div className={css({ p: '6' })}>
-                <h3 className={css({
-                  fontSize: 'xl',
-                  fontWeight: 'bold',
-                  mb: '4'
-                })}>
-                  Schools
-                </h3>
-                <p className={css({
-                  color: 'gray.600',
-                  mb: '4'
-                })}>
-                  Enhance your curriculum with outdoor learning experiences that inspire and engage students
-                </p>
-              </div>
-            </div>
-            </Link>
+            <ServiceCard
+              title="Schools"
+              description="Enhance your curriculum with outdoor learning experiences that inspire and engage students"
+              image="childRope"
+              linkTo="/schools"
+              imagePosition="25% center"
+            />
 
-            {/* Outdoor Spaces */}
-            <Link to="/projects">
-            <div id="projects" className={css({
-              bg: 'white',
-              rounded: 'lg',
-              overflow: 'hidden',
-              shadow: 'md',
-              transition: 'transform 0.2s',
-              _hover: { transform: 'translateY(-4px)' }
-            })}>
-              <div className={css({
-                h: '250px',
-                bg: 'url(/img/projects/Forest_School_Woodland_Parachute.JPG)',
-                bgSize: 'cover',
-                backgroundPosition: 'center'
-              })} />
-              <div className={css({ p: '6' })}>
-                <h3 className={css({
-                  fontSize: 'xl',
-                  fontWeight: 'bold',
-                  mb: '4'
-                })}>
-                  Outdoor Spaces
-                </h3>
-                <p className={css({
-                  color: 'gray.600',
-                  mb: '4'
-                })}>
-                  Create engaging outdoor learning environments that inspire exploration and discovery
-                </p>
-              </div>
-            </div>
-            </Link>
+            <ServiceCard
+              title="Outdoor Spaces"
+              description="Create engaging outdoor learning environments that inspire exploration and discovery"
+              image="parachute"
+              linkTo="/projects"
+            />
 
-            {/* IT Services TODO: fix link*/}
-            <Link to="/projects">
-            <div id="itservices" className={css({
-              bg: 'white',
-              rounded: 'lg',
-              overflow: 'hidden',
-              shadow: 'md',
-              transition: 'transform 0.2s',
-              _hover: { transform: 'translateY(-4px)' }
-            })}>
-              <div className={css({
-                h: '250px',
-                bg: 'url(/img/pexels-brett-sayles-2881224.jpg)',
-                bgSize: 'cover',
-                backgroundPosition: 'center'
-              })} />
-              <div className={css({ p: '6' })}>
-                <h3 className={css({
-                  fontSize: 'xl',
-                  fontWeight: 'bold',
-                  mb: '4'
-                })}>
-                  IT Services
-                </h3>
-                <p className={css({
-                  color: 'gray.600',
-                  mb: '4'
-                })}>
-                  Technology solutions to support your outdoor learning programs
-                </p>
-              </div>
-            </div>
-            </Link>
+            <ServiceCard
+              title="IT Services"
+              description="Technology solutions to support your outdoor learning programs"
+              image="itServices"
+              linkTo="/projects"
+            />
           </div>
         </div>
       </div>

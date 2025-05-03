@@ -55,14 +55,14 @@ export function Home() {
       <div className={css({
         py: '16',
         px: '4',
-        bg: 'white'
+        bg: 'gray.100'
       })}>
         <div className={css({
           maxW: '7xl',
           mx: 'auto'
         })}>
           <h2 className={css({
-            fontSize: '3xl',
+            fontSize: '4xl',
             fontWeight: 'bold',
             textAlign: 'center',
             mb: '12'
@@ -71,9 +71,11 @@ export function Home() {
           </h2>
 
           <div className={css({
-            display: 'grid',
-            gridTemplateColumns: { base: '1fr', md: 'repeat(3, 1fr)' },
-            gap: '8'
+            display: 'flex',
+            flexDirection: "column",
+            width: "100%",
+
+            alignItems: 'center',
           })}>
             <ServiceCard
               title="Schools"

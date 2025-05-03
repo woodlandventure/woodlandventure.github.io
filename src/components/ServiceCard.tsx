@@ -13,16 +13,23 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
   return (
     <Link to={linkTo}>
       <div className={css({
+        width: "5xl",
+        height: "15rem",
+        display: "flex",
+        flexDirection: "row",
         bg: 'white',
         rounded: 'lg',
-        height: '100%',
         overflow: 'hidden',
         shadow: 'md',
         transition: 'transform 0.2s',
+        mb: "10",
         _hover: { transform: 'translateY(-4px)' }
       })}>
         <div className={css({
-          h: '250px',
+          w: '15rem',
+          flexGrow: 0,
+          flexShrink: 0,
+          overflow: 'hidden',
           bg: image === "childRope" ? 
             "url(/img/Woodland_Venture_Child_Rope_Activity.jpg)":
             image === "parachute" ? "url(/img/projects/Forest_School_Woodland_Parachute.JPG)" :
@@ -32,7 +39,7 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
         })} />
         <div className={css({ p: '6' })}>
           <h3 className={css({
-            fontSize: 'xl',
+            fontSize: '3xl',
             fontWeight: 'bold',
             mb: '4'
           })}>
@@ -40,7 +47,8 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
           </h3>
           <p className={css({
             color: 'gray.600',
-            mb: '4'
+            mb: '4',
+            fontSize: "xl"
           })}>
             {description}
           </p>

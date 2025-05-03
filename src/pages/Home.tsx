@@ -1,53 +1,75 @@
 import { css } from '../../styled-system/css'
 import { ServiceCard } from '../components/ServiceCard'
+import { PostCard } from '../components/PostCard'
 
 export function Home() {
   return (
     <div>
       {/* Hero Section */}
       <div className={css({
-        h: '500px',
-        bg: 'url(/img/Woodland_Venture_Fire_Pit.jpg)',
-        bgSize: 'cover',
-        backgroundPosition: '15% center',
+        minH: '80vh',
+        bg: 'brand.darkGreen',
         display: 'flex',
+        flexWrap: "wrap",
+        padding: 20,
         alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        textAlign: 'center',
-        px: '4',
         position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          bg: 'rgba(0, 0, 0, 0.2)',
-          zIndex: 1
-        }
+        overflow: 'hidden'
       })}>
+        {/* Left side text */}
         <div className={css({
-          maxW: '3xl',
-          mx: 'auto',
-          position: 'relative',
+          flex: '1',
+          maxW: '2xl',
+          color: 'brand.cream',
           zIndex: 2
         })}>
           <h1 className={css({
-            fontSize: { base: '4xl', md: '5xl' },
+            fontSize: { base: '4xl', md: '8xl' },
             fontWeight: 'bold',
-            mb: '4',
-            textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+            mb: '6',
+            lineHeight: '1.2'
           })}>
-            Welcome to Woodland Venture
+            Providing outdoor experiences and spaces
           </h1>
           <p className={css({
             fontSize: { base: 'xl', md: '2xl' },
-            textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+            opacity: 0.9
           })}>
-            Providing Forest School and outdoor experiences in Tunbridge Wells, Kent and East Sussex
+            Tunbridge Wells, Kent and East Sussex
           </p>
+        </div>
+
+        {/* Right side post cards */}
+        <div className={css({
+          position: 'relative',
+          height: "60vh",
+          minWidth: "xl",
+          width: "xl",
+          flexGrow: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: 5,
+        })}>
+          <PostCard
+            top={10}
+            left={0}
+            rotation={-3}
+            zIndex={1}
+            image="/img/Woodland_Venture_Fire_Pit.jpg"
+          />
+          <PostCard
+            bottom={10}
+            right={0}
+            rotation={2}
+            zIndex={2}
+            image="/img/Woodland_Venture_Child_Rope_Activity.jpg"
+          />
+          <PostCard
+            rotation={-1}
+            zIndex={3}
+            image="/img/projects/Forest_School_Woodland_Parachute.JPG"
+          />
         </div>
       </div>
 

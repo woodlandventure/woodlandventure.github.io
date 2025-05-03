@@ -1,8 +1,8 @@
-import { Link, Outlet } from '@tanstack/react-router'
+import { Link, Outlet, useMatchRoute } from '@tanstack/react-router'
 import { css } from '../styled-system/css'
 import { useState } from 'react'
 
-import logo from './assets/img/logo.png'
+import logo from './assets/img/Logo_Cream.png'
 import facebook from './assets/img/facebook.png'
 import instagram from './assets/img/Instagram_Logo.png'
 import fsa from './assets/img/fsa.jpg'
@@ -10,20 +10,24 @@ import fsa from './assets/img/fsa.jpg'
 export function Root() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const matchRoute = useMatchRoute()
+  const isHome = matchRoute({ to: '/' })
+
   return (
     <div className={css({ minH: '100vh', display: 'flex', flexDir: 'column' })}>
       <nav className={css({ 
-        bg: 'white', 
+        bg: isHome ? 'brand.darkGreen' : "white", 
         py: '2',
         px: '4',
         borderBottom: '1px solid', 
-        borderColor: 'gray.200',
+        borderColor: isHome ? "brand.darkGreen" : 'gray.200',
         position: 'sticky',
         top: 0,
         zIndex: 10
       })}>
-        <div className={css({ 
-          maxW: '7xl', 
+        <div className={css({
+          ml: 16,
+          mr: 16,
           mx: 'auto', 
           display: 'flex',
           justifyContent: 'space-between',
@@ -84,14 +88,14 @@ export function Root() {
             bg: { base: 'white', md: 'transparent' },
             p: { base: '4', md: '0' },
             borderBottom: { base: '1px solid', md: 'none' },
-            borderColor: { base: 'gray.200', md: 'transparent' }
+            borderColor: { base: isHome ? "brand.cream" : 'gray.200', md: 'transparent' }
           })}>
             <div className={css({ 
               position: 'relative',
               _hover: { '& > div': { display: 'block' } }
             })}>
               <button className={css({ 
-                color: 'gray.600',
+                color: isHome ? "brand.cream" : 'gray.600',
                 _hover: { color: 'gray.900' },
                 display: 'flex',
                 alignItems: 'center',
@@ -121,7 +125,7 @@ export function Root() {
                 <Link to="/schools" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   Schools
@@ -129,7 +133,7 @@ export function Root() {
                 <Link to="/projects" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   Outdoor spaces
@@ -137,7 +141,7 @@ export function Root() {
                 <Link to="/" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   IT services
@@ -150,7 +154,7 @@ export function Root() {
               _hover: { '& > div': { display: 'block' } }
             })}>
               <button className={css({ 
-                color: 'gray.600',
+                color: isHome ? "brand.cream" : 'gray.600',
                 _hover: { color: 'gray.900' },
                 display: 'flex',
                 alignItems: 'center',
@@ -180,7 +184,7 @@ export function Root() {
                 <Link to="/projects" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   All projects
@@ -188,7 +192,7 @@ export function Root() {
                 <Link to="/projects/shelter" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   Shelter project
@@ -196,7 +200,7 @@ export function Root() {
                 <Link to="/projects/sanctuary" className={css({ 
                   display: 'block',
                   p: '2',
-                  color: 'gray.600',
+                  color: isHome ? "brand.cream" : 'gray.600',
                   _hover: { color: 'gray.900', bg: 'gray.50' }
                 })}>
                   The Sanctuary
@@ -205,13 +209,13 @@ export function Root() {
             </div>
 
             <Link to="/contact" className={css({ 
-              color: 'gray.600',
+              color: isHome ? "brand.cream" : 'gray.600',
               _hover: { color: 'gray.900' }
             })}>
               Contact
             </Link>
             <Link to="/about" className={css({ 
-              color: 'gray.600',
+              color: isHome ? "brand.cream" : 'gray.600',
               _hover: { color: 'gray.900' }
             })}>
               About
@@ -220,7 +224,7 @@ export function Root() {
             <a 
               href="mailto:info@woodlandventure.co.uk"
               className={css({ 
-                color: 'gray.600',
+                color: isHome ? "brand.cream" : 'gray.600',
                 _hover: { color: 'gray.900' },
                 display: { base: 'block', lg: 'block' }
               })}

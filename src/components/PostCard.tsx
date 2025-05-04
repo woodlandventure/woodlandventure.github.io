@@ -31,7 +31,8 @@ export function PostCard({
         bgSize: "cover",
         bgPosition: "center",
         shadow: "xl",
-        transform: `rotate(${rotation === "LittleClockwise" ? -3 : rotation === "LittleCounterClockwise" ? 1 : 0}deg)`,
+        shadowColor: "gray.800",
+        transform: rotation === "LittleClockwise" ? "rotate(-3deg)" : rotation === "LittleCounterClockwise" ? "rotate(3deg)" : "rotate(0deg)",
         overflow: "hidden",
       })}
     >

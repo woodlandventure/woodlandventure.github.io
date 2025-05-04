@@ -18,7 +18,10 @@ export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
         to={href}
         className={css({
           color: isHome ? "brand.cream" : "gray.600",
-          _hover: { color: "gray.900" },
+          _hover: {
+            color: isHome ? undefined : "gray.900",
+            borderBottom: isHome ? "2px solid" : "none",
+        },
         })}
       >
         {label}
@@ -36,7 +39,7 @@ export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
       <button
         className={css({
           color: isHome ? "brand.cream" : "gray.600",
-          _hover: { color: "gray.900" },
+          _hover: { color: isHome ? "undefined" : "gray.900" },
           display: "flex",
           alignItems: "center",
           gap: "1",

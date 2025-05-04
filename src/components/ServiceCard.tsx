@@ -1,5 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { css } from '../../styled-system/css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 interface ServiceCardProps {
   title: string
@@ -13,8 +15,8 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
   return (
     <Link to={linkTo}>
       <div className={css({
-        width: "5xl",
-        height: "15rem",
+        width: "4xl",
+        height: "12rem",
         display: "flex",
         flexDirection: "row",
         bg: 'white',
@@ -23,7 +25,9 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
         shadow: 'md',
         transition: 'transform 0.2s',
         mb: "10",
-        _hover: { transform: 'translateY(-4px)' }
+        _hover: { transform: 'translateY(-4px)' },
+        bgColor: "white",
+        color: "black"
       })}>
         <div className={css({
           w: '15rem',
@@ -36,9 +40,11 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
             image === "sanctuary" ? "url(/img/projects/Forest_School_Woodland_Sanctuary_After.JPG)" :
             "url(/img/pexels-brett-sayles-2881224.jpg)",
           bgSize: 'cover',
-          backgroundPosition: imagePosition
+          backgroundPosition: imagePosition,
+          shadow: "md",
+          shadowColor: "gray.800",
         })} />
-        <div className={css({ p: '6' })}>
+        <div className={css({ p: '6', display: 'flex', flexDirection: 'column', flex: 1 })}>
           <h3 className={css({
             fontSize: '3xl',
             fontWeight: 'bold',
@@ -53,6 +59,16 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
           })}>
             {description}
           </p>
+        </div>
+        <div className={css({
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 16,
+          color: 'black',
+          fontSize: '2xl'
+        })}>
+          <FontAwesomeIcon icon={faArrowRight} />
         </div>
       </div>
     </Link>

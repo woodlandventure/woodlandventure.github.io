@@ -29,7 +29,7 @@ export function Home() {
             mb: '6',
             lineHeight: '1.2'
           })}>
-            Providing outdoor experiences and spaces
+            Providing outdoor <span className={css({ color: 'brand.yellow' })}>experiences</span> and <span className={css({ color: 'brand.yellow' })}>spaces</span>
           </h1>
           <p className={css({
             fontSize: { base: 'xl', md: '2xl' },
@@ -73,7 +73,7 @@ export function Home() {
       <div className={css({
         py: '16',
         px: '4',
-        bg: 'gray.100'
+        bg: 'brand.cream'
       })}>
         <div className={css({
           maxW: '7xl',
@@ -83,6 +83,7 @@ export function Home() {
             fontSize: '4xl',
             fontWeight: 'bold',
             textAlign: 'center',
+            color: 'black',
             mb: '12'
           })}>
             Our Services

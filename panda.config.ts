@@ -24,11 +24,6 @@ export default defineConfig({
             yellow: { value: 'rgb(241,184,14)' }
           }
         },
-        fonts: {
-          sans: { value: '"Helvetica Neue", Helvetica, Arial, sans-serif' },
-          serif: { value: '"Helvetica Neue", Helvetica, Arial, sans-serif' },
-          mono: { value: '"Helvetica Neue", Helvetica, Arial, sans-serif' },
-        }
       },
       semanticTokens: {
         colors: {
@@ -39,10 +34,6 @@ export default defineConfig({
           background: { value: '{colors.brand.cream}' },
           accent: { value: '{colors.brand.yellow}' }
         },
-        fonts: {
-          body: { value: '{fonts.sans}' },
-          heading: { value: '{fonts.sans}' },
-        }
       }
     },
   },

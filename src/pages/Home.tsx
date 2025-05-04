@@ -52,23 +52,19 @@ export function Home() {
           margin: 5,
         })}>
           <PostCard
-            top={10}
-            left={0}
-            rotation={-3}
-            zIndex={1}
-            image="/img/Woodland_Venture_Fire_Pit.jpg"
+            position="topLeft"
+            rotation="LittleClockwise"
+            image="firePit"
           />
           <PostCard
-            bottom={10}
-            right={0}
-            rotation={2}
-            zIndex={2}
-            image="/img/Woodland_Venture_Child_Rope_Activity.jpg"
+            position="bottomRight"
+            rotation="LittleCounterClockwise"
+            image="childRope"
           />
           <PostCard
-            rotation={-1}
-            zIndex={3}
-            image="/img/projects/Forest_School_Woodland_Parachute.JPG"
+            position="middle"
+            rotation="None"
+            image="parachute"
           />
         </div>
       </div>
@@ -104,6 +100,14 @@ export function Home() {
               description="Enhance your curriculum with outdoor learning experiences that inspire and engage students"
               image="childRope"
               linkTo="/schools"
+              imagePosition="25% center"
+            />
+
+            <ServiceCard
+              title="Projects"
+              description="Create welcoming outdoor spaces with bespoke furniture and builds"
+              image="sanctuary"
+              linkTo="/projects"
               imagePosition="25% center"
             />
 

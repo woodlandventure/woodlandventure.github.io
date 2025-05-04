@@ -4,7 +4,7 @@ import { css } from '../../styled-system/css'
 interface ServiceCardProps {
   title: string
   description: string
-  image: "childRope" | "parachute" | "itServices"
+  image: "childRope" | "parachute" | "itServices" | "sanctuary"
   linkTo: string
   imagePosition?: string
 }
@@ -33,6 +33,7 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
           bg: image === "childRope" ? 
             "url(/img/Woodland_Venture_Child_Rope_Activity.jpg)":
             image === "parachute" ? "url(/img/projects/Forest_School_Woodland_Parachute.JPG)" :
+            image === "sanctuary" ? "url(/img/projects/Forest_School_Woodland_Sanctuary_After.JPG)" :
             "url(/img/pexels-brett-sayles-2881224.jpg)",
           bgSize: 'cover',
           backgroundPosition: imagePosition

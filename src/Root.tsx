@@ -1,17 +1,38 @@
 import { Link, Outlet, useMatchRoute } from '@tanstack/react-router'
 import { css } from '../styled-system/css'
 import { useState } from 'react'
+import { NavItem } from './components/NavItem'
 
 import logo from './assets/img/Logo_Cream.png'
 import facebook from './assets/img/facebook.png'
 import instagram from './assets/img/Instagram_Logo.png'
 import fsa from './assets/img/fsa.jpg'
 
+const navItems = [
+  {
+    label: 'Services',
+    dropdownItems: [
+      { label: 'Schools', href: '/schools' },
+      { label: 'Outdoor spaces', href: '/projects' },
+      { label: 'IT services', href: '/' }
+    ]
+  },
+  {
+    label: 'Projects',
+    dropdownItems: [
+      { label: 'All projects', href: '/projects' },
+      { label: 'Shelter project', href: '/projects/shelter' },
+      { label: 'The Sanctuary', href: '/projects/sanctuary' }
+    ]
+  },
+  { label: 'Contact', href: '/contact' },
+  { label: 'About', href: '/about' }
+]
+
 export function Root() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
   const matchRoute = useMatchRoute()
-  const isHome = matchRoute({ to: '/' })
+  const isHome = Boolean(matchRoute({ to: '/' }))
 
   return (
     <div className={css({ minH: '100vh', display: 'flex', flexDir: 'column' })}>
@@ -90,136 +111,15 @@ export function Root() {
             borderBottom: { base: '1px solid', md: 'none' },
             borderColor: { base: isHome ? "brand.cream" : 'gray.200', md: 'transparent' }
           })}>
-            <div className={css({ 
-              position: 'relative',
-              _hover: { '& > div': { display: 'block' } }
-            })}>
-              <button className={css({ 
-                color: isHome ? "brand.cream" : 'gray.600',
-                _hover: { color: 'gray.900' },
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1'
-              })}>
-                Services
-                <span className={css({ 
-                  borderLeft: '4px solid transparent',
-                  borderRight: '4px solid transparent',
-                  borderTop: '4px solid currentColor',
-                  ml: '1'
-                })} />
-              </button>
-              <div className={css({ 
-                position: 'absolute',
-                top: '100%',
-                left: '0',
-                display: 'none',
-                bg: 'white',
-                border: '1px solid',
-                borderColor: 'gray.200',
-                borderRadius: 'md',
-                p: '2',
-                minW: '48',
-                boxShadow: 'md'
-              })}>
-                <Link to="/schools" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  Schools
-                </Link>
-                <Link to="/projects" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  Outdoor spaces
-                </Link>
-                <Link to="/" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  IT services
-                </Link>
-              </div>
-            </div>
-
-            <div className={css({ 
-              position: 'relative',
-              _hover: { '& > div': { display: 'block' } }
-            })}>
-              <button className={css({ 
-                color: isHome ? "brand.cream" : 'gray.600',
-                _hover: { color: 'gray.900' },
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1'
-              })}>
-                Projects
-                <span className={css({ 
-                  borderLeft: '4px solid transparent',
-                  borderRight: '4px solid transparent',
-                  borderTop: '4px solid currentColor',
-                  ml: '1'
-                })} />
-              </button>
-              <div className={css({ 
-                position: 'absolute',
-                top: '100%',
-                left: '0',
-                display: 'none',
-                bg: 'white',
-                border: '1px solid',
-                borderColor: 'gray.200',
-                borderRadius: 'md',
-                p: '2',
-                minW: '48',
-                boxShadow: 'md'
-              })}>
-                <Link to="/projects" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  All projects
-                </Link>
-                <Link to="/projects/shelter" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  Shelter project
-                </Link>
-                <Link to="/projects/sanctuary" className={css({ 
-                  display: 'block',
-                  p: '2',
-                  color: isHome ? "brand.cream" : 'gray.600',
-                  _hover: { color: 'gray.900', bg: 'gray.50' }
-                })}>
-                  The Sanctuary
-                </Link>
-              </div>
-            </div>
-
-            <Link to="/contact" className={css({ 
-              color: isHome ? "brand.cream" : 'gray.600',
-              _hover: { color: 'gray.900' }
-            })}>
-              Contact
-            </Link>
-            <Link to="/about" className={css({ 
-              color: isHome ? "brand.cream" : 'gray.600',
-              _hover: { color: 'gray.900' }
-            })}>
-              About
-            </Link>
+            {navItems.map((item) => (
+              <NavItem
+                key={item.label}
+                label={item.label}
+                href={item.href}
+                isHome={isHome}
+                dropdownItems={item.dropdownItems}
+              />
+            ))}
 
             <a 
               href="mailto:info@woodlandventure.co.uk"

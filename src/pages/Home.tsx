@@ -11,7 +11,7 @@ export function Home() {
         bg: 'brand.darkGreen',
         display: 'flex',
         flexWrap: "wrap",
-        padding: 20,
+        padding: {base: 10, md: 20},
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden'
@@ -19,12 +19,12 @@ export function Home() {
         {/* Left side text */}
         <div className={css({
           flex: '1',
-          maxW: '2xl',
+          maxW: {base: '2xl', md: undefined},
           color: 'brand.cream',
           zIndex: 2
         })}>
           <h1 className={css({
-            fontSize: { base: '4xl', md: '8xl' },
+            fontSize: {base: "5xl", md: "8xl"},
             fontWeight: 'bold',
             mb: '6',
             lineHeight: '1.2'
@@ -42,14 +42,14 @@ export function Home() {
         {/* Right side post cards */}
         <div className={css({
           position: 'relative',
-          height: "60vh",
-          minWidth: "xl",
-          width: "xl",
+          height: { md: "60vh" },
+          width: { md: "xl" },
           flexGrow: 1,
+          flexDirection: "column",
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: 5,
+          margin: {base: 0, md: 5},
         })}>
           <PostCard
             position="topLeft"
@@ -59,19 +59,30 @@ export function Home() {
           <PostCard
             position="bottomRight"
             rotation="LittleCounterClockwise"
-            image="childRope"
+            image="gardenSeating"
+          />
+          <PostCard
+            position="topRight"
+            rotation="LittleClockwise"
+            image="beehiveShelter"
+          />
+          <PostCard
+            position="bottomLeft"
+            rotation="LittleCounterClockwise"
+            image="shedDesign"
           />
           <PostCard
             position="middle"
             rotation="None"
-            image="parachute"
+            image="family"
           />
+          
         </div>
       </div>
 
       {/* Services Section */}
       <div className={css({
-        py: '16',
+        py: {base: '8', md: '16'},
         px: '4',
         bg: 'brand.cream'
       })}>
@@ -80,13 +91,13 @@ export function Home() {
           mx: 'auto'
         })}>
           <h2 className={css({
-            fontSize: '4xl',
+            fontSize: {base: "4xl", md: "6xl"},
             fontWeight: 'bold',
             textAlign: 'center',
-            color: 'black',
-            mb: '12'
+            color: 'brand.darkBrown',
+            mb: {base: '8', md: '12'}
           })}>
-            Our Services
+            Services
           </h2>
 
           <div className={css({

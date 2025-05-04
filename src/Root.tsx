@@ -1,4 +1,4 @@
-import { Link, Outlet, useMatchRoute } from "@tanstack/react-router";
+import { Link, Outlet } from "@tanstack/react-router";
 import { css } from "../styled-system/css";
 import { useState } from "react";
 import { NavItem } from "./components/NavItem";
@@ -31,18 +31,17 @@ const navItems = [
 
 export function Root() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const matchRoute = useMatchRoute();
-  const isHome = Boolean(matchRoute({ to: "/" }));
 
   return (
-    <div className={css({ minH: "100vh", display: "flex", flexDir: "column" })}>
+    <div className={css({ position: "relative", width: "100%", display: "flex", flexDir: "column" })}>
       <nav
         className={css({
-          bg: isHome ? "brand.darkGreen" : "white",
+          bg: "brand.darkGreen",
           py: "2",
           px: "4",
+          width: "100%",
           borderBottom: "1px solid",
-          borderColor: isHome ? "brand.darkGreen" : "gray.200",
+          borderColor: "brand.darkGreen",
           position: "sticky",
           top: 0,
           zIndex: 10,
@@ -50,8 +49,8 @@ export function Root() {
       >
         <div
           className={css({
-            ml: 16,
-            mr: 16,
+            ml: {base: 0, md: 16},
+            mr: {base: 0, md: 16},
             mx: "auto",
             display: "flex",
             justifyContent: "space-between",
@@ -65,6 +64,7 @@ export function Root() {
               alignItems: "center",
               gap: "2",
             })}
+            onClick={() => setIsMenuOpen(false)}
           >
             <img
               src={logo}
@@ -117,16 +117,16 @@ export function Root() {
               display: { base: isMenuOpen ? "flex" : "none", lg: "flex" },
               flexDir: { base: "column", lg: "row" },
               gap: { base: "4", lg: "6" },
-              alignItems: "center",
+              alignItems: {base: "flex-start", lg: "center"},
               position: { base: "absolute", lg: "static" },
               top: { base: "100%", lg: "auto" },
               left: { base: "0", lg: "auto" },
               right: { base: "0", lg: "auto" },
-              bg: { base: "white", lg: "transparent" },
+              bg: { base: "brand.cream", lg: "transparent" },
               p: { base: "4", lg: "0" },
               borderBottom: { base: "1px solid", lg: "none" },
               borderColor: {
-                base: isHome ? "brand.cream" : "gray.200",
+                base: "brand.cream",
                 lg: "transparent",
               },
             })}
@@ -136,18 +136,17 @@ export function Root() {
                 key={item.label}
                 label={item.label}
                 href={item.href}
-                isHome={isHome}
                 dropdownItems={item.dropdownItems}
+                closeMenu={() => setIsMenuOpen(false)}
               />
             ))}
 
             <a
               href="mailto:info@woodlandventure.co.uk"
               className={css({
-                color: isHome ? "brand.cream" : "gray.600",
+                color: { base: "brand.darkBrown", lg: "brand.cream" },
                 _hover: {
-                  color: isHome ? undefined : "gray.900",
-                  borderBottom: isHome ? "2px solid" : "none",
+                  borderBottom: "2px solid",
                 },
                 display: { base: "block", lg: "block" },
               })}

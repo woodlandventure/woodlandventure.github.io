@@ -6,11 +6,11 @@ interface PostCardProps {
   image: PostCardImage;
 }
 
-type PostCardImage = "firePit" | "childRope" | "parachute" | "sanctuary";
+type PostCardImage = "firePit" | "childRope" | "gardenSeating" | "family" | "beehiveShelter" | "shedDesign";
 
 type Rotation = "LittleClockwise" | "LittleCounterClockwise" | "None";
 
-type Position = "topLeft" | "bottomRight" | "middle";
+type Position = "topLeft" | "bottomRight" | "middle" | "topRight" | "bottomLeft";
 
 export function PostCard({
   position,
@@ -20,13 +20,23 @@ export function PostCard({
   return (
     <div
       className={css({
-        position: "absolute",
+        position: {
+          lg: "absolute",
+        },
         w: "300px",
-        h: "200px",
-        top: position === "topLeft" ? 10 : undefined,
-        left: position === "topLeft" ? 0 : undefined,
-        bottom: position === "bottomRight" ? 10 : undefined,
-        right: position === "bottomRight" ? 0 : undefined,
+        h: "230px",
+        top: {
+          lg: position === "topLeft" || position === "topRight" ? 5 : undefined,
+        },
+        left: {
+          lg: position === "topLeft" || position === "bottomLeft" ? 5 : undefined,
+        },
+        bottom: {
+          lg: position === "bottomRight" || position === "bottomLeft" ? 5 : undefined,
+        },
+        right: {
+          lg: position === "bottomRight" || position === "topRight" ? 5 : undefined,
+        },
         bg: "white",
         bgSize: "cover",
         bgPosition: "center",
@@ -43,9 +53,13 @@ export function PostCard({
               ? "url(/img/Woodland_Venture_Fire_Pit.jpg)"
               : image === "childRope"
                 ? "url(/img/Woodland_Venture_Child_Rope_Activity.jpg)"
-                : image === "parachute"
-                  ? "url(/img/projects/Forest_School_Woodland_Parachute.JPG)"
-                  : "url(/img/projects/Forest_School_Woodland_Sanctuary_After.JPG)",
+                : image === "gardenSeating"
+                  ? "url(/img/projects/Woodland_Venture_Garden_Seating.jpg)"
+                  : image === "beehiveShelter"
+                    ? "url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)"
+                    : image === "shedDesign"
+                      ? "url(/img/projects/Woodland_Venture_Shed_Design.png)"
+                      : "url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)",
           bgSize: "cover",
           border: "5px solid white",
           height: "100%",

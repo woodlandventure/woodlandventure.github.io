@@ -1,28 +1,33 @@
 import { Link } from "@tanstack/react-router";
 import { css } from "../../styled-system/css";
+import { useState } from "react";
 
 interface NavItemProps {
   label: string;
   href?: string;
-  isHome: boolean;
   dropdownItems?: Array<{
     label: string;
     href: string;
   }>;
+  closeMenu: () => void;
 }
 
-export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
+export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps) {
+  const [expanded, setExpanded] = useState(false);
+
   if (href) {
     return (
       <Link
         to={href}
         className={css({
-          color: isHome ? "brand.cream" : "gray.600",
+          color: {base: "brand.darkBrown", lg: "brand.cream"},
           _hover: {
-            color: isHome ? undefined : "gray.900",
-            borderBottom: isHome ? "2px solid" : "none",
-        },
+            borderBottom: "2px solid",
+          },
         })}
+        onClick={() => {
+          closeMenu();
+        }}
       >
         {label}
       </Link>
@@ -33,17 +38,22 @@ export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
     <div
       className={css({
         position: "relative",
-        _hover: { "& > div": { display: "block" } },
+        _hover: { '& > div': { display: { lg: "block" } } },
       })}
     >
       <button
         className={css({
-          color: isHome ? "brand.cream" : "gray.600",
-          _hover: { color: isHome ? "undefined" : "gray.900" },
+          color: {base: "brand.darkBrown", lg: "brand.cream"},
           display: "flex",
           alignItems: "center",
           gap: "1",
         })}
+        onClick={() => {
+          setExpanded((v) => !v);
+        }}
+        aria-expanded={expanded}
+        aria-haspopup={!!dropdownItems}
+        type="button"
       >
         {label}
         <span
@@ -55,19 +65,70 @@ export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
           })}
         />
       </button>
+      {/* Dropdown for base (inline, indented) and lg (absolute, hover) */}
+      {dropdownItems && (
+        <div
+          className={css({
+            display: {
+              base: expanded ? "block" : "none",
+              lg: "none",
+            },
+            marginTop: {base: 4, lg: 0},
+            position: { base: "static", lg: "absolute" },
+            top: { lg: "100%" },
+            left: { lg: "0" },
+            pl: { base: 2, lg: 0 }, // Indent for base
+            bg: { lg: "brand.cream" },
+            border: { lg: "1px solid" },
+            borderColor: { lg: "brand.cream" },
+            borderRadius: { lg: "sm" },
+            p: { lg: "2" },
+            minW: { lg: "48" },
+            boxShadow: { lg: "md" },
+            zIndex: { lg: 10 },
+          })}
+        >
+          {dropdownItems.map((item) => (
+            <Link
+              key={item.href}
+              to={item.href}
+              className={css({
+                display: "block",
+                p: "2",
+                color: "brand.darkBrown",
+                borderBottom: "1px solid",
+                borderColor: "transparent",
+                _hover: {
+                  color: "brand.darkBrown",
+                  borderBottom: "1px solid",
+                },
+              })}
+              onClick={() => {
+                setExpanded(false);
+                closeMenu();
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+      {/* lg dropdown for hover */}
       <div
         className={css({
           position: "absolute",
           top: "100%",
           left: "0",
-          display: "none",
-          bg: isHome ? "brand.cream" : "white",
+          display: { base: "none", lg: "none" },
+          _groupHover: { display: { lg: "block" } },
+          bg: "brand.cream",
           border: "1px solid",
-          borderColor: isHome ? "brand.cream" : "gray.200",
+          borderColor: "brand.cream",
           borderRadius: "sm",
           p: "2",
           minW: "48",
           boxShadow: "md",
+          zIndex: 10,
         })}
       >
         {dropdownItems?.map((item) => (
@@ -77,13 +138,12 @@ export function NavItem({ label, href, isHome, dropdownItems }: NavItemProps) {
             className={css({
               display: "block",
               p: "2",
-              color: isHome ? "brand.darkBrown" : "gray.600",
-              borderBottom: isHome ? "1px solid" : "none",
+              color: "brand.darkBrown",
+              borderBottom: "1px solid",
               borderColor: "transparent",
               _hover: {
-                color: isHome ? "brand.darkBrown" : "gray.900",
-                bg: isHome ? "transparent" : "gray.50",
-                borderBottom: isHome ? "1px solid" : "none",
+                color: "brand.darkBrown",
+                borderBottom: "1px solid",
               },
             })}
           >

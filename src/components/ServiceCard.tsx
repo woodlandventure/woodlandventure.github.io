@@ -15,10 +15,11 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
   return (
     <Link to={linkTo}>
       <div className={css({
-        width: "4xl",
-        height: "12rem",
+        width: {base: "100%", md: "4xl"},
+        height: { base: '100%', md: '12rem' },
+        maxW: {base: "30rem", md: "4xl"},
         display: "flex",
-        flexDirection: "row",
+        flexDirection: { base: "column", md: "row" },
         bg: 'white',
         rounded: 'lg',
         overflow: 'hidden',
@@ -26,11 +27,12 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
         transition: 'transform 0.2s',
         mb: "10",
         _hover: { transform: 'translateY(-4px)' },
-        bgColor: "white",
-        color: "black"
+        bgColor: "gray.100",
+        color: "brand.darkBrown"
       })}>
         <div className={css({
-          w: '15rem',
+          w: { base: '100%', md: '15rem' },
+          h: { base: "15rem", md: '15rem' },
           flexGrow: 0,
           flexShrink: 0,
           overflow: 'hidden',
@@ -41,32 +43,30 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
             "url(/img/pexels-brett-sayles-2881224.jpg)",
           bgSize: 'cover',
           backgroundPosition: imagePosition,
-          shadow: "md",
-          shadowColor: "gray.800",
         })} />
         <div className={css({ p: '6', display: 'flex', flexDirection: 'column', flex: 1 })}>
           <h3 className={css({
-            fontSize: '3xl',
+            fontSize: { base: 'xl', md: '4xl' },
             fontWeight: 'bold',
             mb: '4'
           })}>
             {title}
           </h3>
           <p className={css({
-            color: 'gray.600',
+            color: 'brand.darkBrown',
             mb: '4',
-            fontSize: "xl"
+            fontSize: { base: 'md', md: 'xl' }
           })}>
             {description}
           </p>
         </div>
         <div className={css({
-          display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          p: 16,
-          color: 'black',
-          fontSize: '2xl'
+          p: { base: 8, md: 16 },
+          color: 'brand.darkBrown',
+          fontSize: { base: 'xl', md: '2xl' },
+          display: { base: 'none', md: 'flex' }
         })}>
           <FontAwesomeIcon icon={faArrowRight} />
         </div>

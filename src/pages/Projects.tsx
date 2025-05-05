@@ -7,7 +7,8 @@ export function Projects() {
       maxW: '7xl',
       mx: 'auto',
       py: { base: '8', md: '16' },
-      px: '4'
+      px: '4',
+      bg: 'brand.cream'
     })}>
       <div className={css({
         textAlign: 'center',

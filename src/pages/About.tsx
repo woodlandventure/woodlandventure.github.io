@@ -1,4 +1,5 @@
 import { css } from '../../styled-system/css'
+import danHeadshot from "../assets/img/Woodland_Venture_Dan_Headshot.jpg";
 
 export function About() {
   const currentYear = new Date().getFullYear()
@@ -8,20 +9,23 @@ export function About() {
 
   return (
     <div className={css({
-      maxW: '7xl',
+      width: '100%',
       mx: 'auto',
       py: { base: '8', md: '16' },
-      px: '4'
+      px: '4',
+      bg: 'brand.cream'
     })}>
       <div className={css({
-        display: 'grid',
-        gridTemplateColumns: { base: '1fr', md: 'repeat(2, 1fr)' },
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         gap: { base: '8', md: '12' },
-        alignItems: 'start'
+        alignItems: 'center',
+        justifyContent: 'center'
       })}>
         <div>
           <img 
-            src="/img/Woodland_Venture_Dan_Headshot.jpg"
+            src={danHeadshot}
             alt="Dan Gillinder"
             className={css({
               maxW: '340px',
@@ -34,11 +38,12 @@ export function About() {
           />
         </div>
 
-        <div>
+        <div className={(css({maxWidth: '3xl'}))}>
           <h1 className={css({ 
             fontSize: { base: '3xl', md: '4xl' },
             fontWeight: 'bold',
             mb: '6',
+            color: 'brand.darkBrown',
             textAlign: { base: 'center', md: 'left' }
           })}>
             Dan Gillinder

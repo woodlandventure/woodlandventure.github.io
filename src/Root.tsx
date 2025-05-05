@@ -33,7 +33,7 @@ export function Root() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className={css({ position: "relative", width: "100%", display: "flex", flexDir: "column" })}>
+    <div className={css({ position: "relative", width: "100%", display: "flex", flexDir: "column", minHeight: "100vh" })}>
       <nav
         className={css({
           bg: "brand.darkGreen",

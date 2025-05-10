@@ -10,10 +10,12 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
   }
 
   body {
     margin: 0;
     background-color: rgb(241,218,193);
+    overscroll-behavior-y: none;
   }
 } 

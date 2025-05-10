@@ -27,6 +27,9 @@ export function Contact() {
               fontWeight: "bold",
               mb: "6",
               textAlign: { base: "center", md: "left" },
+              borderBottomColor: "brand.darkBrown",
+              borderBottomWidth: "1px",
+              borderBottomStyle: "solid",
             })}
           >
             Contact Us

@@ -33,7 +33,15 @@ export function Root() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className={css({ position: "relative", width: "100%", display: "flex", flexDir: "column", minHeight: "100vh" })}>
+    <div
+      className={css({
+        position: "relative",
+        width: "100%",
+        display: "flex",
+        flexDir: "column",
+        minHeight: "100vh",
+      })}
+    >
       <nav
         className={css({
           bg: "brand.darkGreen",
@@ -49,8 +57,8 @@ export function Root() {
       >
         <div
           className={css({
-            ml: {base: 0, md: 16},
-            mr: {base: 0, md: 16},
+            ml: { base: 0, md: 16 },
+            mr: { base: 0, md: 16 },
             mx: "auto",
             display: "flex",
             justifyContent: "space-between",
@@ -80,6 +88,7 @@ export function Root() {
 
           {/* Mobile menu button */}
           <button
+            name="menu-button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={css({
               display: { base: "block", lg: "none" },
@@ -117,7 +126,7 @@ export function Root() {
               display: { base: isMenuOpen ? "flex" : "none", lg: "flex" },
               flexDir: { base: "column", lg: "row" },
               gap: { base: "4", lg: "6" },
-              alignItems: {base: "flex-start", lg: "center"},
+              alignItems: { base: "flex-start", lg: "center" },
               position: { base: "absolute", lg: "static" },
               top: { base: "100%", lg: "auto" },
               left: { base: "0", lg: "auto" },
@@ -126,7 +135,7 @@ export function Root() {
               p: { base: "4", lg: "0" },
               borderBottom: { base: "1px solid", lg: "none" },
               borderColor: {
-                base: "brand.cream",
+                base: "brand.darkBrown",
                 lg: "transparent",
               },
             })}

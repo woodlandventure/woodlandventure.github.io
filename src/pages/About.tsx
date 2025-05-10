@@ -44,7 +44,11 @@ export function About() {
             fontWeight: 'bold',
             mb: '6',
             color: 'brand.darkBrown',
-            textAlign: { base: 'center', md: 'left' }
+            textAlign: { base: 'center', md: 'left' },
+            width: "100%",
+            borderBottomColor: "brand.darkBrown",
+            borderBottomWidth: "1px",
+            borderBottomStyle: "solid",
           })}>
             Dan Gillinder
           </h1>

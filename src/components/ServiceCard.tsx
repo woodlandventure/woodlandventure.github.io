@@ -27,8 +27,9 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
         transition: 'transform 0.2s',
         mb: "10",
         _hover: { transform: 'translateY(-4px)' },
-        bgColor: "gray.100",
+        bgColor: "white",
         color: "brand.darkBrown"
+
       })}>
         <div className={css({
           w: { base: '100%', md: '15rem' },
@@ -43,6 +44,14 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
             "url(/img/pexels-brett-sayles-2881224.jpg)",
           bgSize: 'cover',
           backgroundPosition: imagePosition,
+
+          borderRightColor: { md: "brand.yellow", base: undefined },
+          borderRightWidth: { md: "4px", base: undefined },
+          borderRightStyle: { md: "solid", base: undefined },
+
+          borderBottomColor: { base: "brand.yellow", md: undefined },
+          borderBottomWidth: { base: "4px", md: undefined },
+          borderBottomStyle: { base: "solid", md: undefined },
         })} />
         <div className={css({ p: '6', display: 'flex', flexDirection: 'column', flex: 1 })}>
           <h3 className={css({

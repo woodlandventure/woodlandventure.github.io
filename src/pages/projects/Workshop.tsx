@@ -16,6 +16,7 @@ const scrollSections: {
   position?: Position;
   image: PostCardImage;
   rotation?: Rotation;
+  direction: 'top' | 'right' | 'bottom' | 'left';
 }[] = [
   //   {
   //     image: WorkshopImages.threeDCutAwaySm,
@@ -32,6 +33,7 @@ const scrollSections: {
       left: 20,
     },
     rotation: 'LittleCounterClockwise',
+    direction: 'top',
   },
   {
     image: WorkshopImages.threeDCutAwayLocationSm,
@@ -39,6 +41,7 @@ const scrollSections: {
       bottom: 1,
       right: 20,
     },
+    direction: 'bottom',
   },
   {
     image: WorkshopImages.RealBaseSm,
@@ -47,6 +50,7 @@ const scrollSections: {
       left: 1,
     },
     rotation: 'LittleClockwise',
+    direction: 'left',
   },
   {
     image: WorkshopImages.RealWallsSm,
@@ -55,6 +59,7 @@ const scrollSections: {
       right: 1,
     },
     rotation: 'LittleCounterClockwise',
+    direction: 'right',
   },
   //   {
   //     image: WorkshopImages.RealRoofStructureSm,
@@ -69,6 +74,7 @@ const scrollSections: {
       bottom: 100,
       right: 100,
     },
+    direction: 'bottom',
   },
 ];
 
@@ -77,11 +83,13 @@ const ScrollSectionCard = ({
     top: 100,
     right: 100,
   },
+  direction,
   children,
   scrollLimit,
   scrollRef,
 }: {
   position?: Position;
+  direction: 'top' | 'right' | 'bottom' | 'left';
   scrollLimit: {
     start: number;
     end: number;
@@ -91,34 +99,27 @@ const ScrollSectionCard = ({
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
 
-  const top = useTransform(
+  // Only animate the specified direction
+  const animatedValue = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-1000, position.top ?? 0],
+    [-1000, position[direction] ?? 0],
   );
-  const right = useTransform(
-    scrollYProgress,
-    [scrollLimit.start, scrollLimit.end],
-    [-1000, position.right ?? 0],
-  );
-  const left = useTransform(
-    scrollYProgress,
-    [scrollLimit.start, scrollLimit.end],
-    [-1000, position.left ?? 0],
-  );
-  const bottom = useTransform(
-    scrollYProgress,
-    [scrollLimit.start, scrollLimit.end],
-    [-1000, position.bottom ?? 0],
-  );
+
+  // Build style object with only the animated direction
+  const style: React.CSSProperties = {
+    [direction]: animatedValue,
+  };
+  // Add the other positions as static values if present
+  (['top', 'right', 'bottom', 'left'] as const).forEach((dir) => {
+    if (dir !== direction && position[dir] !== undefined) {
+      style[dir] = position[dir];
+    }
+  });
+
   return (
     <motion.div
-      style={{
-        top: position.top ? top : undefined,
-        right: position.right ? right : undefined,
-        left: position.left ? left : undefined,
-        bottom: position.bottom ? bottom : undefined,
-      }}
+      style={style}
       className={css({
         width: 400,
         position: 'absolute',
@@ -296,6 +297,7 @@ export function Workshop() {
                   key={index}
                   scrollRef={scrollRef}
                   position={c.position}
+                  direction={c.direction}
                   scrollLimit={{ start, end }}
                 >
                   <div

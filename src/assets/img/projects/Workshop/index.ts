@@ -1,1 +1,1 @@
-export { default as shedLayout } from "./Shed_Layout.png";
+export { default as shedLayout } from './Shed_Layout.png';

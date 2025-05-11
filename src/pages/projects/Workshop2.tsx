@@ -1,62 +1,78 @@
-import { css } from "../../../styled-system/css";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { css } from '../../../styled-system/css';
+import { useRef } from 'react';
+// import { motion, useScroll, useTransform } from "framer-motion";
+import { navBarHeight } from '../../components/navBarHeight';
 
-const Card = () => {
-  const { scrollYProgress } = useScroll();
-  const fastProgress = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  return (
-    <motion.div
-      style={{
-        top: 100,
-        right: 100,
-      }}
-      className={css({
-        backgroundColor: "brand.darkBrown",
-        width: 400,
-        height: 400,
-        borderRadius: "md",
-        padding: "2",
-        color: "brand.cream",
-        position: "sticky",
-      })}
-    >
-      <h1>Workshop</h1>
-    </motion.div>
-  );
-};
-
-const Card2 = () => {
-  const { scrollYProgress } = useScroll();
-  const fastProgress = useTransform(scrollYProgress, [0.3, 0.7], [-400, 100]);
-  return (
-    <motion.div
-      style={{
-        top: fastProgress,
-        right: 0,
-      }}
-      className={css({
-        backgroundColor: "brand.cream",
-        width: 400,
-        height: 400,
-        borderRadius: "md",
-        padding: "2",
-        color: "brand.cream",
-        position: "absolute",
-      })}
-    >
-      <h1>Workshop</h1>
-    </motion.div>
-  );
-};
+// const Card = ({
+//   position,
+//   scrollLimit,
+// }: {
+//   position: {
+//     top?: number;
+//     right?: number;
+//     left?: number;
+//     bottom?: number;
+//   };
+//   scrollLimit: {
+//     start: number;
+//     end: number;
+//   };
+// }) => {
+//   const { scrollYProgress } = useScroll();
+//   const top = useTransform(
+//     scrollYProgress,
+//     [scrollLimit.start, scrollLimit.end],
+//     [-400, position.top ?? 0]
+//   );
+//   const right = useTransform(
+//     scrollYProgress,
+//     [scrollLimit.start, scrollLimit.end],
+//     [-400, position.right ?? 0]
+//   );
+//   const left = useTransform(
+//     scrollYProgress,
+//     [scrollLimit.start, scrollLimit.end],
+//     [-400, position.left ?? 0]
+//   );
+//   const bottom = useTransform(
+//     scrollYProgress,
+//     [scrollLimit.start, scrollLimit.end],
+//     [-400, position.bottom ?? 0]
+//   );
+//   return (
+//     <motion.div
+//       style={{
+//         top: position.top ? top : undefined,
+//         right: position.right ? right : undefined,
+//         left: position.left ? left : undefined,
+//         bottom: position.bottom ? bottom : undefined,
+//       }}
+//       className={css({
+//         backgroundColor: "brand.cream",
+//         border: "1px solid",
+//         borderColor: "brand.darkGreen",
+//         width: 400,
+//         height: 400,
+//         borderRadius: "md",
+//         padding: "2",
+//         color: "brand.cream",
+//         position: "absolute",
+//       })}
+//     >
+//       <h1>Workshop</h1>
+//     </motion.div>
+//   );
+// };
 
 const ScrollCard = () => (
   <div
     className={css({
-      height: "100vh",
-      backgroundColor: "white",
+      height: '80vh',
+      flexShrink: 0,
+      backgroundColor: 'white',
       mb: 10,
-      width: 100,
+      width: 400,
+      scrollSnapAlign: 'start',
     })}
   ></div>
 );
@@ -69,13 +85,17 @@ export function Workshop2() {
       <div
         ref={scrollRef}
         className={css({
-          bg: "brand.darkGreen",
-          display: "flex",
-          flexDir: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          pt: { base: "16", md: "32" },
-          scrollSnapAlign: "start",
+          bg: 'brand.darkGreen',
+          display: 'flex',
+          flexDir: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          pt: { base: '16', md: '32' },
+          scrollSnapAlign: 'start',
+          scrollSnapType: 'y mandatory',
+          overflowY: 'scroll',
+          height: `calc(100vh - ${navBarHeight}))`,
+          mt: navBarHeight,
         })}
       >
         <ScrollCard />
@@ -83,20 +103,20 @@ export function Workshop2() {
         <ScrollCard />
         <ScrollCard />
       </div>
-      <div
+      {/* <div
         className={css({
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          width: "100vw",
-          height: "100vw",
+          width: "100%",
+          height: "100%",
         })}
       >
-        {/* <Card/> */}
-        <Card2 />
-        {/* <div className={css({width: 10, height: 10, backgroundColor: "brand.green", position: "absolute", top: 100, left: 100})}/> */}
-      </div>
+        <Card position={{ top: 100, right: 100 }} scrollLimit={{ start: 0, end: 0.2 }} />
+        <Card position={{ top: 100, left: 100 }} scrollLimit={{ start: 0.3, end: 0.5 }} />
+        <Card position={{ bottom: 100, right: 100 }} scrollLimit={{ start: 0.6, end: 0.8 }} />
+      </div> */}
     </>
   );
 }

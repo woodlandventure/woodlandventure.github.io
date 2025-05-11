@@ -1,6 +1,7 @@
 # Woodland Venture Website
 
 A modern React application for Woodland Venture, built with:
+
 - React 18
 - TypeScript
 - Vite
@@ -10,16 +11,19 @@ A modern React application for Woodland Venture, built with:
 ## Development
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm run dev
 ```
 
 3. Build for production:
+
 ```bash
 npm run build
 ```
@@ -30,6 +34,7 @@ The site is deployed to GitHub Pages. To deploy:
 
 1. Make sure all changes are committed to the main branch
 2. Run the deploy command:
+
 ```bash
 npm run deploy
 ```
@@ -76,15 +81,15 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default tseslint.config({
   plugins: {
@@ -98,5 +103,5 @@ export default tseslint.config({
     ...reactX.configs['recommended-typescript'].rules,
     ...reactDom.configs.recommended.rules,
   },
-})
+});
 ```

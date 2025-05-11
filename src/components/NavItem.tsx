@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
-import { css } from "../../styled-system/css";
-import { useState } from "react";
+import { Link } from '@tanstack/react-router';
+import { css } from '../../styled-system/css';
+import { useState } from 'react';
 
 interface NavItemProps {
   label: string;
@@ -20,9 +20,9 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
       <Link
         to={href}
         className={css({
-          color: {base: "brand.darkBrown", lg: "brand.cream"},
+          color: { base: 'brand.darkBrown', lg: 'brand.cream' },
           _hover: {
-            borderBottom: "2px solid",
+            borderBottom: '2px solid',
           },
         })}
         onClick={() => {
@@ -37,16 +37,16 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
   return (
     <div
       className={css({
-        position: "relative",
-        _hover: { '& > div': { display: { lg: "block" } } },
+        position: 'relative',
+        _hover: { '& > div': { display: { lg: 'block' } } },
       })}
     >
       <button
         className={css({
-          color: {base: "brand.darkBrown", lg: "brand.cream"},
-          display: "flex",
-          alignItems: "center",
-          gap: "1",
+          color: { base: 'brand.darkBrown', lg: 'brand.cream' },
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1',
         })}
         onClick={() => {
           setExpanded((v) => !v);
@@ -58,10 +58,10 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
         {label}
         <span
           className={css({
-            borderLeft: "4px solid transparent",
-            borderRight: "4px solid transparent",
-            borderTop: "4px solid currentColor",
-            ml: "1",
+            borderLeft: '4px solid transparent',
+            borderRight: '4px solid transparent',
+            borderTop: '4px solid currentColor',
+            ml: '1',
           })}
         />
       </button>
@@ -70,21 +70,21 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
         <div
           className={css({
             display: {
-              base: expanded ? "block" : "none",
-              lg: "none",
+              base: expanded ? 'block' : 'none',
+              lg: 'none',
             },
-            marginTop: {base: 4, lg: 0},
-            position: { base: "static", lg: "absolute" },
-            top: { lg: "100%" },
-            left: { lg: "0" },
+            marginTop: { base: 4, lg: 0 },
+            position: { base: 'static', lg: 'absolute' },
+            top: { lg: '100%' },
+            left: { lg: '0' },
             pl: { base: 2, lg: 0 }, // Indent for base
-            bg: { lg: "brand.cream" },
-            border: { lg: "1px solid" },
-            borderColor: { lg: "brand.cream" },
-            borderRadius: { lg: "sm" },
-            p: { lg: "2" },
-            minW: { lg: "48" },
-            boxShadow: { lg: "md" },
+            bg: { lg: 'brand.cream' },
+            border: { lg: '1px solid' },
+            borderColor: { lg: 'brand.cream' },
+            borderRadius: { lg: 'sm' },
+            p: { lg: '2' },
+            minW: { lg: '48' },
+            boxShadow: { lg: 'md' },
             zIndex: { lg: 10 },
           })}
         >
@@ -93,14 +93,14 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
               key={item.href}
               to={item.href}
               className={css({
-                display: "block",
-                p: "2",
-                color: "brand.darkBrown",
-                borderBottom: "1px solid",
-                borderColor: "transparent",
+                display: 'block',
+                p: '2',
+                color: 'brand.darkBrown',
+                borderBottom: '1px solid',
+                borderColor: 'transparent',
                 _hover: {
-                  color: "brand.darkBrown",
-                  borderBottom: "1px solid",
+                  color: 'brand.darkBrown',
+                  borderBottom: '1px solid',
                 },
               })}
               onClick={() => {
@@ -116,18 +116,18 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
       {/* lg dropdown for hover */}
       <div
         className={css({
-          position: "absolute",
-          top: "100%",
-          left: "0",
-          display: { base: "none", lg: "none" },
-          _groupHover: { display: { lg: "block" } },
-          bg: "brand.cream",
-          border: "1px solid",
-          borderColor: "brand.cream",
-          borderRadius: "sm",
-          p: "2",
-          minW: "48",
-          boxShadow: "md",
+          position: 'absolute',
+          top: '100%',
+          left: '0',
+          display: { base: 'none', lg: 'none' },
+          _groupHover: { display: { lg: 'block' } },
+          bg: 'brand.cream',
+          border: '1px solid',
+          borderColor: 'brand.darkBrown',
+          // borderRadius: "sm",
+          p: '2',
+          minW: '48',
+          boxShadow: 'md',
           zIndex: 10,
         })}
       >
@@ -136,14 +136,14 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
             key={item.href}
             to={item.href}
             className={css({
-              display: "block",
-              p: "2",
-              color: "brand.darkBrown",
-              borderBottom: "1px solid",
-              borderColor: "transparent",
+              display: 'block',
+              p: '2',
+              color: 'brand.darkBrown',
+              borderBottom: '1px solid',
+              borderColor: 'transparent',
               _hover: {
-                color: "brand.darkBrown",
-                borderBottom: "1px solid",
+                color: 'brand.darkBrown',
+                borderBottom: '1px solid',
               },
             })}
           >

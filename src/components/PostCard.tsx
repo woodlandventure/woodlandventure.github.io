@@ -9,41 +9,64 @@ export interface PostCardProps {
   link?: string;
 }
 
-export type PostCardImage =
-  | 'firePit'
-  | 'childRope'
-  | 'gardenSeating'
-  | 'family'
-  | 'beehiveShelter'
-  | 'shedDesign';
+const postCardImages = [
+  'firePit',
+  'childRope',
+  'gardenSeating',
+  'family',
+  'beehiveShelter',
+  'workshopPlan',
+  'shedDesign',
+];
+
+export type PostCardImage = (typeof postCardImages)[number] | string;
 
 export type Rotation = 'LittleClockwise' | 'LittleCounterClockwise' | 'None';
 
 type Position = 'topLeft' | 'bottomRight' | 'middle' | 'topRight' | 'bottomLeft';
 
 export const PostCard = ({ image }: { image: PostCardImage }) => {
-  return (
-    <div
-      className={css({
-        bg:
-          image === 'firePit'
-            ? 'url(/img/Woodland_Venture_Fire_Pit.jpg)'
-            : image === 'childRope'
-              ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
-              : image === 'gardenSeating'
-                ? 'url(/img/projects/Woodland_Venture_Garden_Seating.jpg)'
-                : image === 'beehiveShelter'
-                  ? 'url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)'
-                  : image === 'shedDesign'
-                    ? 'url(/img/projects/Woodland_Venture_Shed_Design.png)'
-                    : 'url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)',
-        bgSize: 'cover',
-        border: '5px solid white',
-        height: '100%',
-        width: '100%',
-      })}
-    />
-  );
+  const isImage = postCardImages.includes(image);
+
+  if (isImage) {
+    return (
+      <div
+        className={css({
+          bg:
+            image === 'firePit'
+              ? 'url(/img/Woodland_Venture_Fire_Pit.jpg)'
+              : image === 'childRope'
+                ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
+                : image === 'gardenSeating'
+                  ? 'url(/img/projects/Woodland_Venture_Garden_Seating.jpg)'
+                  : image === 'beehiveShelter'
+                    ? 'url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)'
+                    : image === 'shedDesign'
+                      ? 'url(/img/projects/Woodland_Venture_Shed_Design.png)'
+                      : image === 'workshopPlan'
+                        ? 'url(/img/projects/Workshop/Shed_Layout.png)'
+                        : 'url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)',
+          bgSize: 'cover',
+          border: '5px solid white',
+          height: '100%',
+          width: '100%',
+        })}
+      />
+    );
+  } else {
+    return (
+      <img
+        src={image}
+        alt={image}
+        className={css({
+          bgSize: 'cover',
+          border: '5px solid white',
+          height: '100%',
+          width: '100%',
+        })}
+      />
+    );
+  }
 };
 
 export const rotationToDegrees = (rotation: Rotation) => {

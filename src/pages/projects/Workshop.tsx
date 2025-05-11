@@ -3,6 +3,7 @@ import { RefObject, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { navBarHeight } from '../../components/navBarHeight';
 import { PostCard, PostCardImage, Rotation, rotationToDegrees } from '../../components/PostCard';
+import { shedLayout } from '../../assets/img/projects/Workshop';
 
 type Position = {
   top?: number;
@@ -11,7 +12,7 @@ type Position = {
   bottom?: number;
 };
 
-const cards: {
+const scrollSections: {
   position: Position;
   image: PostCardImage;
   rotation: Rotation;
@@ -42,7 +43,7 @@ const cards: {
   },
 ];
 
-const Card = ({
+const ScrollSectionCard = ({
   position,
   children,
   scrollLimit,
@@ -115,48 +116,108 @@ const ScrollSpacingPage = ({ containerHeight }: { containerHeight: string }) => 
   ></div>
 );
 
+/**
+ * Viewport that takes up the visible screen space but isn't scrollable.
+ *
+ * You can render children into this viewport using transitions based on
+ * the overall scroll position.
+ */
+const ViewportDiv = ({ children }: { children: React.ReactNode }) => (
+  <div
+    style={{ paddingTop: navBarHeight }}
+    className={css({
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: -1,
+      backgroundColor: 'brand.darkGreen',
+    })}
+  >
+    {children}
+  </div>
+);
+
+const ScrollSpacing = ({
+  length,
+  scrollRef,
+  containerHeight,
+}: {
+  length: number;
+  scrollRef: RefObject<HTMLDivElement>;
+  containerHeight: string;
+}) => (
+  <div
+    ref={scrollRef}
+    style={{ height: containerHeight }}
+    className={css({
+      display: 'flex',
+      flexDir: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      scrollSnapType: 'y mandatory',
+      overflowY: 'scroll',
+      mt: navBarHeight,
+    })}
+  >
+    {Array.from({ length }).map((_, index) => (
+      <ScrollSpacingPage key={index} containerHeight={containerHeight} />
+    ))}
+  </div>
+);
+
 export function Workshop() {
   const scrollRef = useRef(null);
 
   const containerHeight = `${window.innerHeight - 94}px`;
   return (
     <>
-      <div
-        ref={scrollRef}
-        style={{ height: containerHeight }}
-        className={css({
-          display: 'flex',
-          flexDir: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          scrollSnapType: 'y mandatory',
-          overflowY: 'scroll',
-          mt: navBarHeight,
-        })}
-      >
-        {cards.map((_, index) => (
-          <ScrollSpacingPage key={index} containerHeight={containerHeight} />
-        ))}
-        <ScrollSpacingPage key={cards.length + 1} containerHeight={containerHeight} />
-      </div>
-      <div
-        className={css({
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: -1,
-          backgroundColor: 'brand.darkGreen',
-        })}
-      >
-        {cards.map((c, index) => {
-          const length = cards.length;
+      <ScrollSpacing
+        length={scrollSections.length + 1}
+        scrollRef={scrollRef}
+        containerHeight={containerHeight}
+      />
+      <ViewportDiv>
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          })}
+        >
+          <h1
+            className={css({
+              mb: 10,
+              fontSize: '4rem',
+              color: 'brand.cream',
+              fontWeight: 'bold',
+              zIndex: 10,
+              backgroundColor: 'brand.darkGreen',
+              padding: 4,
+              borderRadius: 'sm',
+            })}
+          >
+            Workshop
+          </h1>
+          <div
+            className={css({
+              width: '70vh',
+            })}
+          >
+            <PostCard image={shedLayout} />
+          </div>
+        </div>
+
+        {scrollSections.map((c, index) => {
+          const length = scrollSections.length;
           const start = index / length;
           const end = (index + 1) / length;
           return (
-            <Card
+            <ScrollSectionCard
               key={index}
               scrollRef={scrollRef}
               position={c.position}
@@ -176,10 +237,10 @@ export function Workshop() {
               >
                 <PostCard image={c.image} />
               </motion.div>
-            </Card>
+            </ScrollSectionCard>
           );
         })}
-      </div>
+      </ViewportDiv>
     </>
   );
 }

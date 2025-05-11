@@ -1,6 +1,35 @@
 import { css } from '../../styled-system/css'
 import { ServiceCard } from '../components/ServiceCard'
-import { PostCard } from '../components/PostCard'
+import { PostCard, PostCardProps } from '../components/PostCard'
+
+const postCards: PostCardProps[] = [
+  {
+    position: "topLeft",
+    rotation: "LittleClockwise",
+    image: "firePit",
+  },
+  {
+    position: "bottomRight",
+    rotation: "LittleCounterClockwise",
+    image: "gardenSeating",
+  },
+  {
+    position: "topRight",
+    rotation: "LittleClockwise",
+    image: "beehiveShelter",
+  },
+  {
+    position: "bottomLeft",
+    rotation: "LittleCounterClockwise",
+    image: "shedDesign",
+    link: "/workshop",
+  },
+  {
+    position: "middle",
+    rotation: "None",
+    image: "family",
+  }
+]
 
 export function Home() {
   return (
@@ -33,6 +62,7 @@ export function Home() {
           </h1>
           <p className={css({
             fontSize: { base: 'xl', md: '2xl' },
+            mb: {base: 10, md: 0},
             opacity: 0.9
           })}>
             Tunbridge Wells, Kent and East Sussex
@@ -51,31 +81,12 @@ export function Home() {
           justifyContent: 'center',
           margin: {base: 0, md: 5},
         })}>
-          <PostCard
-            position="topLeft"
-            rotation="LittleClockwise"
-            image="firePit"
-          />
-          <PostCard
-            position="bottomRight"
-            rotation="LittleCounterClockwise"
-            image="gardenSeating"
-          />
-          <PostCard
-            position="topRight"
-            rotation="LittleClockwise"
-            image="beehiveShelter"
-          />
-          <PostCard
-            position="bottomLeft"
-            rotation="LittleCounterClockwise"
-            image="shedDesign"
-          />
-          <PostCard
-            position="middle"
-            rotation="None"
-            image="family"
-          />
+          {postCards.map((card, index) => (
+            <PostCard
+              key={`card-${index}`}
+              {...card}
+            />
+          ))}
           
         </div>
       </div>
@@ -88,14 +99,18 @@ export function Home() {
       })}>
         <div className={css({
           maxW: '7xl',
-          mx: 'auto'
+          mx: 'auto',
+          width: "fit-content",
         })}>
           <h2 className={css({
             fontSize: {base: "4xl", md: "6xl"},
             fontWeight: 'bold',
             textAlign: 'center',
             color: 'brand.darkBrown',
-            mb: {base: '8', md: '12'}
+            mb: {base: '8', md: '12'},
+            borderBottomColor: 'brand.darkBrown',
+            borderBottomWidth: '1px',
+            borderBottomStyle: 'solid',
           })}>
             Services
           </h2>

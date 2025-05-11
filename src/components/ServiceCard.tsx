@@ -15,28 +15,36 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
   return (
     <Link to={linkTo}>
       <div className={css({
+        position: "relative",
+        width: {base: "100%", md: "4xl"},
+        height: { base: '100%', md: '12rem' },
+        maxW: {base: "30rem", md: "4xl"},
+        mb: 10,
+        _hover: { transform: 'translateY(-4px)' },
+        transition: 'transform 0.2s',
+      })}
+        >
+      <div className={css({
+        position: "relative",
         width: {base: "100%", md: "4xl"},
         height: { base: '100%', md: '12rem' },
         maxW: {base: "30rem", md: "4xl"},
         display: "flex",
         flexDirection: { base: "column", md: "row" },
         bg: 'white',
-        rounded: 'lg',
-        overflow: 'hidden',
-        shadow: 'md',
-        transition: 'transform 0.2s',
         mb: "10",
-        _hover: { transform: 'translateY(-4px)' },
         bgColor: "white",
-        color: "brand.darkBrown"
-
+        color: "black",
+        border: "2px solid",
+        borderColor: "brand.darkBrown",
+        overflow: "hidden",
+        zIndex: 1,
       })}>
         <div className={css({
-          w: { base: '100%', md: '15rem' },
-          h: { base: "15rem", md: '15rem' },
+          w: { base: '100%', md: '12rem' },
+          h: { base: "12rem", md: '12rem' },
           flexGrow: 0,
           flexShrink: 0,
-          overflow: 'hidden',
           bg: image === "childRope" ? 
             "url(/img/Woodland_Venture_Child_Rope_Activity.jpg)":
             image === "parachute" ? "url(/img/projects/Forest_School_Woodland_Parachute.JPG)" :
@@ -62,7 +70,7 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
             {title}
           </h3>
           <p className={css({
-            color: 'brand.darkBrown',
+            color: 'gray.700',
             mb: '4',
             fontSize: { base: 'md', md: 'xl' }
           })}>
@@ -79,6 +87,16 @@ export function ServiceCard({ title, description, image, linkTo, imagePosition =
         })}>
           <FontAwesomeIcon icon={faArrowRight} />
         </div>
+        </div>
+        <div className={css({
+          backgroundColor: "brand.darkBrown",
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: "4px",
+          left: "4px",
+          zIndex: 0,
+        })} />
       </div>
     </Link>
   )

@@ -6,12 +6,16 @@ export function NotFound() {
       textAlign: 'center',
       py: '16',
       maxW: '2xl',
-      mx: 'auto'
+      mx: 'auto',
+      color: 'brand.darkBrown',
     })}>
       <h1 className={css({ 
         fontSize: '4xl',
         fontWeight: 'bold',
-        mb: '4'
+        mb: '4',
+      borderBottomColor: 'brand.darkBrown',
+      borderBottomWidth: '1px',
+      borderBottomStyle: 'solid',
       })}>
         404 - Page Not Found
       </h1>
@@ -28,10 +32,10 @@ export function NotFound() {
           display: 'inline-block',
           px: '6',
           py: '3',
-          bg: 'blue.600',
+          bg: 'brand.darkGreen',
           color: 'white',
           borderRadius: 'md',
-          _hover: { bg: 'blue.700' }
+          _hover: { bg: 'brand.yellow' }
         })}
       >
         Return Home

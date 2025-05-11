@@ -1,9 +1,12 @@
+import { useNavigate } from "@tanstack/react-router";
 import { css } from "../../styled-system/css";
+import { motion } from "framer-motion";
 
-interface PostCardProps {
+export interface PostCardProps {
   position: Position;
   rotation: Rotation;
   image: PostCardImage;
+  link?: string;
 }
 
 type PostCardImage = "firePit" | "childRope" | "gardenSeating" | "family" | "beehiveShelter" | "shedDesign";
@@ -16,10 +19,30 @@ export function PostCard({
   position,
   rotation,
   image,
+  link,
 }: PostCardProps) {
+  const navigate = useNavigate();
   return (
-    <div
+    <motion.div
+      initial={{
+        scale: 1,
+        rotate: rotation === "LittleClockwise" ? -3 : rotation === "LittleCounterClockwise" ? 3 : 0,
+      }}
+      whileHover={{
+        scale: 1.05,
+        rotate: rotation === "LittleClockwise" ? 0 : rotation === "LittleCounterClockwise" ? 0 : 3,
+      }}
+      animate={{
+        scale: 1,
+        rotate: rotation === "LittleClockwise" ? -3 : rotation === "LittleCounterClockwise" ? 3 : 0,
+      }}
+      onClick={() => {
+        if (link) {
+          navigate({ to: link });
+        }
+      }}
       className={css({
+        cursor: link ? "pointer" : "default",
         position: {
           lg: "absolute",
         },
@@ -42,7 +65,6 @@ export function PostCard({
         bgPosition: "center",
         shadow: "xl",
         shadowColor: "gray.800",
-        transform: rotation === "LittleClockwise" ? "rotate(-3deg)" : rotation === "LittleCounterClockwise" ? "rotate(3deg)" : "rotate(0deg)",
         overflow: "hidden",
       })}
     >
@@ -66,6 +88,6 @@ export function PostCard({
           width: "100%",
         })}
       />
-    </div>
+    </motion.div>
   );
 }

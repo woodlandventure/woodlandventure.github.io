@@ -2,7 +2,6 @@ import { css } from "../../styled-system/css";
 import { ProjectCard } from "../components/ProjectCard";
 
 import {
-  beforeAndAfter,
   parachute,
   workTop,
   fireCircle,
@@ -11,20 +10,19 @@ import {
   sanctuary,
   kitchen,
   sandpitCover,
+  beehiveShelterVenture,
 } from "../assets/img/projects";
 
 const projectCards = [
   {
-    image: beforeAndAfter,
+    image: beehiveShelterVenture,
     alt: "Outdoor Shelter",
     title: "Outdoor Shelter",
-    linkTo: "/projects/shelter",
   },
   {
     image: sanctuary,
     alt: "The Sanctuary",
     title: "The Sanctuary",
-    linkTo: "/projects/sanctuary",
   },
   {
     image: parachute,

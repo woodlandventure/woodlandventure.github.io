@@ -28,7 +28,7 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
           h: "250px",
           objectFit: "cover",
           borderBottomColor: "brand.darkBrown",
-          borderBottomWidth: "4px",
+          borderBottomWidth: "3px",
           borderBottomStyle: "solid",
         })}
       />

@@ -7,6 +7,7 @@ import logo from "./assets/img/Logo_Cream.png";
 import facebook from "./assets/img/facebook.png";
 import instagram from "./assets/img/Instagram_Logo.png";
 import fsa from "./assets/img/fsa.jpg";
+import { navBarHeight } from "./components/navBarHeight";
 
 const navItems = [
   {

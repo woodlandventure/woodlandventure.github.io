@@ -1,1 +1,10 @@
 export { default as shedLayout } from './Shed_Layout.png';
+export { default as threeDCutAway } from './3d_Cut_Away.png';
+export { default as threeDFullLocation } from './3d_Full_Location.png';
+export { default as unnamed26 } from './unnamed-26.png';
+export { default as threeDCutAwayLocation } from './3d_Cut_Away_Location.png';
+export { default as RealRoofStructure } from './Real_Roof_Structure.jpg';
+export { default as RealFullSide } from './Real_Full_Side.jpg';
+export { default as RealWalls } from './Real_Walls.jpg';
+export { default as RealFullFront } from './Real_Full_Front.jpg';
+export { default as RealBase } from './Real_Base.jpg';

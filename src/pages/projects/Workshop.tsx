@@ -3,7 +3,7 @@ import { RefObject, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { navBarHeight } from '../../components/navBarHeight';
 import { PostCard, PostCardImage, Rotation, rotationToDegrees } from '../../components/PostCard';
-import { shedLayout } from '../../assets/img/projects/Workshop';
+import * as WorkshopImages from '../../assets/img/projects/Workshop';
 
 type Position = {
   top?: number;
@@ -13,48 +13,71 @@ type Position = {
 };
 
 const scrollSections: {
-  position: Position;
+  position?: Position;
   image: PostCardImage;
-  rotation: Rotation;
+  rotation?: Rotation;
 }[] = [
   {
+    image: WorkshopImages.threeDCutAway,
     position: {
       top: 100,
       right: 100,
     },
-    image: 'firePit',
-    rotation: 'LittleClockwise',
   },
   {
+    image: WorkshopImages.threeDFullLocation,
     position: {
       top: 100,
       left: 100,
     },
-    image: 'childRope',
-    rotation: 'LittleCounterClockwise',
   },
   {
+    image: WorkshopImages.threeDCutAwayLocation,
     position: {
       bottom: 100,
       right: 100,
     },
-    image: 'shedDesign',
-    rotation: 'None',
+  },
+  {
+    image: WorkshopImages.RealBase,
+    position: {
+      bottom: 100,
+      left: 100,
+    },
+  },
+  {
+    image: WorkshopImages.RealWalls,
+    position: {
+      top: 100,
+      right: 150,
+    },
+  },
+  {
+    image: WorkshopImages.RealRoofStructure,
+    position: {
+      top: 100,
+      left: 150,
+    },
+  },
+  {
+    image: WorkshopImages.RealFullSide,
+    position: {
+      bottom: 100,
+      right: 100,
+    },
   },
 ];
 
 const ScrollSectionCard = ({
-  position,
+  position = {
+    top: 100,
+    right: 100,
+  },
   children,
   scrollLimit,
   scrollRef,
 }: {
-  position: {
-    top?: number;
-    right?: number;
-    left?: number;
-    bottom?: number;
-  };
+  position?: Position;
   scrollLimit: {
     start: number;
     end: number;
@@ -93,7 +116,7 @@ const ScrollSectionCard = ({
       }}
       className={css({
         width: 400,
-        height: 400,
+        // height: 400,
         position: 'absolute',
         display: 'flex',
         alignItems: 'center',
@@ -105,16 +128,51 @@ const ScrollSectionCard = ({
   );
 };
 
-const ScrollSpacingPage = ({ containerHeight }: { containerHeight: string }) => (
+const ScrollSpacingPage = ({
+  containerHeight,
+  isFirst,
+}: {
+  containerHeight: string;
+  isFirst: boolean;
+}) => (
   <div
     style={{ height: containerHeight }}
     className={css({
       flexShrink: 0,
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
       backgroundColor: 'transparent',
       scrollSnapAlign: 'start',
+      position: 'relative',
     })}
-  ></div>
+  >
+    {isFirst && <FloatingScrollHint />}
+  </div>
 );
+
+const FloatingScrollHint = () => {
+  return (
+    <div
+      className={css({
+        bottom: 24,
+        textWrap: 'nowrap',
+        position: 'absolute',
+        backgroundColor: 'brand.cream',
+        zIndex: 20,
+        textAlign: 'center',
+        color: 'brand.darkBrown',
+        fontSize: 'md',
+        fontWeight: 'bold',
+        borderWidth: '1px',
+        padding: 2,
+        animation: 'bounce 1s ease-in-out infinite',
+      })}
+    >
+      <span>scroll down to see more ↓</span>
+    </div>
+  );
+};
 
 /**
  * Viewport that takes up the visible screen space but isn't scrollable.
@@ -162,14 +220,13 @@ const ScrollSpacing = ({
     })}
   >
     {Array.from({ length }).map((_, index) => (
-      <ScrollSpacingPage key={index} containerHeight={containerHeight} />
+      <ScrollSpacingPage isFirst={index === 0} key={index} containerHeight={containerHeight} />
     ))}
   </div>
 );
 
 export function Workshop() {
   const scrollRef = useRef(null);
-
   const containerHeight = `${window.innerHeight - 94}px`;
   return (
     <>
@@ -185,20 +242,22 @@ export function Workshop() {
             flexDirection: 'column',
             width: '100%',
             height: '100%',
-            justifyContent: 'center',
+            justifyContent: 'start',
             alignItems: 'center',
           })}
         >
           <h1
             className={css({
-              mb: 10,
+              mb: 5,
+              mt: 1,
               fontSize: '4rem',
-              color: 'brand.cream',
+              color: 'brand.darkBrown',
               fontWeight: 'bold',
               zIndex: 10,
-              backgroundColor: 'brand.darkGreen',
-              padding: 4,
-              borderRadius: 'sm',
+              backgroundColor: 'brand.cream',
+              borderColor: 'brand.darkBrown',
+              borderWidth: '2px',
+              padding: 1,
             })}
           >
             Workshop
@@ -208,7 +267,7 @@ export function Workshop() {
               width: '70vh',
             })}
           >
-            <PostCard image={shedLayout} />
+            <PostCard image={WorkshopImages.shedLayout} />
           </div>
         </div>
 
@@ -225,7 +284,7 @@ export function Workshop() {
             >
               <motion.div
                 animate={{
-                  rotate: rotationToDegrees(c.rotation),
+                  rotate: rotationToDegrees(c.rotation ?? 'None'),
                 }}
                 className={css({
                   width: '100%',

@@ -35,7 +35,7 @@ export function Root() {
 
   const matchRoute = useMatchRoute();
   const isWorkshop = matchRoute({
-    to: '/workshop2',
+    to: '/workshop',
   });
 
   return (

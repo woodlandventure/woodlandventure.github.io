@@ -1,6 +1,6 @@
 import { css } from '../../styled-system/css';
 import { ServiceCard } from '../components/ServiceCard';
-import { PostCard, PostCardProps } from '../components/PostCard';
+import { PositionedPostCard, PostCardProps } from '../components/PostCard';
 
 const postCards: PostCardProps[] = [
   {
@@ -93,7 +93,7 @@ export function Home() {
           })}
         >
           {postCards.map((card, index) => (
-            <PostCard key={`card-${index}`} {...card} />
+            <PositionedPostCard key={`card-${index}`} {...card} />
           ))}
         </div>
       </div>

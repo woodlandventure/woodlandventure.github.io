@@ -9,7 +9,7 @@ export interface PostCardProps {
   link?: string;
 }
 
-type PostCardImage =
+export type PostCardImage =
   | 'firePit'
   | 'childRope'
   | 'gardenSeating'
@@ -17,25 +17,58 @@ type PostCardImage =
   | 'beehiveShelter'
   | 'shedDesign';
 
-type Rotation = 'LittleClockwise' | 'LittleCounterClockwise' | 'None';
+export type Rotation = 'LittleClockwise' | 'LittleCounterClockwise' | 'None';
 
 type Position = 'topLeft' | 'bottomRight' | 'middle' | 'topRight' | 'bottomLeft';
 
-export function PostCard({ position, rotation, image, link }: PostCardProps) {
+export const PostCard = ({ image }: { image: PostCardImage }) => {
+  return (
+    <div
+      className={css({
+        bg:
+          image === 'firePit'
+            ? 'url(/img/Woodland_Venture_Fire_Pit.jpg)'
+            : image === 'childRope'
+              ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
+              : image === 'gardenSeating'
+                ? 'url(/img/projects/Woodland_Venture_Garden_Seating.jpg)'
+                : image === 'beehiveShelter'
+                  ? 'url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)'
+                  : image === 'shedDesign'
+                    ? 'url(/img/projects/Woodland_Venture_Shed_Design.png)'
+                    : 'url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)',
+        bgSize: 'cover',
+        border: '5px solid white',
+        height: '100%',
+        width: '100%',
+      })}
+    />
+  );
+};
+
+export const rotationToDegrees = (rotation: Rotation) => {
+  return rotation === 'LittleClockwise' ? -3 : rotation === 'LittleCounterClockwise' ? 3 : 0;
+};
+
+export const rotationToHoverDegrees = (rotation: Rotation) => {
+  return rotation === 'LittleClockwise' ? 0 : rotation === 'LittleCounterClockwise' ? 0 : 3;
+};
+
+export const PositionedPostCard = ({ position, rotation, image, link }: PostCardProps) => {
   const navigate = useNavigate();
   return (
     <motion.div
       initial={{
         scale: 1,
-        rotate: rotation === 'LittleClockwise' ? -3 : rotation === 'LittleCounterClockwise' ? 3 : 0,
+        rotate: rotationToDegrees(rotation),
       }}
       whileHover={{
         scale: 1.05,
-        rotate: rotation === 'LittleClockwise' ? 0 : rotation === 'LittleCounterClockwise' ? 0 : 3,
+        rotate: rotationToHoverDegrees(rotation),
       }}
       animate={{
         scale: 1,
-        rotate: rotation === 'LittleClockwise' ? -3 : rotation === 'LittleCounterClockwise' ? 3 : 0,
+        rotate: rotationToDegrees(rotation),
       }}
       onClick={() => {
         if (link) {
@@ -69,26 +102,7 @@ export function PostCard({ position, rotation, image, link }: PostCardProps) {
         overflow: 'hidden',
       })}
     >
-      <div
-        className={css({
-          bg:
-            image === 'firePit'
-              ? 'url(/img/Woodland_Venture_Fire_Pit.jpg)'
-              : image === 'childRope'
-                ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
-                : image === 'gardenSeating'
-                  ? 'url(/img/projects/Woodland_Venture_Garden_Seating.jpg)'
-                  : image === 'beehiveShelter'
-                    ? 'url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)'
-                    : image === 'shedDesign'
-                      ? 'url(/img/projects/Woodland_Venture_Shed_Design.png)'
-                      : 'url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)',
-          bgSize: 'cover',
-          border: '5px solid white',
-          height: '100%',
-          width: '100%',
-        })}
-      />
+      <PostCard image={image} />
     </motion.div>
   );
-}
+};

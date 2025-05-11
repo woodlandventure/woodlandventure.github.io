@@ -17,50 +17,54 @@ const scrollSections: {
   image: PostCardImage;
   rotation?: Rotation;
 }[] = [
+  //   {
+  //     image: WorkshopImages.threeDCutAwaySm,
+  //     position: {
+  //       top: 100,
+  //       right: 100,
+  //     },
+  //     rotation: 'LittleClockwise',
+  //   },
   {
-    image: WorkshopImages.threeDCutAway,
+    image: WorkshopImages.threeDFullLocationSm,
     position: {
-      top: 100,
-      right: 100,
+      top: 1,
+      left: 20,
+    },
+    rotation: 'LittleCounterClockwise',
+  },
+  {
+    image: WorkshopImages.threeDCutAwayLocationSm,
+    position: {
+      bottom: 1,
+      right: 20,
     },
   },
   {
-    image: WorkshopImages.threeDFullLocation,
+    image: WorkshopImages.RealBaseSm,
     position: {
-      top: 100,
-      left: 100,
+      bottom: 20,
+      left: 1,
     },
+    rotation: 'LittleClockwise',
   },
   {
-    image: WorkshopImages.threeDCutAwayLocation,
+    image: WorkshopImages.RealWallsSm,
     position: {
-      bottom: 100,
-      right: 100,
+      top: 20,
+      right: 1,
     },
+    rotation: 'LittleCounterClockwise',
   },
+  //   {
+  //     image: WorkshopImages.RealRoofStructureSm,
+  //     position: {
+  //       top: 100,
+  //       left: 150,
+  //     },
+  //   },
   {
-    image: WorkshopImages.RealBase,
-    position: {
-      bottom: 100,
-      left: 100,
-    },
-  },
-  {
-    image: WorkshopImages.RealWalls,
-    position: {
-      top: 100,
-      right: 150,
-    },
-  },
-  {
-    image: WorkshopImages.RealRoofStructure,
-    position: {
-      top: 100,
-      left: 150,
-    },
-  },
-  {
-    image: WorkshopImages.RealFullSide,
+    image: WorkshopImages.RealFullSideSm,
     position: {
       bottom: 100,
       right: 100,
@@ -86,25 +90,26 @@ const ScrollSectionCard = ({
   children: React.ReactNode;
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
+
   const top = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-400, position.top ?? 0],
+    [-1000, position.top ?? 0],
   );
   const right = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-400, position.right ?? 0],
+    [-1000, position.right ?? 0],
   );
   const left = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-400, position.left ?? 0],
+    [-1000, position.left ?? 0],
   );
   const bottom = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-400, position.bottom ?? 0],
+    [-1000, position.bottom ?? 0],
   );
   return (
     <motion.div
@@ -116,7 +121,6 @@ const ScrollSectionCard = ({
       }}
       className={css({
         width: 400,
-        // height: 400,
         position: 'absolute',
         display: 'flex',
         alignItems: 'center',
@@ -254,6 +258,7 @@ export function Workshop() {
               color: 'brand.darkBrown',
               fontWeight: 'bold',
               zIndex: 10,
+              flexGrow: 0,
               backgroundColor: 'brand.cream',
               borderColor: 'brand.darkBrown',
               borderWidth: '2px',
@@ -264,41 +269,54 @@ export function Workshop() {
           </h1>
           <div
             className={css({
-              width: '70vh',
+              width: '100%',
+              height: '100%',
+              flexGrow: 1,
+              position: 'relative',
             })}
           >
-            <PostCard image={WorkshopImages.shedLayout} />
+            <div
+              className={css({
+                maxWidth: '2xl',
+                width: '70vw',
+                borderColor: 'brand.darkBrown',
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                marginX: 'auto',
+              })}
+            >
+              <PostCard image={WorkshopImages.shedLayout} />
+            </div>
+            {scrollSections.map((c, index) => {
+              const length = scrollSections.length;
+              const start = index / length;
+              const end = (index + 1) / length;
+              return (
+                <ScrollSectionCard
+                  key={index}
+                  scrollRef={scrollRef}
+                  position={c.position}
+                  scrollLimit={{ start, end }}
+                >
+                  <div
+                    // animate={{
+                    //   rotate: rotationToDegrees(c.rotation ?? 'None'),
+                    // }}
+                    className={css({
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    })}
+                  >
+                    <PostCard image={c.image} />
+                  </div>
+                </ScrollSectionCard>
+              );
+            })}
           </div>
         </div>
-
-        {scrollSections.map((c, index) => {
-          const length = scrollSections.length;
-          const start = index / length;
-          const end = (index + 1) / length;
-          return (
-            <ScrollSectionCard
-              key={index}
-              scrollRef={scrollRef}
-              position={c.position}
-              scrollLimit={{ start, end }}
-            >
-              <motion.div
-                animate={{
-                  rotate: rotationToDegrees(c.rotation ?? 'None'),
-                }}
-                className={css({
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                })}
-              >
-                <PostCard image={c.image} />
-              </motion.div>
-            </ScrollSectionCard>
-          );
-        })}
       </ViewportDiv>
     </>
   );

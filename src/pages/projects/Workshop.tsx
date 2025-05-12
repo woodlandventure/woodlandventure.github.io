@@ -263,7 +263,7 @@ export function Workshop() {
               backgroundColor: 'brand.cream',
               borderColor: 'brand.darkBrown',
               borderWidth: '2px',
-              padding: 1,
+              padding: 2,
             })}
           >
             Workshop

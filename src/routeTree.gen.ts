@@ -10,16 +10,16 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as WorkshopImport } from './routes/workshop'
-import { Route as SchoolsImport } from './routes/schools'
-import { Route as ProjectsImport } from './routes/projects'
-import { Route as ContactImport } from './routes/contact'
-import { Route as AdventureImport } from './routes/adventure'
-import { Route as AboutImport } from './routes/about'
-import { Route as IndexImport } from './routes/index'
-import { Route as ProjectsShelterImport } from './routes/projects.shelter'
-import { Route as ProjectsSanctuaryImport } from './routes/projects.sanctuary'
+import { Route as rootRoute } from './routes/__root';
+import { Route as WorkshopImport } from './routes/workshop';
+import { Route as SchoolsImport } from './routes/schools';
+import { Route as ProjectsImport } from './routes/projects';
+import { Route as ContactImport } from './routes/contact';
+import { Route as AdventureImport } from './routes/adventure';
+import { Route as AboutImport } from './routes/about';
+import { Route as IndexImport } from './routes/index';
+import { Route as ProjectsShelterImport } from './routes/projects.shelter';
+import { Route as ProjectsSanctuaryImport } from './routes/projects.sanctuary';
 
 // Create/Update Routes
 
@@ -27,181 +27,179 @@ const WorkshopRoute = WorkshopImport.update({
   id: '/workshop',
   path: '/workshop',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SchoolsRoute = SchoolsImport.update({
   id: '/schools',
   path: '/schools',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProjectsRoute = ProjectsImport.update({
   id: '/projects',
   path: '/projects',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ContactRoute = ContactImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AdventureRoute = AdventureImport.update({
   id: '/adventure',
   path: '/adventure',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AboutRoute = AboutImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProjectsShelterRoute = ProjectsShelterImport.update({
   id: '/shelter',
   path: '/shelter',
   getParentRoute: () => ProjectsRoute,
-} as any)
+} as any);
 
 const ProjectsSanctuaryRoute = ProjectsSanctuaryImport.update({
   id: '/sanctuary',
   path: '/sanctuary',
   getParentRoute: () => ProjectsRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
     '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/about';
+      path: '/about';
+      fullPath: '/about';
+      preLoaderRoute: typeof AboutImport;
+      parentRoute: typeof rootRoute;
+    };
     '/adventure': {
-      id: '/adventure'
-      path: '/adventure'
-      fullPath: '/adventure'
-      preLoaderRoute: typeof AdventureImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/adventure';
+      path: '/adventure';
+      fullPath: '/adventure';
+      preLoaderRoute: typeof AdventureImport;
+      parentRoute: typeof rootRoute;
+    };
     '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/contact';
+      path: '/contact';
+      fullPath: '/contact';
+      preLoaderRoute: typeof ContactImport;
+      parentRoute: typeof rootRoute;
+    };
     '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/projects';
+      path: '/projects';
+      fullPath: '/projects';
+      preLoaderRoute: typeof ProjectsImport;
+      parentRoute: typeof rootRoute;
+    };
     '/schools': {
-      id: '/schools'
-      path: '/schools'
-      fullPath: '/schools'
-      preLoaderRoute: typeof SchoolsImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/schools';
+      path: '/schools';
+      fullPath: '/schools';
+      preLoaderRoute: typeof SchoolsImport;
+      parentRoute: typeof rootRoute;
+    };
     '/workshop': {
-      id: '/workshop'
-      path: '/workshop'
-      fullPath: '/workshop'
-      preLoaderRoute: typeof WorkshopImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/workshop';
+      path: '/workshop';
+      fullPath: '/workshop';
+      preLoaderRoute: typeof WorkshopImport;
+      parentRoute: typeof rootRoute;
+    };
     '/projects/sanctuary': {
-      id: '/projects/sanctuary'
-      path: '/sanctuary'
-      fullPath: '/projects/sanctuary'
-      preLoaderRoute: typeof ProjectsSanctuaryImport
-      parentRoute: typeof ProjectsImport
-    }
+      id: '/projects/sanctuary';
+      path: '/sanctuary';
+      fullPath: '/projects/sanctuary';
+      preLoaderRoute: typeof ProjectsSanctuaryImport;
+      parentRoute: typeof ProjectsImport;
+    };
     '/projects/shelter': {
-      id: '/projects/shelter'
-      path: '/shelter'
-      fullPath: '/projects/shelter'
-      preLoaderRoute: typeof ProjectsShelterImport
-      parentRoute: typeof ProjectsImport
-    }
+      id: '/projects/shelter';
+      path: '/shelter';
+      fullPath: '/projects/shelter';
+      preLoaderRoute: typeof ProjectsShelterImport;
+      parentRoute: typeof ProjectsImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface ProjectsRouteChildren {
-  ProjectsSanctuaryRoute: typeof ProjectsSanctuaryRoute
-  ProjectsShelterRoute: typeof ProjectsShelterRoute
+  ProjectsSanctuaryRoute: typeof ProjectsSanctuaryRoute;
+  ProjectsShelterRoute: typeof ProjectsShelterRoute;
 }
 
 const ProjectsRouteChildren: ProjectsRouteChildren = {
   ProjectsSanctuaryRoute: ProjectsSanctuaryRoute,
   ProjectsShelterRoute: ProjectsShelterRoute,
-}
+};
 
-const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
-  ProjectsRouteChildren,
-)
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(ProjectsRouteChildren);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/adventure': typeof AdventureRoute
-  '/contact': typeof ContactRoute
-  '/projects': typeof ProjectsRouteWithChildren
-  '/schools': typeof SchoolsRoute
-  '/workshop': typeof WorkshopRoute
-  '/projects/sanctuary': typeof ProjectsSanctuaryRoute
-  '/projects/shelter': typeof ProjectsShelterRoute
+  '/': typeof IndexRoute;
+  '/about': typeof AboutRoute;
+  '/adventure': typeof AdventureRoute;
+  '/contact': typeof ContactRoute;
+  '/projects': typeof ProjectsRouteWithChildren;
+  '/schools': typeof SchoolsRoute;
+  '/workshop': typeof WorkshopRoute;
+  '/projects/sanctuary': typeof ProjectsSanctuaryRoute;
+  '/projects/shelter': typeof ProjectsShelterRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/adventure': typeof AdventureRoute
-  '/contact': typeof ContactRoute
-  '/projects': typeof ProjectsRouteWithChildren
-  '/schools': typeof SchoolsRoute
-  '/workshop': typeof WorkshopRoute
-  '/projects/sanctuary': typeof ProjectsSanctuaryRoute
-  '/projects/shelter': typeof ProjectsShelterRoute
+  '/': typeof IndexRoute;
+  '/about': typeof AboutRoute;
+  '/adventure': typeof AdventureRoute;
+  '/contact': typeof ContactRoute;
+  '/projects': typeof ProjectsRouteWithChildren;
+  '/schools': typeof SchoolsRoute;
+  '/workshop': typeof WorkshopRoute;
+  '/projects/sanctuary': typeof ProjectsSanctuaryRoute;
+  '/projects/shelter': typeof ProjectsShelterRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/adventure': typeof AdventureRoute
-  '/contact': typeof ContactRoute
-  '/projects': typeof ProjectsRouteWithChildren
-  '/schools': typeof SchoolsRoute
-  '/workshop': typeof WorkshopRoute
-  '/projects/sanctuary': typeof ProjectsSanctuaryRoute
-  '/projects/shelter': typeof ProjectsShelterRoute
+  __root__: typeof rootRoute;
+  '/': typeof IndexRoute;
+  '/about': typeof AboutRoute;
+  '/adventure': typeof AdventureRoute;
+  '/contact': typeof ContactRoute;
+  '/projects': typeof ProjectsRouteWithChildren;
+  '/schools': typeof SchoolsRoute;
+  '/workshop': typeof WorkshopRoute;
+  '/projects/sanctuary': typeof ProjectsSanctuaryRoute;
+  '/projects/shelter': typeof ProjectsShelterRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
     | '/'
     | '/about'
@@ -211,8 +209,8 @@ export interface FileRouteTypes {
     | '/schools'
     | '/workshop'
     | '/projects/sanctuary'
-    | '/projects/shelter'
-  fileRoutesByTo: FileRoutesByTo
+    | '/projects/shelter';
+  fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | '/about'
@@ -222,7 +220,7 @@ export interface FileRouteTypes {
     | '/schools'
     | '/workshop'
     | '/projects/sanctuary'
-    | '/projects/shelter'
+    | '/projects/shelter';
   id:
     | '__root__'
     | '/'
@@ -233,18 +231,18 @@ export interface FileRouteTypes {
     | '/schools'
     | '/workshop'
     | '/projects/sanctuary'
-    | '/projects/shelter'
-  fileRoutesById: FileRoutesById
+    | '/projects/shelter';
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AdventureRoute: typeof AdventureRoute
-  ContactRoute: typeof ContactRoute
-  ProjectsRoute: typeof ProjectsRouteWithChildren
-  SchoolsRoute: typeof SchoolsRoute
-  WorkshopRoute: typeof WorkshopRoute
+  IndexRoute: typeof IndexRoute;
+  AboutRoute: typeof AboutRoute;
+  AdventureRoute: typeof AdventureRoute;
+  ContactRoute: typeof ContactRoute;
+  ProjectsRoute: typeof ProjectsRouteWithChildren;
+  SchoolsRoute: typeof SchoolsRoute;
+  WorkshopRoute: typeof WorkshopRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -255,11 +253,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRouteWithChildren,
   SchoolsRoute: SchoolsRoute,
   WorkshopRoute: WorkshopRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

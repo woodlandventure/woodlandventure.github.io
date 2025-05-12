@@ -123,7 +123,8 @@ export function Projects() {
             className={css({
               minW: { base: '100%', md: '320px' },
               flex: '1 1 320px',
-              maxW: '350px',
+              maxW: 'xl',
+              justifyContent: 'center',
             })}
           >
             <ProjectCard {...card} />

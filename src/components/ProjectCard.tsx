@@ -1,5 +1,7 @@
 import { css } from '../../styled-system/css';
 import { Link } from '@tanstack/react-router';
+import { thickBrownBorder } from './border';
+import { Shadow } from './Shadow';
 
 interface ProjectCardProps {
   image: string;
@@ -23,9 +25,7 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
           bg: 'white',
           overflow: 'hidden',
           zIndex: 1,
-          borderColor: 'brand.darkBrown',
-          borderWidth: '2px',
-          borderStyle: 'solid',
+          ...thickBrownBorder,
         })}
       >
         <img
@@ -53,17 +53,7 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
           </h3>
         </div>
       </div>
-      <div
-        className={css({
-          backgroundColor: 'brand.darkBrown',
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: '4px',
-          left: '4px',
-          zIndex: 0,
-        })}
-      />
+      <Shadow />
     </div>
   );
 

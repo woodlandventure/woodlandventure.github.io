@@ -2,7 +2,7 @@ import { css } from '../../../styled-system/css';
 import { RefObject, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { navBarHeight } from '../../components/navBarHeight';
-import { PostCard, PostCardImage, Rotation, rotationToDegrees } from '../../components/PostCard';
+import { PostCard, PostCardImage, Rotation } from '../../components/PostCard';
 import * as WorkshopImages from '../../assets/img/projects/Workshop';
 
 type Position = {
@@ -271,6 +271,7 @@ export function Workshop() {
           <div
             className={css({
               width: '100%',
+              maxW: '5xl',
               height: '100%',
               flexGrow: 1,
               position: 'relative',

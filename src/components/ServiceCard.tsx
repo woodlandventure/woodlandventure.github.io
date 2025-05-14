@@ -28,7 +28,7 @@ export function ServiceCard({
           transition: 'transform 0.2s',
         })}
       >
-        <WithShadow borderWidth="thick">
+        <WithShadow borderWidth="thick" hoverAnimation>
           <div
             className={css({
               position: 'relative',
@@ -111,17 +111,6 @@ export function ServiceCard({
                 <FontAwesomeIcon icon={faArrowRight} />
               </div>
             </div>
-            <div
-              className={css({
-                backgroundColor: 'brand.darkBrown',
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                top: '4px',
-                left: '4px',
-                zIndex: 0,
-              })}
-            />
           </div>
         </WithShadow>
       </div>

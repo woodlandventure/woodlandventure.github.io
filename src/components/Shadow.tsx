@@ -18,9 +18,11 @@ export const Shadow = () => (
 export const WithShadow = ({
   children,
   borderWidth = 'thin',
+  hoverAnimation = false,
 }: {
   children: React.ReactNode;
   borderWidth?: 'thin' | 'thick';
+  hoverAnimation?: boolean;
 }) => (
   <div
     className={css({
@@ -28,10 +30,24 @@ export const WithShadow = ({
       isolation: 'isolate',
       width: 'fit-content',
       height: 'fit-content',
-      ...(borderWidth === 'thin' ? thinBrownBorder : thickBrownBorder),
     })}
   >
-    <div className={css({ zIndex: 1, position: 'relative' })}>{children}</div>
+    <div
+      className={css({
+        zIndex: 1,
+        position: 'relative',
+
+        ...(borderWidth === 'thin' ? thinBrownBorder : thickBrownBorder),
+        ...(hoverAnimation
+          ? {
+              _hover: { transform: 'translateY(-4px)' },
+              transition: 'transform 0.2s',
+            }
+          : {}),
+      })}
+    >
+      {children}
+    </div>
     <Shadow />
   </div>
 );

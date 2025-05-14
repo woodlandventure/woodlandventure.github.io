@@ -15,8 +15,6 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
     <div
       className={css({
         position: 'relative',
-        _hover: { transform: 'translateY(-4px)' },
-        transition: 'transform 0.2s',
       })}
     >
       <div
@@ -26,6 +24,8 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
           overflow: 'hidden',
           zIndex: 1,
           ...thickBrownBorder,
+          _hover: { transform: 'translateY(-4px)' },
+          transition: 'transform 0.2s',
         })}
       >
         <img

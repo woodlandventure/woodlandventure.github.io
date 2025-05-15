@@ -51,6 +51,7 @@ const scrollSections: {
     image: WorkshopImages.threeDCutAwayLocationSm,
     xPosition: 0.8,
     yPosition: 0.8,
+    rotation: 'LittleClockwise',
     direction: 'bottom',
     imageAspect: 214 / 382,
   },
@@ -96,6 +97,8 @@ const ScrollSectionCard = ({
   containerWidth,
   containerHeight,
   imageAspect,
+  outerHeight,
+  outerWidth,
 }: {
   xPosition: number;
   yPosition: number;
@@ -108,6 +111,8 @@ const ScrollSectionCard = ({
   children: React.ReactNode;
   containerWidth: number;
   containerHeight: number;
+  outerHeight: number;
+  outerWidth: number;
   imageAspect: number;
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
@@ -122,15 +127,16 @@ const ScrollSectionCard = ({
   const bottom = yPosition * ySpacing;
 
   const movingTargetDestination = direction === 'top' || direction === 'bottom' ? bottom : left;
+  console.log(containerWidth, width);
   const movingTargetStart =
     direction === 'bottom'
-      ? -containerHeight - height
+      ? -outerHeight - height
       : direction === 'left'
-        ? -containerWidth - width
+        ? -(outerWidth + width)
         : direction === 'right'
-          ? containerWidth + width
+          ? outerWidth + width
           : direction === 'top'
-            ? containerHeight + height
+            ? outerHeight + height
             : 0;
   // Only animate the specified direction
   const animatedValue = useTransform(
@@ -286,17 +292,28 @@ const useContainerDims = () => {
 
 export function Workshop() {
   const scrollRef = useRef(null);
-  const { containerHeight, containerWidth, containerRef } = useContainerDims();
+  const {
+    containerHeight: canvasContainerHeight,
+    containerWidth: canvasContainerWidth,
+    containerRef: canvasContainerRef,
+  } = useContainerDims();
+
+  const {
+    containerHeight: overallContainerHeight,
+    containerRef: overallContainerRef,
+    containerWidth: overallContainerWidth,
+  } = useContainerDims();
 
   return (
     <>
       <ScrollSpacing
         length={scrollSections.length + 1}
         scrollRef={scrollRef}
-        containerHeight={`${containerHeight}px`}
+        containerHeight={`${overallContainerHeight}px`}
       />
       <ViewportDiv>
         <div
+          ref={overallContainerRef}
           className={css({
             display: 'flex',
             flexDirection: 'column',
@@ -325,7 +342,7 @@ export function Workshop() {
           </h1>
           <div className={css({ p: 4, width: '100%', height: '100%' })}>
             <div
-              ref={containerRef}
+              ref={canvasContainerRef}
               className={css({
                 width: '100%',
                 maxW: '5xl',
@@ -359,15 +376,15 @@ export function Workshop() {
                     yPosition={c.yPosition}
                     direction={c.direction}
                     scrollLimit={{ start, end }}
-                    containerWidth={containerWidth}
-                    containerHeight={containerHeight}
+                    containerWidth={canvasContainerWidth}
+                    containerHeight={canvasContainerHeight}
                     imageAspect={c.imageAspect}
+                    outerHeight={overallContainerHeight}
+                    outerWidth={overallContainerWidth}
                   >
                     <div
                       style={{
                         transform: `rotate(${rotationToDegrees(c.rotation ?? 'None')}deg)`,
-                      }}
-                      style={{
                         zIndex: index,
                       }}
                       className={css({

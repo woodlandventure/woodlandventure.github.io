@@ -1,22 +1,35 @@
 import { css } from '../../../styled-system/css';
-import { RefObject, useRef } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { navBarHeight } from '../../components/navBarHeight';
-import { PostCard, PostCardImage, Rotation } from '../../components/PostCard';
+import { PostCard, PostCardImage, Rotation, rotationToDegrees } from '../../components/PostCard';
 import * as WorkshopImages from '../../assets/img/projects/Workshop';
 
-type Position = {
-  top?: number;
-  right?: number;
-  left?: number;
-  bottom?: number;
-};
+// type Position = {
+//   top?: number;
+//   right?: number;
+//   left?: number;
+//   bottom?: number;
+// };
 
 const scrollSections: {
-  position?: Position;
+  /**
+   * Percentage of the container width. 0 is left, 1 is right
+   */
+  xPosition: number;
+  /**
+   * Percentage of the container height. 0 is bottom, 1 is top
+   */
+  yPosition: number;
   image: PostCardImage;
   rotation?: Rotation;
   direction: 'top' | 'right' | 'bottom' | 'left';
+  /**
+   * Height over length. Measured from the base image.
+   *
+   * Used to calculate positioning
+   */
+  imageAspect: number;
 }[] = [
   //   {
   //     image: WorkshopImages.threeDCutAwaySm,
@@ -28,38 +41,34 @@ const scrollSections: {
   //   },
   {
     image: WorkshopImages.threeDFullLocationSm,
-    position: {
-      top: 1,
-      left: 20,
-    },
+    xPosition: 0.1,
+    yPosition: 0.1,
     rotation: 'LittleCounterClockwise',
     direction: 'top',
+    imageAspect: 252 / 382,
   },
   {
     image: WorkshopImages.threeDCutAwayLocationSm,
-    position: {
-      bottom: 1,
-      right: 20,
-    },
+    xPosition: 0.8,
+    yPosition: 0.8,
     direction: 'bottom',
+    imageAspect: 214 / 382,
   },
   {
     image: WorkshopImages.RealBaseSm,
-    position: {
-      bottom: 20,
-      left: 1,
-    },
+    xPosition: 0.8,
+    yPosition: 0.2,
     rotation: 'LittleClockwise',
     direction: 'left',
+    imageAspect: 314 / 382,
   },
   {
     image: WorkshopImages.RealWallsSm,
-    position: {
-      top: 20,
-      right: 1,
-    },
+    xPosition: 0.2,
+    yPosition: 1.0,
     rotation: 'LittleCounterClockwise',
     direction: 'right',
+    imageAspect: 351 / 382,
   },
   //   {
   //     image: WorkshopImages.RealRoofStructureSm,
@@ -70,25 +79,26 @@ const scrollSections: {
   //   },
   {
     image: WorkshopImages.RealFullSideSm,
-    position: {
-      bottom: 100,
-      right: 100,
-    },
+    xPosition: 0.5,
+    yPosition: 0.5,
     direction: 'bottom',
+    imageAspect: 290 / 382,
   },
 ];
 
 const ScrollSectionCard = ({
-  position = {
-    top: 100,
-    right: 100,
-  },
+  xPosition,
+  yPosition,
   direction,
   children,
   scrollLimit,
   scrollRef,
+  containerWidth,
+  containerHeight,
+  imageAspect,
 }: {
-  position?: Position;
+  xPosition: number;
+  yPosition: number;
   direction: 'top' | 'right' | 'bottom' | 'left';
   scrollLimit: {
     start: number;
@@ -96,32 +106,48 @@ const ScrollSectionCard = ({
   };
   scrollRef: RefObject<HTMLDivElement>;
   children: React.ReactNode;
+  containerWidth: number;
+  containerHeight: number;
+  imageAspect: number;
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
+  const widthLimit = Math.min(400, containerWidth);
+  const heightLimit = Math.min(400, containerHeight, widthLimit);
+  const width = Math.min(widthLimit, heightLimit / imageAspect);
+  const height = Math.min(heightLimit, width * imageAspect);
 
+  const xSpacing = containerWidth - width;
+  const ySpacing = containerHeight - height;
+  const left = xPosition * xSpacing;
+  const bottom = yPosition * ySpacing;
+
+  const movingTargetDestination = direction === 'top' || direction === 'bottom' ? bottom : left;
+  const movingTargetStart =
+    direction === 'bottom'
+      ? -containerHeight - height
+      : direction === 'left'
+        ? -containerWidth - width
+        : direction === 'right'
+          ? containerWidth + width
+          : direction === 'top'
+            ? containerHeight + height
+            : 0;
   // Only animate the specified direction
   const animatedValue = useTransform(
     scrollYProgress,
     [scrollLimit.start, scrollLimit.end],
-    [-1000, position[direction] ?? 0],
+    [movingTargetStart, movingTargetDestination],
   );
-
-  // Build style object with only the animated direction
-  const style: React.CSSProperties = {
-    [direction]: animatedValue,
-  };
-  // Add the other positions as static values if present
-  (['top', 'right', 'bottom', 'left'] as const).forEach((dir) => {
-    if (dir !== direction && position[dir] !== undefined) {
-      style[dir] = position[dir];
-    }
-  });
 
   return (
     <motion.div
-      style={style}
+      style={{
+        left: direction === 'left' || direction === 'right' ? animatedValue : left,
+        bottom: direction === 'bottom' || direction === 'top' ? animatedValue : bottom,
+        width: width,
+        height: height,
+      }}
       className={css({
-        width: 400,
         position: 'absolute',
         display: 'flex',
         alignItems: 'center',
@@ -147,7 +173,6 @@ const ScrollSpacingPage = ({
       width: '100%',
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor: 'transparent',
       scrollSnapAlign: 'start',
       position: 'relative',
     })}
@@ -230,15 +255,45 @@ const ScrollSpacing = ({
   </div>
 );
 
+const useEventListener = (event: string, listener: () => void, useCapture?: boolean) => {
+  useEffect(() => {
+    listener();
+    window.addEventListener(event, listener, useCapture);
+
+    return () => window.removeEventListener(event, listener, useCapture);
+  }, [event, listener, useCapture]);
+};
+
+const useContainerDims = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const resize = useCallback(() => {
+    const height = containerRef.current?.clientHeight;
+    if (height) {
+      setContainerHeight(height);
+    }
+    const width = containerRef.current?.clientWidth;
+    if (width) {
+      setContainerWidth(width);
+    }
+  }, [setContainerHeight, containerRef.current]);
+
+  useEventListener('resize', resize);
+
+  return { containerRef, containerWidth, containerHeight };
+};
+
 export function Workshop() {
   const scrollRef = useRef(null);
-  const containerHeight = `${window.innerHeight - 94}px`;
+  const { containerHeight, containerWidth, containerRef } = useContainerDims();
+
   return (
     <>
       <ScrollSpacing
         length={scrollSections.length + 1}
         scrollRef={scrollRef}
-        containerHeight={containerHeight}
+        containerHeight={`${containerHeight}px`}
       />
       <ViewportDiv>
         <div
@@ -255,7 +310,7 @@ export function Workshop() {
             className={css({
               mb: 5,
               mt: 1,
-              fontSize: '4rem',
+              fontSize: { base: '2rem', md: '4rem' },
               color: 'brand.darkBrown',
               fontWeight: 'bold',
               zIndex: 10,
@@ -268,56 +323,67 @@ export function Workshop() {
           >
             Workshop
           </h1>
-          <div
-            className={css({
-              width: '100%',
-              maxW: '5xl',
-              height: '100%',
-              flexGrow: 1,
-              position: 'relative',
-            })}
-          >
+          <div className={css({ p: 4, width: '100%', height: '100%' })}>
             <div
+              ref={containerRef}
               className={css({
-                maxWidth: '2xl',
-                width: '70vw',
-                borderColor: 'brand.darkBrown',
-                borderWidth: '2px',
-                borderStyle: 'solid',
-                marginX: 'auto',
+                width: '100%',
+                maxW: '5xl',
+                mx: 'auto',
+                borderStyle: 'transparent',
+                borderColor: 'transparent',
+                height: '100%',
+                flexGrow: 1,
+                position: 'relative',
+                zIndex: 1,
               })}
             >
-              <PostCard image={WorkshopImages.shedLayout} />
-            </div>
-            {scrollSections.map((c, index) => {
-              const length = scrollSections.length;
-              const start = index / length;
-              const end = (index + 1) / length;
-              return (
-                <ScrollSectionCard
-                  key={index}
-                  scrollRef={scrollRef}
-                  position={c.position}
-                  direction={c.direction}
-                  scrollLimit={{ start, end }}
-                >
-                  <div
-                    // animate={{
-                    //   rotate: rotationToDegrees(c.rotation ?? 'None'),
-                    // }}
-                    className={css({
-                      width: '100%',
-                      height: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    })}
+              <div
+                className={css({
+                  maxWidth: '2xl',
+                  width: '70vw',
+                  marginX: 'auto',
+                })}
+              >
+                <PostCard image={WorkshopImages.shedLayout} />
+              </div>
+              {scrollSections.map((c, index) => {
+                const length = scrollSections.length;
+                const start = index / length;
+                const end = (index + 1) / length;
+                return (
+                  <ScrollSectionCard
+                    key={index}
+                    scrollRef={scrollRef}
+                    xPosition={c.xPosition}
+                    yPosition={c.yPosition}
+                    direction={c.direction}
+                    scrollLimit={{ start, end }}
+                    containerWidth={containerWidth}
+                    containerHeight={containerHeight}
+                    imageAspect={c.imageAspect}
                   >
-                    <PostCard image={c.image} />
-                  </div>
-                </ScrollSectionCard>
-              );
-            })}
+                    <div
+                      style={{
+                        transform: `rotate(${rotationToDegrees(c.rotation ?? 'None')}deg)`,
+                      }}
+                      style={{
+                        zIndex: index,
+                      }}
+                      className={css({
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      })}
+                    >
+                      <PostCard image={c.image} />
+                    </div>
+                  </ScrollSectionCard>
+                );
+              })}
+            </div>
           </div>
         </div>
       </ViewportDiv>

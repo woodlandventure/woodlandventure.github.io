@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { css } from '../../styled-system/css';
 import { motion } from 'framer-motion';
+import { thinBrownBorder } from './border';
 
 export interface PostCardProps {
   position: Position;
@@ -55,16 +56,22 @@ export const PostCard = ({ image }: { image: PostCardImage }) => {
     );
   } else {
     return (
-      <img
-        src={image}
-        alt={image}
+      <div
         className={css({
-          bgSize: 'cover',
-          border: '5px solid white',
-          height: '100%',
-          width: '100%',
+          ...thinBrownBorder,
         })}
-      />
+      >
+        <img
+          src={image}
+          alt={image}
+          className={css({
+            bgSize: 'cover',
+            border: '5px solid white',
+            height: '100%',
+            width: '100%',
+          })}
+        />
+      </div>
     );
   }
 };

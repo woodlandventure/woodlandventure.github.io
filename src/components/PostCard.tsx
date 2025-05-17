@@ -110,8 +110,8 @@ export const PositionedPostCard = ({ position, rotation, image, link }: PostCard
         position: {
           lg: 'absolute',
         },
-        w: '300px',
-        h: '230px',
+        w: { base: '300px', md: '400px' },
+        h: { base: '230px', md: '300px' },
         top: {
           lg: position === 'topLeft' || position === 'topRight' ? 5 : undefined,
         },

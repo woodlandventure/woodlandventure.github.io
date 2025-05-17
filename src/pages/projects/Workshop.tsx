@@ -1,16 +1,10 @@
 import { css } from '../../../styled-system/css';
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { navBarHeight } from '../../components/navBarHeight';
 import { PostCard, PostCardImage, Rotation, rotationToDegrees } from '../../components/PostCard';
 import * as WorkshopImages from '../../assets/img/projects/Workshop';
-
-// type Position = {
-//   top?: number;
-//   right?: number;
-//   left?: number;
-//   bottom?: number;
-// };
+import navBarRef from '../../components/navBarRef';
+import { thickBrownBorder } from '../../components/border';
 
 const scrollSections: {
   /**
@@ -66,7 +60,7 @@ const scrollSections: {
   {
     image: WorkshopImages.RealWallsSm,
     xPosition: 0.2,
-    yPosition: 1.0,
+    yPosition: 0.9,
     rotation: 'LittleCounterClockwise',
     direction: 'right',
     imageAspect: 351 / 382,
@@ -116,8 +110,8 @@ const ScrollSectionCard = ({
   imageAspect: number;
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
-  const widthLimit = Math.min(400, containerWidth);
-  const heightLimit = Math.min(400, containerHeight, widthLimit);
+  const widthLimit = Math.min(400, containerWidth - 20);
+  const heightLimit = Math.min(400, containerHeight - 20);
   const width = Math.min(widthLimit, heightLimit / imageAspect);
   const height = Math.min(heightLimit, width * imageAspect);
 
@@ -167,10 +161,10 @@ const ScrollSectionCard = ({
 
 const ScrollSpacingPage = ({
   containerHeight,
-  isFirst,
+  children,
 }: {
   containerHeight: string;
-  isFirst: boolean;
+  children: React.ReactNode;
 }) => (
   <div
     style={{ height: containerHeight }}
@@ -183,7 +177,7 @@ const ScrollSpacingPage = ({
       position: 'relative',
     })}
   >
-    {isFirst && <FloatingScrollHint />}
+    {children}
   </div>
 );
 
@@ -216,22 +210,59 @@ const FloatingScrollHint = () => {
  * You can render children into this viewport using transitions based on
  * the overall scroll position.
  */
-const ViewportDiv = ({ children }: { children: React.ReactNode }) => (
+const ViewportDiv = ({
+  children,
+  viewportRef,
+}: {
+  children: React.ReactNode;
+  viewportRef: RefObject<HTMLDivElement>;
+}) => (
   <div
-    style={{ paddingTop: navBarHeight }}
+    ref={viewportRef}
     className={css({
-      position: 'fixed',
+      flexGrow: 1,
+      flexShrink: 1,
       top: 0,
       left: 0,
       width: '100%',
-      height: '100%',
       zIndex: -1,
       backgroundColor: 'brand.darkGreen',
+      position: 'relative',
+      overflowY: 'scroll',
     })}
   >
     {children}
   </div>
 );
+
+const FinalDescriptionPage = () => {
+  return (
+    <div
+      className={css({
+        height: 'fit-content',
+        backgroundColor: 'brand.cream',
+        ...thickBrownBorder,
+        textAlign: 'center',
+        color: 'brand.darkBrown',
+        fontSize: { base: 'md', md: 'xl', lg: '2xl' },
+        width: { base: 'sm', md: 'xl' },
+        mt: { base: 5, md: 10 },
+        p: 10,
+      })}
+    >
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
+        sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Quisquam, quos.
+      </p>
+      <br />
+      <p>
+        <strong>Starting price: £2000</strong>
+      </p>
+    </div>
+  );
+};
 
 const ScrollSpacing = ({
   length,
@@ -246,18 +277,26 @@ const ScrollSpacing = ({
     ref={scrollRef}
     style={{ height: containerHeight }}
     className={css({
+      position: 'absolute',
+      top: 0,
+      width: '100%',
       display: 'flex',
       flexDir: 'column',
       alignItems: 'center',
       justifyContent: 'flex-start',
       scrollSnapType: 'y mandatory',
       overflowY: 'scroll',
-      mt: navBarHeight,
+      zIndex: 10,
     })}
   >
     {Array.from({ length }).map((_, index) => (
-      <ScrollSpacingPage isFirst={index === 0} key={index} containerHeight={containerHeight} />
+      <ScrollSpacingPage key={index} containerHeight={containerHeight}>
+        {index === 0 && <FloatingScrollHint />}
+      </ScrollSpacingPage>
     ))}
+    <ScrollSpacingPage containerHeight={containerHeight}>
+      <FinalDescriptionPage />
+    </ScrollSpacingPage>
   </div>
 );
 
@@ -270,24 +309,33 @@ const useEventListener = (event: string, listener: () => void, useCapture?: bool
   }, [event, listener, useCapture]);
 };
 
-const useContainerDims = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerHeight, setContainerHeight] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
+const useElementDims = (ref: RefObject<HTMLDivElement>) => {
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
   const resize = useCallback(() => {
-    const height = containerRef.current?.clientHeight;
+    const height = ref.current?.clientHeight;
     if (height) {
-      setContainerHeight(height);
+      setHeight(height);
     }
-    const width = containerRef.current?.clientWidth;
+    const width = ref.current?.clientWidth;
     if (width) {
-      setContainerWidth(width);
+      setWidth(width);
     }
-  }, [setContainerHeight, containerRef.current]);
+  }, [setHeight, ref.current]);
 
   useEventListener('resize', resize);
 
-  return { containerRef, containerWidth, containerHeight };
+  return { width, height };
+};
+
+const useContainerDims = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { width: containerWidth, height: containerHeight } = useElementDims(containerRef);
+  return {
+    containerRef,
+    containerWidth,
+    containerHeight,
+  };
 };
 
 export function Workshop() {
@@ -298,6 +346,8 @@ export function Workshop() {
     containerRef: canvasContainerRef,
   } = useContainerDims();
 
+  const { height: navBarHeight } = useElementDims(navBarRef);
+  const { containerRef: viewportRef, containerHeight: viewportHeight } = useContainerDims();
   const {
     containerHeight: overallContainerHeight,
     containerRef: overallContainerRef,
@@ -305,15 +355,45 @@ export function Workshop() {
   } = useContainerDims();
 
   return (
-    <>
-      <ScrollSpacing
-        length={scrollSections.length + 1}
-        scrollRef={scrollRef}
-        containerHeight={`${overallContainerHeight}px`}
-      />
-      <ViewportDiv>
+    <div
+      ref={overallContainerRef}
+      style={{ height: `calc(100vh - ${navBarHeight + 1}px)` }}
+      className={css({
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        backgroundColor: 'brand.darkGreen',
+        position: 'relative',
+        zIndex: 0,
+      })}
+    >
+      <h1
+        className={css({
+          flexGrow: 0,
+          flexShrink: 0,
+          mb: { base: 3, md: 10 },
+          mt: { base: 3, md: 2 },
+          fontSize: { base: '2rem', md: '4rem' },
+          color: 'brand.darkBrown',
+          fontWeight: 'bold',
+          zIndex: 10,
+          backgroundColor: 'brand.cream',
+          borderColor: 'brand.darkBrown',
+          borderWidth: '2px',
+          padding: 2,
+          width: 'fit-content',
+          mx: 'auto',
+        })}
+      >
+        Workshop
+      </h1>
+      <ViewportDiv viewportRef={viewportRef}>
+        <ScrollSpacing
+          length={scrollSections.length + 1}
+          scrollRef={scrollRef}
+          containerHeight={`${viewportHeight}px`}
+        />
         <div
-          ref={overallContainerRef}
           className={css({
             display: 'flex',
             flexDirection: 'column',
@@ -323,87 +403,74 @@ export function Workshop() {
             alignItems: 'center',
           })}
         >
-          <h1
+          <div
+            ref={canvasContainerRef}
             className={css({
-              mb: 5,
-              mt: 1,
-              fontSize: { base: '2rem', md: '4rem' },
-              color: 'brand.darkBrown',
-              fontWeight: 'bold',
-              zIndex: 10,
-              flexGrow: 0,
-              backgroundColor: 'brand.cream',
-              borderColor: 'brand.darkBrown',
-              borderWidth: '2px',
-              padding: 2,
+              width: '100%',
+              maxW: '5xl',
+              mx: 'auto',
+              borderStyle: 'transparent',
+              borderColor: 'transparent',
+              height: '100%',
+              flexGrow: 1,
+              position: 'relative',
+              zIndex: 1,
             })}
           >
-            Workshop
-          </h1>
-          <div className={css({ p: 4, width: '100%', height: '100%' })}>
             <div
-              ref={canvasContainerRef}
               className={css({
-                width: '100%',
-                maxW: '5xl',
-                mx: 'auto',
-                borderStyle: 'transparent',
-                borderColor: 'transparent',
-                height: '100%',
-                flexGrow: 1,
-                position: 'relative',
-                zIndex: 1,
+                maxWidth: '2xl',
+                width: '70vw',
+                marginX: 'auto',
+                position: 'sticky',
+                top: 10,
               })}
             >
-              <div
-                className={css({
-                  maxWidth: '2xl',
-                  width: '70vw',
-                  marginX: 'auto',
-                })}
-              >
-                <PostCard image={WorkshopImages.shedLayout} />
-              </div>
-              {scrollSections.map((c, index) => {
-                const length = scrollSections.length;
-                const start = index / length;
-                const end = (index + 1) / length;
-                return (
-                  <ScrollSectionCard
-                    key={index}
-                    scrollRef={scrollRef}
-                    xPosition={c.xPosition}
-                    yPosition={c.yPosition}
-                    direction={c.direction}
-                    scrollLimit={{ start, end }}
-                    containerWidth={canvasContainerWidth}
-                    containerHeight={canvasContainerHeight}
-                    imageAspect={c.imageAspect}
-                    outerHeight={overallContainerHeight}
-                    outerWidth={overallContainerWidth}
-                  >
-                    <div
-                      style={{
-                        transform: `rotate(${rotationToDegrees(c.rotation ?? 'None')}deg)`,
-                        zIndex: index,
-                      }}
-                      className={css({
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      })}
-                    >
-                      <PostCard image={c.image} />
-                    </div>
-                  </ScrollSectionCard>
-                );
-              })}
+              <PostCard image={WorkshopImages.shedLayout} />
             </div>
+            {scrollSections.map((c, index) => {
+              const length = scrollSections.length + 1;
+              const start = index / length;
+              const end = (index + 1) / length;
+              return (
+                <ScrollSectionCard
+                  key={index}
+                  scrollRef={scrollRef}
+                  xPosition={c.xPosition}
+                  yPosition={c.yPosition}
+                  direction={c.direction}
+                  scrollLimit={{ start, end }}
+                  containerWidth={canvasContainerWidth}
+                  containerHeight={canvasContainerHeight}
+                  imageAspect={c.imageAspect}
+                  outerHeight={overallContainerHeight}
+                  outerWidth={overallContainerWidth}
+                >
+                  <div
+                    style={{
+                      transform: `rotate(${rotationToDegrees(c.rotation ?? 'None')}deg)`,
+                      zIndex: index,
+                    }}
+                    className={css({
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    })}
+                  >
+                    <PostCard image={c.image} />
+                  </div>
+                </ScrollSectionCard>
+              );
+            })}
           </div>
         </div>
       </ViewportDiv>
-    </>
+    </div>
   );
 }
+
+// TODO: the scroll sections should be beneath the workshop title.
+// Then the last scroll section should have a "more details" card which is centered
+// using flex.

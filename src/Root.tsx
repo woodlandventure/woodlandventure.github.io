@@ -8,6 +8,7 @@ import facebook from './assets/img/facebook.png';
 import instagram from './assets/img/Instagram_Logo.png';
 import fsa from './assets/img/fsa.jpg';
 import { navBarHeight } from './components/navBarHeight';
+import navBarRef from './components/navBarRef';
 
 const navItems = [
   {
@@ -49,6 +50,7 @@ export function Root() {
       })}
     >
       <nav
+        ref={navBarRef}
         className={css({
           bg: 'brand.darkGreen',
           py: '2',

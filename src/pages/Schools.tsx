@@ -4,6 +4,8 @@ import forestSchoolTeamBuilding from '../assets/img/Forest_School_Team_Building.
 import { thinBrownBorder } from '../components/border';
 import { WithShadow } from '../components/Shadow';
 
+import Brochure from '../assets/Schools Brochure.pdf';
+
 export function Schools() {
   return (
     <div>
@@ -200,7 +202,7 @@ export function Schools() {
                 >
                   Download our Schools Brochure for further information{' '}
                   <a
-                    href="/brochure.pdf"
+                    href={Brochure}
                     className={css({
                       color: 'blue.600',
                       _hover: { color: 'blue.700' },

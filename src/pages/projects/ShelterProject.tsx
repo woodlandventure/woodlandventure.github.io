@@ -1,7 +1,12 @@
 import * as ProjectImages from '../../assets/img/projects';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
-const scrollSections: ScrollSection[] = [];
+const scrollSections: ScrollSection[] = [
+  {
+    image: ProjectImages.playgroundAfter,
+    imageAspect: 0.661,
+  },
+];
 
 const FinalDescriptionPage = () => {
   return (
@@ -23,7 +28,6 @@ const FinalDescriptionPage = () => {
 export const ShelterProject = () => (
   <ProjectPage
     name="Shelter"
-    baseImage={ProjectImages.playgroundAfter}
     scrollSections={scrollSections}
     finalDescription={<FinalDescriptionPage />}
   />

@@ -58,7 +58,9 @@ export const PostCard = ({ image }: { image: PostCardImage }) => {
     return (
       <div
         className={css({
-          ...thinBrownBorder,
+          borderColor: 'brand.darkBrown',
+          borderWidth: '1px',
+          borderStyle: 'solid',
         })}
       >
         <img

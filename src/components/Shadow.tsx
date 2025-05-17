@@ -36,8 +36,10 @@ export const WithShadow = ({
       className={css({
         zIndex: 1,
         position: 'relative',
+        borderStyle: 'solid',
+        borderColor: 'brand.darkBrown',
+        borderWidth: borderWidth === 'thin' ? '1px' : '2px',
 
-        ...(borderWidth === 'thin' ? thinBrownBorder : thickBrownBorder),
         ...(hoverAnimation
           ? {
               _hover: { transform: 'translateY(-4px)' },

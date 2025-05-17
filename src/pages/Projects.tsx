@@ -19,6 +19,7 @@ import { IMG20230809135936 as DeckingImg } from '../assets/img/projects/Decking'
 import { IMG20230813170801 as GardenIdeasImg } from '../assets/img/projects/GardenIdeas';
 import { IMG20250502161849 as GardenSofasImg } from '../assets/img/projects/GardenSofas';
 import { IMG20220408154047 as SheltersImg } from '../assets/img/projects/Shelters';
+import { shedLayout as WorkshopImg } from '../assets/img/projects/Workshop';
 
 const projectCards = [
   // Cards with links first
@@ -63,6 +64,12 @@ const projectCards = [
     alt: 'Shelters',
     title: 'Outdoor Shelters',
     linkTo: '/shelters',
+  },
+  {
+    image: WorkshopImg,
+    alt: 'Workshop',
+    title: 'Workshop',
+    linkTo: '/workshop',
   },
   // Cards without links
   {

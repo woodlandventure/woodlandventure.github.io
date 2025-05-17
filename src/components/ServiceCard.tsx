@@ -31,15 +31,15 @@ export function ServiceCard({
   imagePosition = 'center',
 }: ServiceCardProps) {
   return (
-    <OptionalLink to={linkTo}>
-      <div
-        className={css({
-          mb: 10,
-          _hover: { transform: 'translateY(-4px)' },
-          transition: 'transform 0.2s',
-        })}
-      >
-        <WithShadow borderWidth="thick" hoverAnimation>
+    <div
+      className={css({
+        mb: 10,
+        _hover: { transform: 'translateY(-4px)' },
+        transition: 'transform 0.2s',
+      })}
+    >
+      <WithShadow borderWidth="thick" hoverAnimation>
+        <OptionalLink to={linkTo}>
           <div
             className={css({
               position: 'relative',
@@ -123,8 +123,8 @@ export function ServiceCard({
               </div>
             </div>
           </div>
-        </WithShadow>
-      </div>
-    </OptionalLink>
+        </OptionalLink>
+      </WithShadow>
+    </div>
   );
 }

@@ -7,17 +7,7 @@ import { thinBrownBorder } from '../../components/border';
 import { WithShadow } from '../../components/Shadow';
 
 export type ScrollSection = {
-  /**
-   * Percentage of the container width. 0 is left, 1 is right
-   */
-  xPosition: number;
-  /**
-   * Percentage of the container height. 0 is bottom, 1 is top
-   */
-  yPosition: number;
   image: PostCardImage;
-  rotation?: Rotation;
-  direction: 'top' | 'right' | 'bottom' | 'left';
   /**
    * Height over length. Measured from the base image.
    *
@@ -148,12 +138,10 @@ const ProjectImage = ({
 
 export const ProjectPage = ({
   name,
-  baseImage,
   scrollSections,
   finalDescription,
 }: {
   name: string;
-  baseImage: PostCardImage;
   scrollSections: ScrollSection[];
   finalDescription: React.ReactElement;
 }) => {
@@ -166,15 +154,7 @@ export const ProjectPage = ({
     containerWidth: imageContainerWidth,
   } = useContainerDims();
 
-  // Combine the base image with all scroll sections for the horizontal gallery
-  const allImages = [
-    { image: baseImage, rotation: 'None' as Rotation, aspect: 1 },
-    ...scrollSections.map((section) => ({
-      image: section.image,
-      rotation: section.rotation || 'None',
-      aspect: section.imageAspect,
-    })),
-  ];
+  const rotations: Rotation[] = ['None', 'LittleClockwise', 'LittleCounterClockwise'];
 
   return (
     <div
@@ -266,7 +246,7 @@ export const ProjectPage = ({
             right: { lg: '0' },
             left: { lg: '0' },
             pt: { lg: '10vh' },
-            height: { base: 'auto', lg: '75vh' },
+            height: { base: '50vh', lg: '75vh' },
             overflowY: 'visible',
           })}
         >
@@ -301,14 +281,14 @@ export const ProjectPage = ({
               })}
             />
 
-            {allImages.map((item, index) => (
+            {scrollSections.map((item, index) => (
               <ProjectImage
                 key={index}
                 image={item.image}
-                rotation={item.rotation}
+                rotation={rotations[index % rotations.length]}
                 containerHeight={imageContainerHeight}
                 containerWidth={imageContainerWidth}
-                aspect={item.aspect}
+                aspect={item.imageAspect}
               />
             ))}
           </div>

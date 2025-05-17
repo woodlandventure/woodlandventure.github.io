@@ -23,6 +23,7 @@ const projectCards = [
     image: sanctuary,
     alt: 'The Sanctuary',
     title: 'The Sanctuary',
+    linkTo: '/shelter',
   },
   {
     image: parachute,

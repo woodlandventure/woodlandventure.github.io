@@ -23,8 +23,8 @@ const navItems = [
     label: 'Projects',
     dropdownItems: [
       { label: 'All projects', href: '/projects' },
-      { label: 'Shelter project', href: '/projects/shelter' },
-      { label: 'The Sanctuary', href: '/projects/sanctuary' },
+      { label: 'Shelter project', href: '/shelter' },
+      { label: 'The Sanctuary', href: '/sanctuary' },
     ],
   },
   { label: 'Contact', href: '/contact' },

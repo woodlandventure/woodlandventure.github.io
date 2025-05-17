@@ -49,7 +49,7 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
               mb: '2',
             })}
           >
-            {title}
+            {title} {linkTo && '→'}
           </h3>
         </div>
       </div>

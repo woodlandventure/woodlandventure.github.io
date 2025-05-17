@@ -157,14 +157,12 @@ export function Home() {
               title="Outdoor Spaces"
               description="Create engaging outdoor learning environments that inspire exploration and discovery"
               image="parachute"
-              linkTo="/projects"
             />
 
             <ServiceCard
               title="IT Services"
               description="Technology solutions to support your outdoor learning programs"
               image="itServices"
-              linkTo="/projects"
             />
           </div>
         </div>

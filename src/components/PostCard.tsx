@@ -1,7 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { css } from '../../styled-system/css';
 import { motion } from 'framer-motion';
-import { thinBrownBorder } from './border';
 
 export interface PostCardProps {
   position: Position;

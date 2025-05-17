@@ -27,6 +27,7 @@ const navItems = [
       { label: 'Garden Ideas', href: '/garden-ideas' },
       { label: 'Garden Sofas', href: '/garden-sofas' },
       { label: 'Outdoor Shelters', href: '/shelters' },
+      { label: 'The Workshop', href: '/workshop' },
     ],
   },
   { label: 'Contact', href: '/contact' },

@@ -12,11 +12,13 @@ const postCards: PostCardProps[] = [
     position: 'bottomRight',
     rotation: 'LittleCounterClockwise',
     image: 'gardenSeating',
+    link: '/cosy-bench',
   },
   {
     position: 'topRight',
     rotation: 'LittleClockwise',
     image: 'beehiveShelter',
+    link: '/shelters',
   },
   {
     position: 'bottomLeft',

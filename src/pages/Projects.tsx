@@ -10,16 +10,16 @@ import {
   sanctuary,
   kitchen,
   sandpitCover,
+  beehiveShelterVenture,
 } from '../assets/img/projects';
 
 // Import images from new projects
-import { IMG20230911135544 as CompostingToiletImg } from '../assets/img/projects/CompostingToilet';
+import { IMG20231010122812 as CompostingToiletImg } from '../assets/img/projects/CompostingToilet';
 import { IMG20230815154022 as CosyBenchImg } from '../assets/img/projects/CosyBench';
 import { IMG20230809135936 as DeckingImg } from '../assets/img/projects/Decking';
 import { IMG20230813170801 as GardenIdeasImg } from '../assets/img/projects/GardenIdeas';
-import { IMG20250502161849 as GardenSofasImg } from '../assets/img/projects/GardenSofas';
-import { IMG20220408154047 as SheltersImg } from '../assets/img/projects/Shelters';
-import { shedLayout as WorkshopImg } from '../assets/img/projects/Workshop';
+import { IMG_20250512_133705 as GardenSofasImg } from '../assets/img/projects/GardenSofas';
+import { RealFullSideSm as WorkshopImg } from '../assets/img/projects/Workshop';
 
 const projectCards = [
   // Cards with links first
@@ -34,6 +34,7 @@ const projectCards = [
     alt: 'Composting Toilet',
     title: 'Composting Toilet',
     linkTo: '/composting-toilet',
+    objectPosition: '20% 30%',
   },
   {
     image: CosyBenchImg,
@@ -46,6 +47,7 @@ const projectCards = [
     alt: 'Decking',
     title: 'Custom Decking',
     linkTo: '/decking',
+    objectPosition: '20% 30%',
   },
   {
     image: GardenIdeasImg,
@@ -60,16 +62,18 @@ const projectCards = [
     linkTo: '/garden-sofas',
   },
   {
-    image: SheltersImg,
+    image: beehiveShelterVenture,
     alt: 'Shelters',
     title: 'Outdoor Shelters',
     linkTo: '/shelters',
+    objectPosition: '20% 30%',
   },
   {
     image: WorkshopImg,
     alt: 'Workshop',
     title: 'Workshop',
     linkTo: '/workshop',
+    objectPosition: '0% 0%',
   },
   // Cards without links
   {

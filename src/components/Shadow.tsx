@@ -1,5 +1,4 @@
 import { css } from '../../styled-system/css';
-import { thickBrownBorder, thinBrownBorder } from './border';
 
 export const Shadow = () => (
   <div

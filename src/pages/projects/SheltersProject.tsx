@@ -1,7 +1,12 @@
+import { beehiveShelterVenture } from '../../assets/img/projects';
 import * as SheltersImages from '../../assets/img/projects/Shelters';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
+  {
+    image: beehiveShelterVenture,
+    imageAspect: 0.75,
+  },
   {
     image: SheltersImages.IMG20220408154047,
     imageAspect: 0.75,

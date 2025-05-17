@@ -4,6 +4,10 @@ import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
+    image: sanctuaryAfterJPG,
+    imageAspect: 0.776,
+  },
+  {
     image: SanctuaryImages.IMG20210401173620,
     imageAspect: 0.75,
   },
@@ -22,10 +26,6 @@ const scrollSections: ScrollSection[] = [
   {
     image: SanctuaryImages.IMG20210401173635,
     imageAspect: 1.333,
-  },
-  {
-    image: sanctuaryAfterJPG,
-    imageAspect: 0.776,
   },
 ];
 

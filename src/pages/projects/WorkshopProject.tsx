@@ -3,6 +3,10 @@ import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
+    image: WorkshopImages.threeDCutAwayLocationSm,
+    imageAspect: 0.546,
+  },
+  {
     image: WorkshopImages.shedLayout,
     imageAspect: 0.925,
   },
@@ -12,10 +16,6 @@ const scrollSections: ScrollSection[] = [
   {
     image: WorkshopImages.threeDFullLocationSm,
     imageAspect: 0.649,
-  },
-  {
-    image: WorkshopImages.threeDCutAwayLocationSm,
-    imageAspect: 0.546,
   },
   {
     image: WorkshopImages.RealBaseSm,

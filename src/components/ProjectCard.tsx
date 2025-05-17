@@ -8,9 +8,16 @@ interface ProjectCardProps {
   alt: string;
   title: string;
   linkTo?: string;
+  objectPosition?: string;
 }
 
-export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
+export function ProjectCard({
+  image,
+  alt,
+  title,
+  linkTo,
+  objectPosition = 'center',
+}: ProjectCardProps) {
   const card = (
     <div
       className={css({
@@ -31,6 +38,7 @@ export function ProjectCard({ image, alt, title, linkTo }: ProjectCardProps) {
         <img
           src={image}
           alt={alt}
+          style={{ objectPosition }}
           className={css({
             w: 'full',
             h: '250px',

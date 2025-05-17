@@ -3,8 +3,8 @@ import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
-    image: GardenSofasImages.IMG20250502161849,
-    imageAspect: 1.333,
+    image: GardenSofasImages.IMG_20250512_133705,
+    imageAspect: 0.75,
   },
   {
     image: GardenSofasImages.IMG20250502114306,
@@ -19,8 +19,8 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 0.75,
   },
   {
-    image: GardenSofasImages.IMG_20250512_133705,
-    imageAspect: 0.75,
+    image: GardenSofasImages.IMG20250502161849,
+    imageAspect: 1.333,
   },
 ];
 

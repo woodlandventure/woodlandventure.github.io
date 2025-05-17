@@ -1,9 +1,9 @@
-import * as SanctuaryImages from '../../assets/img/projects/Sanctuary';
+import * as DeckingImages from '../../assets/img/projects/Decking';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
-    image: SanctuaryImages.IMG20210401103435,
+    image: DeckingImages.IMG20230728085543,
     xPosition: 0.1,
     yPosition: 0.1,
     rotation: 'LittleCounterClockwise',
@@ -11,7 +11,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173611,
+    image: DeckingImages.IMG20230728115658,
     xPosition: 0.8,
     yPosition: 0.8,
     rotation: 'LittleClockwise',
@@ -19,7 +19,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173616,
+    image: DeckingImages.IMG20230803102944,
     xPosition: 0.8,
     yPosition: 0.2,
     rotation: 'LittleClockwise',
@@ -27,7 +27,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173620,
+    image: DeckingImages.IMG20230809135811,
     xPosition: 0.2,
     yPosition: 0.9,
     rotation: 'LittleCounterClockwise',
@@ -35,7 +35,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173635,
+    image: DeckingImages.IMG20230809135936,
     xPosition: 0.5,
     yPosition: 0.5,
     direction: 'bottom',
@@ -47,23 +47,22 @@ const FinalDescriptionPage = () => {
   return (
     <>
       <p>
-        The Sanctuary is our premium relaxation space designed to provide a peaceful retreat in your
-        garden. Crafted with sustainable materials and built to blend seamlessly with the natural
-        environment, this structure offers a perfect place for meditation, reading, or simply
-        enjoying the outdoors in comfort.
+        Our custom decking solutions transform outdoor spaces into beautiful, functional areas for
+        relaxation and entertainment. Each deck is designed to complement your garden and built with
+        sustainable materials for longevity and minimal environmental impact.
       </p>
       <br />
       <p>
-        <strong>Starting price: £3500</strong>
+        <strong>Starting price: £2500</strong>
       </p>
     </>
   );
 };
 
-export const SanctuaryProject = () => (
+export const Decking = () => (
   <ProjectPage
-    name="The Sanctuary"
-    baseImage={SanctuaryImages.IMG20210401173635}
+    name="Decking"
+    baseImage={DeckingImages.IMG20230809135936}
     scrollSections={scrollSections}
     finalDescription={<FinalDescriptionPage />}
   />

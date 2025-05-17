@@ -1,9 +1,9 @@
-import * as SanctuaryImages from '../../assets/img/projects/Sanctuary';
+import * as GardenIdeasImages from '../../assets/img/projects/GardenIdeas';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
-    image: SanctuaryImages.IMG20210401103435,
+    image: GardenIdeasImages.IMG20220930121644,
     xPosition: 0.1,
     yPosition: 0.1,
     rotation: 'LittleCounterClockwise',
@@ -11,7 +11,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173611,
+    image: GardenIdeasImages.IMG20221015181939,
     xPosition: 0.8,
     yPosition: 0.8,
     rotation: 'LittleClockwise',
@@ -19,7 +19,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173616,
+    image: GardenIdeasImages.IMG20230810145841,
     xPosition: 0.8,
     yPosition: 0.2,
     rotation: 'LittleClockwise',
@@ -27,7 +27,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173620,
+    image: GardenIdeasImages.IMG20230811135321,
     xPosition: 0.2,
     yPosition: 0.9,
     rotation: 'LittleCounterClockwise',
@@ -35,7 +35,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173635,
+    image: GardenIdeasImages.IMG20230813170801,
     xPosition: 0.5,
     yPosition: 0.5,
     direction: 'bottom',
@@ -47,23 +47,22 @@ const FinalDescriptionPage = () => {
   return (
     <>
       <p>
-        The Sanctuary is our premium relaxation space designed to provide a peaceful retreat in your
-        garden. Crafted with sustainable materials and built to blend seamlessly with the natural
-        environment, this structure offers a perfect place for meditation, reading, or simply
-        enjoying the outdoors in comfort.
+        Explore our innovative garden ideas that help create unique outdoor spaces tailored to your
+        needs and style. From small creative touches to full garden transformations, we can help
+        design and implement a variety of garden features to enhance your outdoor living experience.
       </p>
       <br />
       <p>
-        <strong>Starting price: £3500</strong>
+        <strong>Consultation starting at: £300</strong>
       </p>
     </>
   );
 };
 
-export const SanctuaryProject = () => (
+export const GardenIdeas = () => (
   <ProjectPage
-    name="The Sanctuary"
-    baseImage={SanctuaryImages.IMG20210401173635}
+    name="Garden Ideas"
+    baseImage={GardenIdeasImages.IMG20230813170801}
     scrollSections={scrollSections}
     finalDescription={<FinalDescriptionPage />}
   />

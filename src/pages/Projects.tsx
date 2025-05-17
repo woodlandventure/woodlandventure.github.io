@@ -10,21 +10,61 @@ import {
   sanctuary,
   kitchen,
   sandpitCover,
-  beehiveShelterVenture,
 } from '../assets/img/projects';
 
+// Import images from new projects
+import { IMG20230911135544 as CompostingToiletImg } from '../assets/img/projects/CompostingToilet';
+import { IMG20230815154022 as CosyBenchImg } from '../assets/img/projects/CosyBench';
+import { IMG20230809135936 as DeckingImg } from '../assets/img/projects/Decking';
+import { IMG20230813170801 as GardenIdeasImg } from '../assets/img/projects/GardenIdeas';
+import { IMG20250502161849 as GardenSofasImg } from '../assets/img/projects/GardenSofas';
+import { IMG20220408154047 as SheltersImg } from '../assets/img/projects/Shelters';
+
 const projectCards = [
-  {
-    image: beehiveShelterVenture,
-    alt: 'Outdoor Shelter',
-    title: 'Outdoor Shelter',
-  },
+  // Cards with links first
   {
     image: sanctuary,
     alt: 'The Sanctuary',
     title: 'The Sanctuary',
-    linkTo: '/shelter',
+    linkTo: '/sanctuary',
   },
+  {
+    image: CompostingToiletImg,
+    alt: 'Composting Toilet',
+    title: 'Composting Toilet',
+    linkTo: '/composting-toilet',
+  },
+  {
+    image: CosyBenchImg,
+    alt: 'Cosy Bench',
+    title: 'Cosy Bench',
+    linkTo: '/cosy-bench',
+  },
+  {
+    image: DeckingImg,
+    alt: 'Decking',
+    title: 'Custom Decking',
+    linkTo: '/decking',
+  },
+  {
+    image: GardenIdeasImg,
+    alt: 'Garden Ideas',
+    title: 'Garden Ideas',
+    linkTo: '/garden-ideas',
+  },
+  {
+    image: GardenSofasImg,
+    alt: 'Garden Sofas',
+    title: 'Garden Sofas',
+    linkTo: '/garden-sofas',
+  },
+  {
+    image: SheltersImg,
+    alt: 'Shelters',
+    title: 'Outdoor Shelters',
+    linkTo: '/shelters',
+  },
+  // Cards without links
   {
     image: parachute,
     alt: 'Parachute',
@@ -96,15 +136,20 @@ export function Projects() {
           })}
         >
           <span className={css({ fontWeight: 'bold' })}>Like what you see?</span> Get in contact to
-          get a <span className={css({ fontWeight: 'bold' })}>bespoke quote!</span>{' '}
+          get a bespoke quote!{' '}
           <a
             href="mailto:info@woodlandventure.co.uk"
             className={css({
-              color: 'blue.600',
-              _hover: { color: 'blue.700' },
+              color: 'gray.700',
+              borderBottom: '2px solid',
+              borderColor: 'brand.cream',
+              _hover: {
+                borderColor: 'gray.700',
+              },
+              display: 'inline-block',
             })}
           >
-            info@woodlandventure.co.uk
+            <strong>info@woodlandventure.co.uk</strong>
           </a>
         </p>
       </div>

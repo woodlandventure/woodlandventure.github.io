@@ -1,9 +1,9 @@
-import * as SanctuaryImages from '../../assets/img/projects/Sanctuary';
+import * as GardenSofasImages from '../../assets/img/projects/GardenSofas';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
   {
-    image: SanctuaryImages.IMG20210401103435,
+    image: GardenSofasImages.IMG20250502114306,
     xPosition: 0.1,
     yPosition: 0.1,
     rotation: 'LittleCounterClockwise',
@@ -11,7 +11,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173611,
+    image: GardenSofasImages.IMG20250502140410,
     xPosition: 0.8,
     yPosition: 0.8,
     rotation: 'LittleClockwise',
@@ -19,7 +19,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173616,
+    image: GardenSofasImages.IMG20250502161832,
     xPosition: 0.8,
     yPosition: 0.2,
     rotation: 'LittleClockwise',
@@ -27,7 +27,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173620,
+    image: GardenSofasImages.IMG20250502161849,
     xPosition: 0.2,
     yPosition: 0.9,
     rotation: 'LittleCounterClockwise',
@@ -35,7 +35,7 @@ const scrollSections: ScrollSection[] = [
     imageAspect: 1,
   },
   {
-    image: SanctuaryImages.IMG20210401173635,
+    image: GardenSofasImages.IMG_20250512_133705,
     xPosition: 0.5,
     yPosition: 0.5,
     direction: 'bottom',
@@ -47,23 +47,23 @@ const FinalDescriptionPage = () => {
   return (
     <>
       <p>
-        The Sanctuary is our premium relaxation space designed to provide a peaceful retreat in your
-        garden. Crafted with sustainable materials and built to blend seamlessly with the natural
-        environment, this structure offers a perfect place for meditation, reading, or simply
-        enjoying the outdoors in comfort.
+        Our garden sofas provide comfortable and stylish outdoor seating options for relaxation and
+        entertainment. Each piece is handcrafted with sustainable materials to ensure durability
+        against the elements while maintaining a beautiful aesthetic that enhances your outdoor
+        space.
       </p>
       <br />
       <p>
-        <strong>Starting price: £3500</strong>
+        <strong>Starting price: £1200</strong>
       </p>
     </>
   );
 };
 
-export const SanctuaryProject = () => (
+export const GardenSofas = () => (
   <ProjectPage
-    name="The Sanctuary"
-    baseImage={SanctuaryImages.IMG20210401173635}
+    name="Garden Sofas"
+    baseImage={GardenSofasImages.IMG20250502161849}
     scrollSections={scrollSections}
     finalDescription={<FinalDescriptionPage />}
   />

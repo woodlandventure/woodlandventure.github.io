@@ -9,7 +9,7 @@ const scrollSections: ScrollSection[] = [
     yPosition: 0.1,
     rotation: 'LittleCounterClockwise',
     direction: 'top',
-    imageAspect: 0.75,
+    imageAspect: 3 / 4,
   },
   {
     image: SanctuaryImages.IMG20210401173611,
@@ -17,7 +17,7 @@ const scrollSections: ScrollSection[] = [
     yPosition: 0.6,
     rotation: 'LittleClockwise',
     direction: 'bottom',
-    imageAspect: 0.75,
+    imageAspect: 1077 / 834,
   },
   {
     image: SanctuaryImages.IMG20210401173616,
@@ -25,7 +25,7 @@ const scrollSections: ScrollSection[] = [
     yPosition: 0.2,
     rotation: 'LittleClockwise',
     direction: 'left',
-    imageAspect: 0.75,
+    imageAspect: 1,
   },
   {
     image: SanctuaryImages.IMG20210401173635,
@@ -33,14 +33,14 @@ const scrollSections: ScrollSection[] = [
     yPosition: 0.6,
     rotation: 'LittleCounterClockwise',
     direction: 'right',
-    imageAspect: 0.75,
+    imageAspect: 1253 / 939,
   },
   {
     image: sanctuaryAfterJPG,
     xPosition: 0.5,
     yPosition: 0.5,
     direction: 'bottom',
-    imageAspect: 0.75,
+    imageAspect: 3 / 4,
   },
 ];
 

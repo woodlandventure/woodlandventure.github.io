@@ -1,10 +1,10 @@
 import { PostCardImage, Rotation } from '../../components/PostCard';
 import { css } from '../../../styled-system/css';
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { PostCard, rotationToDegrees } from '../../components/PostCard';
 import navBarRef from '../../components/navBarRef';
-import { thickBrownBorder } from '../../components/border';
+import { thinBrownBorder } from '../../components/border';
+import { WithShadow } from '../../components/Shadow';
 
 export type ScrollSection = {
   /**
@@ -26,114 +26,15 @@ export type ScrollSection = {
   imageAspect: number;
 };
 
-const ScrollSectionCard = ({
-  xPosition,
-  yPosition,
-  direction,
-  children,
-  scrollLimit,
-  scrollRef,
-  containerWidth,
-  containerHeight,
-  imageAspect,
-  outerHeight,
-  outerWidth,
-}: {
-  xPosition: number;
-  yPosition: number;
-  direction: 'top' | 'right' | 'bottom' | 'left';
-  scrollLimit: {
-    start: number;
-    end: number;
-  };
-  scrollRef: RefObject<HTMLDivElement>;
-  children: React.ReactNode;
-  containerWidth: number;
-  containerHeight: number;
-  outerHeight: number;
-  outerWidth: number;
-  imageAspect: number;
-}) => {
-  const { scrollYProgress } = useScroll({ container: scrollRef });
-  const widthLimit = Math.min(800, containerWidth - 20);
-  const heightLimit = Math.min(400, containerHeight - 20);
-  const width = Math.min(widthLimit, heightLimit / imageAspect);
-  const height = Math.min(heightLimit, width * imageAspect);
-
-  const xSpacing = containerWidth - width;
-  const ySpacing = containerHeight - height;
-  const left = xPosition * xSpacing;
-  const bottom = yPosition * ySpacing;
-
-  const movingTargetDestination = direction === 'top' || direction === 'bottom' ? bottom : left;
-  console.log(containerWidth, width);
-  const movingTargetStart =
-    direction === 'bottom'
-      ? -outerHeight - height
-      : direction === 'left'
-        ? -(outerWidth + width)
-        : direction === 'right'
-          ? outerWidth + width
-          : direction === 'top'
-            ? outerHeight + height
-            : 0;
-  // Only animate the specified direction
-  const animatedValue = useTransform(
-    scrollYProgress,
-    [scrollLimit.start, scrollLimit.end],
-    [movingTargetStart, movingTargetDestination],
-  );
-
-  return (
-    <motion.div
-      style={{
-        left: direction === 'left' || direction === 'right' ? animatedValue : left,
-        bottom: direction === 'bottom' || direction === 'top' ? animatedValue : bottom,
-        width: width,
-        height: height,
-      }}
-      className={css({
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      })}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-const ScrollSpacingPage = ({
-  containerHeight,
-  children,
-}: {
-  containerHeight: string;
-  children: React.ReactNode;
-}) => (
-  <div
-    style={{ height: containerHeight }}
-    className={css({
-      flexShrink: 0,
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      scrollSnapAlign: 'start',
-      position: 'relative',
-    })}
-  >
-    {children}
-  </div>
-);
-
-const FloatingScrollHint = () => {
+const FloatingScrollHint = ({ direction = 'right' }: { direction?: 'right' | 'down' }) => {
   return (
     <div
       className={css({
-        bottom: 24,
+        bottom: direction === 'down' ? 24 : 'auto',
+        right: direction === 'right' ? 24 : 'auto',
         textWrap: 'nowrap',
         position: 'absolute',
-        backgroundColor: 'brand.cream',
+        backgroundColor: 'white',
         zIndex: 20,
         textAlign: 'center',
         color: 'brand.darkBrown',
@@ -144,93 +45,12 @@ const FloatingScrollHint = () => {
         animation: 'bounce 1s ease-in-out infinite',
       })}
     >
-      <span>scroll down to see more ↓</span>
+      <span>
+        {direction === 'right' ? 'scroll right to see more →' : 'scroll down to see more ↓'}
+      </span>
     </div>
   );
 };
-
-/**
- * Viewport that takes up the visible screen space but isn't scrollable.
- *
- * You can render children into this viewport using transitions based on
- * the overall scroll position.
- */
-const ViewportDiv = ({
-  children,
-  viewportRef,
-}: {
-  children: React.ReactNode;
-  viewportRef: RefObject<HTMLDivElement>;
-}) => (
-  <div
-    ref={viewportRef}
-    className={css({
-      flexGrow: 1,
-      flexShrink: 1,
-      top: 0,
-      left: 0,
-      width: '100%',
-      zIndex: 1,
-      backgroundColor: 'brand.darkGreen',
-      position: 'relative',
-      overflowY: 'scroll',
-    })}
-  >
-    {children}
-  </div>
-);
-
-const ScrollSpacing = ({
-  length,
-  scrollRef,
-  containerHeight,
-  finalDescription,
-}: {
-  length: number;
-  scrollRef: RefObject<HTMLDivElement>;
-  containerHeight: string;
-  finalDescription: React.ReactElement;
-}) => (
-  <div
-    ref={scrollRef}
-    style={{ height: containerHeight }}
-    className={css({
-      position: 'absolute',
-      top: 0,
-      width: '100%',
-      display: 'flex',
-      flexDir: 'column',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      scrollSnapType: 'y mandatory',
-      overflowY: 'scroll',
-      zIndex: 10,
-    })}
-  >
-    {Array.from({ length }).map((_, index) => (
-      <ScrollSpacingPage key={index} containerHeight={containerHeight}>
-        {index === 0 && <FloatingScrollHint />}
-      </ScrollSpacingPage>
-    ))}
-    <ScrollSpacingPage containerHeight={containerHeight}>
-      <div
-        className={css({
-          height: 'fit-content',
-          backgroundColor: 'brand.cream',
-          ...thickBrownBorder,
-          textAlign: 'center',
-          color: 'brand.darkBrown',
-          fontSize: { base: 'md', md: 'xl', lg: '2xl' },
-          width: { base: 'sm', md: 'xl' },
-          mt: { base: 5, md: 10 },
-          p: 10,
-        })}
-      >
-        {finalDescription}
-      </div>
-    </ScrollSpacingPage>
-  </div>
-);
 
 const useEventListener = (event: string, listener: () => void, useCapture?: boolean) => {
   useEffect(() => {
@@ -253,7 +73,7 @@ const useElementDims = (ref: RefObject<HTMLDivElement>) => {
     if (width) {
       setWidth(width);
     }
-  }, [setHeight, ref.current]);
+  }, [ref]);
 
   useEventListener('resize', resize);
 
@@ -270,6 +90,62 @@ const useContainerDims = () => {
   };
 };
 
+// Image component for each gallery item
+interface ProjectImageProps {
+  image: PostCardImage;
+  rotation: Rotation;
+  containerHeight: number;
+  containerWidth: number;
+  aspect: number;
+}
+
+const ProjectImage = ({
+  image,
+  rotation,
+  containerHeight,
+  containerWidth,
+  aspect,
+}: ProjectImageProps) => {
+  const imageHeightLimit = Math.min(containerHeight, (containerWidth - 40) * aspect);
+  const imageWidthLimit = Math.min(containerWidth, (containerHeight - 40) / aspect);
+
+  return (
+    <div
+      style={{
+        height: imageHeightLimit,
+        width: imageWidthLimit,
+      }}
+      className={css({
+        scrollSnapAlign: 'end',
+        mx: { base: 2, md: 4 },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexShrink: 0,
+        my: 'auto',
+      })}
+    >
+      <div
+        style={{
+          transform: `rotate(${rotationToDegrees(rotation)}deg)`,
+        }}
+        className={css({
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'transform 0.3s ease',
+          padding: 4,
+          my: 'auto',
+        })}
+      >
+        <PostCard image={image} />
+      </div>
+    </div>
+  );
+};
+
 export const ProjectPage = ({
   name,
   baseImage,
@@ -281,135 +157,163 @@ export const ProjectPage = ({
   scrollSections: ScrollSection[];
   finalDescription: React.ReactElement;
 }) => {
-  const scrollRef = useRef(null);
+  const { height: navBarHeight } = useElementDims(navBarRef);
+  const { containerRef } = useContainerDims();
+
   const {
-    containerHeight: canvasContainerHeight,
-    containerWidth: canvasContainerWidth,
-    containerRef: canvasContainerRef,
+    containerRef: imageContainerRef,
+    containerHeight: imageContainerHeight,
+    containerWidth: imageContainerWidth,
   } = useContainerDims();
 
-  const { height: navBarHeight } = useElementDims(navBarRef);
-  const { containerRef: viewportRef, containerHeight: viewportHeight } = useContainerDims();
-  const {
-    containerHeight: overallContainerHeight,
-    containerRef: overallContainerRef,
-    containerWidth: overallContainerWidth,
-  } = useContainerDims();
+  // Combine the base image with all scroll sections for the horizontal gallery
+  const allImages = [
+    { image: baseImage, rotation: 'None' as Rotation, aspect: 1 },
+    ...scrollSections.map((section) => ({
+      image: section.image,
+      rotation: section.rotation || 'None',
+      aspect: section.imageAspect,
+    })),
+  ];
 
   return (
     <div
-      ref={overallContainerRef}
-      style={{ height: `calc(100vh - ${navBarHeight + 1}px)` }}
+      ref={containerRef}
+      style={{ minHeight: `calc(100vh - ${navBarHeight + 1}px)` }}
       className={css({
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
-        backgroundColor: 'brand.darkGreen',
+        backgroundColor: 'brand.cream',
         position: 'relative',
         zIndex: 0,
+        overflowX: 'hidden',
+        py: { base: 4, lg: 8 },
+        px: { base: 0, lg: 0 },
       })}
     >
-      <h1
+      {/* Main content wrapper with overlapping elements */}
+      <div
         className={css({
-          flexGrow: 0,
-          flexShrink: 0,
-          mb: { base: 3, md: 10 },
-          mt: { base: 3, md: 2 },
-          fontSize: { base: '2rem', md: '4rem' },
-          color: 'brand.darkBrown',
-          fontWeight: 'bold',
-          zIndex: 10,
-          backgroundColor: 'brand.cream',
-          borderColor: 'brand.darkBrown',
-          borderWidth: '2px',
-          padding: 2,
-          width: 'fit-content',
-          mx: 'auto',
+          position: 'relative',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          minHeight: { lg: '80vh' },
         })}
       >
-        {name}
-      </h1>
-      <ViewportDiv viewportRef={viewportRef}>
-        <ScrollSpacing
-          length={scrollSections.length + 1}
-          scrollRef={scrollRef}
-          containerHeight={`${viewportHeight}px`}
-          finalDescription={finalDescription}
-        />
+        {/* Description Section with title inside */}
         <div
           className={css({
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            height: '100%',
-            justifyContent: 'start',
-            alignItems: 'center',
+            width: { base: '90%', md: '85%', lg: '50%' },
+            maxWidth: 'xl',
+            zIndex: 10,
+            position: { lg: 'absolute' },
+            top: { lg: '5%' },
+            left: { lg: '5%' },
+            mb: { base: 8, lg: 0 },
+            mx: { base: 4, lg: 0 },
           })}
         >
-          <div
-            ref={canvasContainerRef}
-            className={css({
-              width: '100%',
-              maxW: '5xl',
-              mx: 'auto',
-              borderStyle: 'transparent',
-              borderColor: 'transparent',
-              height: '100%',
-              flexGrow: 1,
-              position: 'relative',
-              zIndex: 1,
-            })}
-          >
+          <WithShadow>
             <div
               className={css({
-                maxWidth: '2xl',
-                width: '70vw',
-                marginX: 'auto',
-                position: 'sticky',
-                top: 10,
+                backgroundColor: 'white',
+                textAlign: 'center',
+                color: 'brand.darkBrown',
+                fontSize: { base: 'md', md: 'lg', lg: 'xl' },
+                width: '100%',
+                p: { base: 6, md: 8 },
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                boxShadow: 'xl',
+                ...thinBrownBorder,
               })}
             >
-              <PostCard image={baseImage} />
+              <h1
+                className={css({
+                  fontSize: { base: '1.8rem', md: '2.5rem', lg: '3rem' },
+                  color: 'brand.darkBrown',
+                  fontWeight: 'bold',
+                  mb: { base: 4, md: 6 },
+                  width: 'fit-content',
+                  position: 'relative',
+                  _after: {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: '-8px',
+                    left: '10%',
+                    width: '80%',
+                    height: '3px',
+                    backgroundColor: 'brand.darkBrown',
+                  },
+                })}
+              >
+                {name}
+              </h1>
+              {finalDescription}
             </div>
-            {scrollSections.map((c, index) => {
-              const length = scrollSections.length + 1;
-              const start = index / length;
-              const end = (index + 1) / length;
-              return (
-                <ScrollSectionCard
-                  key={index}
-                  scrollRef={scrollRef}
-                  xPosition={c.xPosition}
-                  yPosition={c.yPosition}
-                  direction={c.direction}
-                  scrollLimit={{ start, end }}
-                  containerWidth={canvasContainerWidth}
-                  containerHeight={canvasContainerHeight}
-                  imageAspect={c.imageAspect}
-                  outerHeight={overallContainerHeight}
-                  outerWidth={overallContainerWidth}
-                >
-                  <div
-                    style={{
-                      transform: `rotate(${rotationToDegrees(c.rotation ?? 'None')}deg)`,
-                      zIndex: index,
-                    }}
-                    className={css({
-                      width: '100%',
-                      height: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    })}
-                  >
-                    <PostCard image={c.image} />
-                  </div>
-                </ScrollSectionCard>
-              );
+          </WithShadow>
+        </div>
+
+        {/* Horizontally Scrollable Image Gallery - positioned to start underneath the card */}
+        <div
+          className={css({
+            position: { base: 'relative', lg: 'absolute' },
+            width: '100%',
+            right: { lg: '0' },
+            left: { lg: '0' },
+            pt: { lg: '10vh' },
+            height: { base: 'auto', lg: '75vh' },
+            overflowY: 'visible',
+          })}
+        >
+          <FloatingScrollHint direction="right" />
+          <div
+            ref={imageContainerRef}
+            className={css({
+              mt: { base: 10, lg: 0 },
+              display: 'flex',
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              scrollSnapType: 'x mandatory',
+              width: '100%',
+              height: '100%',
+              px: 4,
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'brand.darkBrown',
+              },
             })}
+          >
+            {/* Invisible spacing element that only appears on large screens */}
+            <div
+              className={css({
+                minWidth: { base: '0', lg: '2xl' },
+                display: { base: 'none', lg: 'block' },
+                height: '1px',
+                flexShrink: 0,
+                scrollSnapAlign: 'end',
+              })}
+            />
+
+            {allImages.map((item, index) => (
+              <ProjectImage
+                key={index}
+                image={item.image}
+                rotation={item.rotation}
+                containerHeight={imageContainerHeight}
+                containerWidth={imageContainerWidth}
+                aspect={item.aspect}
+              />
+            ))}
           </div>
         </div>
-      </ViewportDiv>
+      </div>
     </div>
   );
 };

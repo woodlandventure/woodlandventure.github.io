@@ -55,7 +55,7 @@ const ScrollSectionCard = ({
   imageAspect: number;
 }) => {
   const { scrollYProgress } = useScroll({ container: scrollRef });
-  const widthLimit = Math.min(400, containerWidth - 20);
+  const widthLimit = Math.min(800, containerWidth - 20);
   const heightLimit = Math.min(400, containerHeight - 20);
   const width = Math.min(widthLimit, heightLimit / imageAspect);
   const height = Math.min(heightLimit, width * imageAspect);

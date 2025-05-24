@@ -5,7 +5,7 @@ import { ProjectPage, ScrollSection } from './ProjectPage';
 const scrollSections: ScrollSection[] = [
   {
     image: beehiveShelterVenture,
-    imageAspect: 0.75,
+    imageAspect: 0.83,
   },
   {
     image: SheltersImages.IMG20220408154047,

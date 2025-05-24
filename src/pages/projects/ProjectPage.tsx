@@ -58,14 +58,21 @@ const ProjectImage = ({
   containerWidth,
   aspect,
 }: ProjectImageProps) => {
-  const imageHeight = Math.min(containerHeight, (containerWidth - 40) * aspect);
-  const imageWidth = Math.min(containerWidth, (containerHeight - 40) / aspect);
+  const totalPadding = 64;
+  const imageHeight = Math.min(
+    containerHeight - totalPadding,
+    (containerWidth - totalPadding) * aspect,
+  );
+  const imageWidth = Math.min(
+    containerWidth - totalPadding,
+    (containerHeight - totalPadding) / aspect,
+  );
 
   return (
     <div
       style={{
-        height: imageHeight,
-        width: imageWidth,
+        height: imageHeight + totalPadding,
+        width: imageWidth + totalPadding,
       }}
       className={css({
         scrollSnapAlign: 'end',

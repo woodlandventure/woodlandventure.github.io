@@ -1,10 +1,10 @@
 import { PostCardImage, Rotation } from '../../components/PostCard';
 import { css } from '../../../styled-system/css';
-import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { PostCard, rotationToDegrees } from '../../components/PostCard';
 import navBarRef from '../../components/navBarRef';
 import { thinBrownBorder } from '../../components/border';
 import { WithShadow } from '../../components/Shadow';
+import { useContainerDims, useElementDims } from './useDims';
 
 export type ScrollSection = {
   image: PostCardImage;
@@ -42,44 +42,6 @@ const FloatingScrollHint = ({ direction = 'right' }: { direction?: 'right' | 'do
   );
 };
 
-const useEventListener = (event: string, listener: () => void, useCapture?: boolean) => {
-  useEffect(() => {
-    listener();
-    window.addEventListener(event, listener, useCapture);
-
-    return () => window.removeEventListener(event, listener, useCapture);
-  }, [event, listener, useCapture]);
-};
-
-const useElementDims = (ref: RefObject<HTMLDivElement>) => {
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
-  const resize = useCallback(() => {
-    const height = ref.current?.clientHeight;
-    if (height) {
-      setHeight(height);
-    }
-    const width = ref.current?.clientWidth;
-    if (width) {
-      setWidth(width);
-    }
-  }, [ref]);
-
-  useEventListener('resize', resize);
-
-  return { width, height };
-};
-
-const useContainerDims = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { width: containerWidth, height: containerHeight } = useElementDims(containerRef);
-  return {
-    containerRef,
-    containerWidth,
-    containerHeight,
-  };
-};
-
 // Image component for each gallery item
 interface ProjectImageProps {
   image: PostCardImage;
@@ -96,14 +58,14 @@ const ProjectImage = ({
   containerWidth,
   aspect,
 }: ProjectImageProps) => {
-  const imageHeightLimit = Math.min(containerHeight, (containerWidth - 40) * aspect);
-  const imageWidthLimit = Math.min(containerWidth, (containerHeight - 40) / aspect);
+  const imageHeight = Math.min(containerHeight, (containerWidth - 40) * aspect);
+  const imageWidth = Math.min(containerWidth, (containerHeight - 40) / aspect);
 
   return (
     <div
       style={{
-        height: imageHeightLimit,
-        width: imageWidthLimit,
+        height: imageHeight,
+        width: imageWidth,
       }}
       className={css({
         scrollSnapAlign: 'end',
@@ -130,7 +92,7 @@ const ProjectImage = ({
           my: 'auto',
         })}
       >
-        <PostCard image={image} />
+        <PostCard image={image} desiredHeight={imageHeight} />
       </div>
     </div>
   );

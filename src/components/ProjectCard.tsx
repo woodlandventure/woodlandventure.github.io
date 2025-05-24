@@ -2,6 +2,8 @@ import { css } from '../../styled-system/css';
 import { Link } from '@tanstack/react-router';
 import { thickBrownBorder } from './border';
 import { Shadow } from './Shadow';
+import { useContainerDims } from '../pages/projects/useDims';
+import { optimizeImage } from './optimizeImage';
 
 interface ProjectCardProps {
   image: string;
@@ -18,8 +20,10 @@ export function ProjectCard({
   linkTo,
   objectPosition = 'center',
 }: ProjectCardProps) {
+  const { containerRef, containerWidth, containerHeight } = useContainerDims();
   const card = (
     <div
+      ref={containerRef}
       className={css({
         position: 'relative',
       })}
@@ -36,7 +40,11 @@ export function ProjectCard({
         })}
       >
         <img
-          src={image}
+          src={optimizeImage({
+            image,
+            desiredWidth: containerWidth,
+            desiredHeight: containerHeight,
+          })}
           alt={alt}
           style={{ objectPosition }}
           className={css({
@@ -65,5 +73,11 @@ export function ProjectCard({
     </div>
   );
 
-  return linkTo ? <Link to={linkTo}>{card}</Link> : card;
+  return linkTo ? (
+    <Link hash="root" to={linkTo}>
+      {card}
+    </Link>
+  ) : (
+    card
+  );
 }

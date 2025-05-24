@@ -93,6 +93,7 @@ export function Root() {
         >
           <Link
             to="/"
+            hash="root"
             className={css({
               display: 'flex',
               alignItems: 'center',

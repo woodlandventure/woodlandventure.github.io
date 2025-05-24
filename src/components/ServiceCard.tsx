@@ -3,11 +3,12 @@ import { css } from '../../styled-system/css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { WithShadow } from './Shadow';
+import { optimizeImage } from './optimizeImage';
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  image: 'childRope' | 'parachute' | 'itServices' | 'sanctuary';
+  image: string;
   linkTo?: string;
   imagePosition?: string;
 }
@@ -30,6 +31,7 @@ export function ServiceCard({
   linkTo,
   imagePosition = 'center',
 }: ServiceCardProps) {
+  const desiredWidth = window.innerWidth;
   return (
     <div
       className={css({
@@ -64,21 +66,22 @@ export function ServiceCard({
               })}
             >
               <div
+                style={{
+                  backgroundImage: `url(${optimizeImage({
+                    image,
+                    desiredWidth,
+                  })})`,
+                }}
                 className={css({
                   w: { base: '100%', md: '12rem' },
                   h: { base: '12rem', md: '12rem' },
                   flexGrow: 0,
                   flexShrink: 0,
-                  bg:
-                    image === 'childRope'
-                      ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
-                      : image === 'parachute'
-                        ? 'url(/img/projects/Forest_School_Woodland_Parachute.JPG)'
-                        : image === 'sanctuary'
-                          ? 'url(/img/projects/Forest_School_Woodland_Sanctuary_After.JPG)'
-                          : 'url(/img/pexels-brett-sayles-2881224.jpg)',
                   bgSize: 'cover',
                   backgroundPosition: imagePosition,
+
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
 
                   borderColor: 'brand.yellow',
                   borderWidth: '4px',

@@ -19,6 +19,7 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
     return (
       <Link
         to={href}
+        hash="root"
         className={css({
           color: { base: 'brand.darkBrown', lg: 'brand.cream' },
           _hover: {
@@ -90,6 +91,7 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
         >
           {dropdownItems.map((item) => (
             <Link
+              hash="root"
               key={item.href}
               to={item.href}
               className={css({
@@ -133,6 +135,7 @@ export function NavItem({ label, href, dropdownItems, closeMenu }: NavItemProps)
       >
         {dropdownItems?.map((item) => (
           <Link
+            hash="root"
             key={item.href}
             to={item.href}
             className={css({

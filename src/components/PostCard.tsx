@@ -1,69 +1,66 @@
 import { useNavigate } from '@tanstack/react-router';
 import { css } from '../../styled-system/css';
 import { motion } from 'framer-motion';
+import { optimizeImage } from './optimizeImage';
 
 export interface PostCardProps {
   position: Position;
   rotation: Rotation;
   image: PostCardImage;
   link?: string;
+  asBackgroundImage?: boolean;
+  desiredHeight?: number;
 }
 
-const postCardImages = [
-  'firePit',
-  'childRope',
-  'gardenSeating',
-  'family',
-  'beehiveShelter',
-  'workshopPlan',
-  'shedDesign',
-];
-
-export type PostCardImage = (typeof postCardImages)[number] | string;
+export type PostCardImage = string;
 
 export type Rotation = 'LittleClockwise' | 'LittleCounterClockwise' | 'None';
 
 type Position = 'topLeft' | 'bottomRight' | 'middle' | 'topRight' | 'bottomLeft';
 
-export const PostCard = ({ image }: { image: PostCardImage }) => {
-  const isImage = postCardImages.includes(image);
+export const PostCard = ({
+  image,
+  desiredHeight,
+  asBackgroundImage,
+}: {
+  image: PostCardImage;
+  desiredHeight?: number;
+  asBackgroundImage?: boolean;
+}) => {
+  if (asBackgroundImage) {
+    const scaledImageSrc = desiredHeight ? optimizeImage({ image, desiredHeight }) : image;
 
-  if (isImage) {
     return (
       <div
+        style={{
+          backgroundImage: `url(${scaledImageSrc})`,
+        }}
         className={css({
-          bg:
-            image === 'firePit'
-              ? 'url(/img/Woodland_Venture_Fire_Pit.jpg)'
-              : image === 'childRope'
-                ? 'url(/img/Woodland_Venture_Child_Rope_Activity.jpg)'
-                : image === 'gardenSeating'
-                  ? 'url(/img/projects/Woodland_Venture_Garden_Seating.jpg)'
-                  : image === 'beehiveShelter'
-                    ? 'url(/img/projects/Woodland_Venture_Beehive_Shelter.jpg)'
-                    : image === 'shedDesign'
-                      ? 'url(/img/projects/Woodland_Venture_Shed_Design.png)'
-                      : image === 'workshopPlan'
-                        ? 'url(/img/projects/Workshop/Shed_Layout.png)'
-                        : 'url(/img/Woodland_Venture_Family_Toast_Marshmallows.jpg)',
           bgSize: 'cover',
           border: '5px solid white',
           height: '100%',
           width: '100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
         })}
       />
     );
   } else {
+    const imageSrc = desiredHeight ? optimizeImage({ image, desiredHeight }) : image;
     return (
       <div
         className={css({
           borderColor: 'brand.darkBrown',
           borderWidth: '1px',
           borderStyle: 'solid',
+          backgroundColor: 'white',
+          height: '100%',
+          width: '100%',
         })}
       >
         <img
-          src={image}
+          src={imageSrc}
           alt={image}
           className={css({
             bgSize: 'cover',
@@ -85,7 +82,14 @@ export const rotationToHoverDegrees = (rotation: Rotation) => {
   return rotation === 'LittleClockwise' ? 0 : rotation === 'LittleCounterClockwise' ? 0 : 3;
 };
 
-export const PositionedPostCard = ({ position, rotation, image, link }: PostCardProps) => {
+export const PositionedPostCard = ({
+  position,
+  rotation,
+  image,
+  link,
+  asBackgroundImage,
+  desiredHeight,
+}: PostCardProps) => {
   const navigate = useNavigate();
   return (
     <motion.div
@@ -103,7 +107,7 @@ export const PositionedPostCard = ({ position, rotation, image, link }: PostCard
       }}
       onClick={() => {
         if (link) {
-          navigate({ to: link });
+          navigate({ to: link, hash: 'root' });
         }
       }}
       className={css({
@@ -133,7 +137,7 @@ export const PositionedPostCard = ({ position, rotation, image, link }: PostCard
         overflow: 'hidden',
       })}
     >
-      <PostCard image={image} />
+      <PostCard image={image} asBackgroundImage={asBackgroundImage} desiredHeight={desiredHeight} />
     </motion.div>
   );
 };

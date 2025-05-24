@@ -1,35 +1,43 @@
 import { css } from '../../styled-system/css';
 import { ServiceCard } from '../components/ServiceCard';
 import { PositionedPostCard, PostCardProps } from '../components/PostCard';
+import {
+  beehiveShelterVenture,
+  parachute,
+  sanctuaryAfterJPG,
+  shedDesign,
+} from '../assets/img/projects';
+import { childRope, familyMarshmallow, fireCircleFun, pexels } from '../assets/img';
+import { IMG20230815154022 } from '../assets/img/projects/CosyBench';
 
 const postCards: PostCardProps[] = [
   {
     position: 'topLeft',
     rotation: 'LittleClockwise',
-    image: 'firePit',
+    image: fireCircleFun,
   },
   {
     position: 'bottomRight',
     rotation: 'LittleCounterClockwise',
-    image: 'gardenSeating',
+    image: IMG20230815154022,
     link: '/cosy-bench',
   },
   {
     position: 'topRight',
     rotation: 'LittleClockwise',
-    image: 'beehiveShelter',
+    image: beehiveShelterVenture,
     link: '/shelters',
   },
   {
     position: 'bottomLeft',
     rotation: 'LittleCounterClockwise',
-    image: 'shedDesign',
+    image: shedDesign,
     link: '/workshop',
   },
   {
     position: 'middle',
     rotation: 'None',
-    image: 'family',
+    image: familyMarshmallow,
   },
 ];
 
@@ -95,7 +103,12 @@ export function Home() {
           })}
         >
           {postCards.map((card, index) => (
-            <PositionedPostCard key={`card-${index}`} {...card} />
+            <PositionedPostCard
+              key={`card-${index}`}
+              {...card}
+              asBackgroundImage
+              desiredHeight={window.innerHeight * 0.6}
+            />
           ))}
         </div>
       </div>
@@ -142,7 +155,7 @@ export function Home() {
             <ServiceCard
               title="Schools"
               description="Enhance your curriculum with outdoor learning experiences that inspire and engage students"
-              image="childRope"
+              image={childRope}
               linkTo="/schools"
               imagePosition="25% center"
             />
@@ -150,7 +163,7 @@ export function Home() {
             <ServiceCard
               title="Projects"
               description="Create welcoming outdoor spaces with bespoke furniture and builds"
-              image="sanctuary"
+              image={sanctuaryAfterJPG}
               linkTo="/projects"
               imagePosition="25% center"
             />
@@ -158,13 +171,13 @@ export function Home() {
             <ServiceCard
               title="Outdoor Spaces"
               description="Create engaging outdoor learning environments that inspire exploration and discovery"
-              image="parachute"
+              image={parachute}
             />
 
             <ServiceCard
               title="IT Services"
               description="Technology solutions to support your outdoor learning programs"
-              image="itServices"
+              image={pexels}
             />
           </div>
         </div>

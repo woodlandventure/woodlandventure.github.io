@@ -52,6 +52,7 @@ export function WoodlandProject() {
           <span className={css({ fontWeight: 'bold' })}>organisation</span> would benefit from
           something similar,{' '}
           <Link
+            hash="root"
             to="/contact"
             className={css({
               color: 'blue.600',

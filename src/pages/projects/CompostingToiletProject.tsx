@@ -30,7 +30,7 @@ const FinalDescriptionPage = () => {
       </p>
       <br />
       <p>
-        <strong>Starting price: £1500</strong>
+        <strong>Starting price: £1000</strong>
       </p>
     </>
   );

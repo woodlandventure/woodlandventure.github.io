@@ -51,6 +51,7 @@ export function Home() {
           bg: 'brand.darkGreen',
           display: 'flex',
           flexWrap: 'wrap',
+          width: '100%',
           padding: { base: 10, md: 20 },
           alignItems: 'center',
           position: 'relative',

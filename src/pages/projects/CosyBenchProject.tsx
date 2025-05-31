@@ -24,13 +24,13 @@ const FinalDescriptionPage = () => {
   return (
     <>
       <p>
-        Our cosy bench designs add comfort and style to any garden space. Each bench is handcrafted
-        with quality materials and built to withstand the elements while providing a comfortable
-        seating area to enjoy your outdoor environment.
+        Our cosy bench designs add comfort and style to any garden space. Each bench is design
+        bespoke to fit the space and area, handcrafted with quality materials and built to withstand
+        the elements while providing a comfortable seating area to enjoy your outdoor environment
       </p>
       <br />
       <p>
-        <strong>Starting price: £800</strong>
+        <strong>Starting price: £1800</strong>
       </p>
     </>
   );

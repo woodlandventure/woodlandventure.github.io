@@ -115,8 +115,9 @@ export const PositionedPostCard = ({
         position: {
           lg: 'absolute',
         },
-        w: { base: '300px', md: '400px' },
-        h: { base: '230px', md: '300px' },
+        aspectRatio: 1.5,
+        // w: { base: '300px', md: '400px', lg: '25vw' },
+        h: { base: '200px', md: '300px', lg: '400px' },
         top: {
           lg: position === 'topLeft' || position === 'topRight' ? 5 : undefined,
         },

@@ -1,5 +1,6 @@
 import { beehiveShelterVenture } from '../../assets/img/projects';
 import * as SheltersImages from '../../assets/img/projects/Shelters';
+import { Email } from './email';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
@@ -44,7 +45,10 @@ const FinalDescriptionPage = () => {
       </p>
       <br />
       <p>
-        <strong>Starting price: £3000</strong>
+        <strong>
+          Starting price: £1100
+          <Email />
+        </strong>
       </p>
     </>
   );

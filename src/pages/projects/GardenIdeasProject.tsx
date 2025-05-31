@@ -31,10 +31,12 @@ const FinalDescriptionPage = () => {
         Explore our innovative garden ideas that help create unique outdoor spaces tailored to your
         needs and style. From small creative touches to full garden transformations, we can help
         design and implement a variety of garden features to enhance your outdoor living experience.
+        We really do enjoy meeting new people whilst sharing and discussing the possibilities that
+        can be achieved.
       </p>
       <br />
       <p>
-        <strong>Consultation starting at: £300</strong>
+        <strong>Price for an initial consulation: a cup of tea!</strong>
       </p>
     </>
   );

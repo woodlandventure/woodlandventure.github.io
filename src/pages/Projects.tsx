@@ -50,6 +50,13 @@ const projectCards = [
     objectPosition: '20% 30%',
   },
   {
+    image: WorkshopImg,
+    alt: 'Workshop',
+    title: 'Workshop',
+    linkTo: '/workshop',
+    objectPosition: '20% 30%',
+  },
+  {
     image: GardenIdeasImg,
     alt: 'Garden Ideas',
     title: 'Garden Ideas',

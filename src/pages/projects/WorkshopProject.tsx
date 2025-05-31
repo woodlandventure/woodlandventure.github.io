@@ -1,4 +1,5 @@
 import * as WorkshopImages from '../../assets/img/projects/Workshop';
+import { Email } from './email';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
@@ -38,14 +39,16 @@ const FinalDescriptionPage = () => {
   return (
     <>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam, quos.
+        This workshop has been designed and built to be sturdy and secure. With the addition of a
+        concrete floor is makes an excellent space for storing tools or setting up machinery. This
+        example is 3.5m(w)x3.5m(D)x2.5m(H)
       </p>
       <br />
       <p>
-        <strong>Starting price: £2000</strong>
+        <strong>
+          Price: £8000
+          <Email />
+        </strong>
       </p>
     </>
   );

@@ -1,4 +1,5 @@
 import * as DeckingImages from '../../assets/img/projects/Decking';
+import { Email } from './email';
 import { ProjectPage, ScrollSection } from './ProjectPage';
 
 const scrollSections: ScrollSection[] = [
@@ -34,7 +35,14 @@ const FinalDescriptionPage = () => {
       </p>
       <br />
       <p>
-        <strong>Starting price: £2500</strong>
+        As the cost of decking is very dependent on the area of decking required and its location,
+        we would suggest dropping us an email to discuss your needs for a specific quote
+      </p>
+      <br />
+      <p>
+        <strong>
+          Email for a quote: <Email />
+        </strong>
       </p>
     </>
   );

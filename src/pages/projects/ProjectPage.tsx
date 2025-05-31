@@ -105,14 +105,71 @@ const ProjectImage = ({
   );
 };
 
+const AdditionalInfo = ({
+  children,
+  containerHeight,
+  containerWidth,
+  aspect,
+}: {
+  children: React.ReactElement;
+  containerHeight: number;
+  containerWidth: number;
+  aspect: number;
+}) => {
+  const totalPadding = 64;
+  const imageHeight = Math.min(
+    containerHeight - totalPadding,
+    (containerWidth - totalPadding) * aspect,
+  );
+  const imageWidth = Math.min(
+    containerWidth - totalPadding,
+    (containerHeight - totalPadding) / aspect,
+  );
+
+  return (
+    <div
+      style={{
+        height: imageHeight + totalPadding,
+        width: imageWidth + totalPadding,
+      }}
+      className={css({
+        scrollSnapAlign: 'end',
+        mx: { base: 2, md: 4 },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexShrink: 0,
+        my: 'auto',
+      })}
+    >
+      <div
+        className={css({
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'transform 0.3s ease',
+          padding: 4,
+          my: 'auto',
+        })}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
 export const ProjectPage = ({
   name,
   scrollSections,
   finalDescription,
+  additionalInfo,
 }: {
   name: string;
   scrollSections: ScrollSection[];
   finalDescription: React.ReactElement;
+  additionalInfo?: React.ReactElement;
 }) => {
   const { height: navBarHeight } = useElementDims(navBarRef);
   const { containerRef } = useContainerDims();
@@ -260,6 +317,15 @@ export const ProjectPage = ({
                 aspect={item.imageAspect}
               />
             ))}
+            {additionalInfo && (
+              <AdditionalInfo
+                containerHeight={imageContainerHeight}
+                containerWidth={imageContainerWidth}
+                aspect={0.75}
+              >
+                {additionalInfo}
+              </AdditionalInfo>
+            )}
           </div>
         </div>
       </div>

@@ -1,151 +1,19 @@
----
----
-
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Woodland Venture</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Woodland Venture provides Forest School and outdoor experiences in Tunbridge Wells, Kent and East Sussex. Whether you are a school, parent, university or business, we've got something for you!">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/public/css/styles.css?{{ 'now' | date: '%s' }}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="/public/jquery/mainwindowresizer.js?{{ 'now' | date: '%s' }}"></script>
-        <script src="/public/jquery/includehtml.js?{{ 'now' | date: '%s' }}"></script>
-    </head>
-    <body>
-        <div class="overflow">
-            <div id="navbar"></div>
-            <div class="container-fluid top-item" >
-                <div class="row quote_row">
-                    <div class="panel">
-                        <img src="/public/img/Logo_Stacked.png" class="logo_panel">
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid quote_container">
-                <div class="row">
-                    <div class="main_quote">
-                        <span class="pop">Woodland Venture</span> provides <span class="pop">Forest School</span> and outdoor experiences in <span class="pop">Tunbridge Wells, Kent and East Sussex</span>. <br>
-                        Whether you are a <span class="pop">school, parent, university or business</span>, we've got something for you!
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <a class="anchor" id="schools"></a>
-                    <h1 class="large-h1">Schools</h1>
-                </div>
-                <div class="row info-row">
-                    <div class="col-sm-6 info-col-less">
-                        <div class="sch1-picture-col picture-col" id="sch1pic"></div>
-                    </div>
-                    <div class="col-sm-6 info-col-less" id="sch1">
-                        <h1 class="half-image-text"> Forest Schools</h1><br>
-                        <h2 class="half-image-text">What is a Forest School</h2>
-                        <p class="half-image-text-body">
-                            <i>
-                                “Forest School is an inspirational process that offers ALL learners regular opportunities
-                                to achieve, develop confidence and self-esteem, through hands on learning experiences
-                                in a local woodland.
-                                Forest School is a specialised approach that sits within and compliments
-                                the wider context of outdoor learning.”
-                            </i>
-                        </p> <br>
-                        <h2 class="half-image-text">Team Building</h2>
-                        <p class="half-image-text-body">
-                            We have developed a series of team building activities which will develop:
-                            group communication skills, planning, analysing, persevering and resilience.<br><br>
-                            These activities can be incorporated into a bespoke program for your school
-                            or run as a one off day for children or staff.
-                        </p>
-                    </div>
-                </div>
-                <div class="row info-row">
-                    <div class="col-sm-6 col-sm-push-6 info-col-less">
-                        <div class="sch2-picture-col picture-col" id="sch2pic"></div>
-                    </div>
-                    <div class="col-sm-6 col-sm-pull-6 info-col-less" id="sch2">
-                        <h2 class="half-image-text">What can Woodland Venture Forest School offer you?</h2>
-                        <p class="half-image-text-body">
-                        <ul class="half-image-text-body">
-                            <li>A bespoke program at Priest’s Wood in Langton Green</li>
-                            <li>A bespoke program at your own site, subject to a suitability check</li>
-                            <li>A one off bespoke session</li>
-                            <li>Construction of a fire circle</li>
-                            <li>Help in securing outdoor learning /public/resources</li>
-                        </ul><br>
-                        </p>
-                        <h2 class="half-image-text">What do you get for your money?</h2>
-                        <p class="half-image-text-body">
-                            Woodland Venture is headed up by a qualified teacher with 13 years experience in schools.
-                        <ul class="half-image-text-body">
-                            <li>Fully Trained Forest School Leader (Level 3)</li>
-                            <li>Enhanced DBS checked</li>
-                            <li>Independent insurance</li>
-                            <li>All reasonable recourses for sessions including tools and hot chocolate are provided</li>
-                        </ul>
-                        <b class="half-image-text-body">
-                            Download our Schools Brochure for further information <a href="/public/resources/Schools%20Brochure.pdf" target="blank">here</a>.
-                        </b>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid" id="image-row-1"></div>
-            <div class="container-fluid panel-borderless">
-                <div class="row info-row">
-                    <div class="col-sm-6 col-sm-push-6 info-col">
-                        <div class="proj-picture-col picture-col" id="projpic"></div>
-                    </div>
-                    <div class="col-sm-6 col-sm-pull-6 info-col" id="proj">
-                        <a class="anchor" id="projects"></a>
-                        <h1 class="half-image-text">Outdoor spaces</h1>
-                        <p class="half-image-text-body">
-                            Do you have an outdoor space that needs a bit of love?
-                            Perhaps you have a garden that you don't use.
-                            If you're a teacher, perhaps it's a school playground that the children don't use.
-                            Or maybe an overgrown woodland area in your school grounds. <br> <br>
-
-                            Woodland Venture can help with that! <br>
-
-                            We create bespoke outdoor spaces which people love to spend time in.
-                            Reclaim your garden with outdoor seating under a sheltered pergola.
-                            Or create a space for children to play and learn in with sheltered
-                            tent areas, outdoor stages, compost toilets and more. <br> <br>
-
-                            Check out what we've built for other schools and organisations in our <a href="/projects">projects</a> section.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid itservices-container">
-                <div class="row info-row">
-                    <div class="col-sm-6 info-col">
-                        <div class="itservices-picture-col picture-col" id="itservicespic"></div>
-                    </div>
-                    <div class="col-sm-6 info-col" id="itservices">
-                        <a class="anchor" id="itservice"></a>
-                        <h1 class="half-image-text">IT Services</h1>
-                        <p class="half-image-text-body">
-                            Just because we love the outdoors doesn't mean we don't love technology too!
-                            We offer a range of IT services to schools and businesses,
-                            to help keep you doing what you do best. <br> <br>
-
-                            With many years of experiences in IT support, we can help you with
-                            any IT issues you may have, or upgrades you would like to make.
-                            Send us an email at <a href="mailto:info@woodlandventure.co.uk">info@woodlandventure.co.uk</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div id="footer"></div>
-            </div>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Woodland Venture</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

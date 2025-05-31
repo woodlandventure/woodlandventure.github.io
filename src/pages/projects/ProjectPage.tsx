@@ -225,7 +225,6 @@ export const ProjectPage = ({
         >
           <Link
             to="/projects"
-            hash="root"
             className={css({
               color: 'brand.darkBrown',
               fontWeight: 'bold',

@@ -5,6 +5,7 @@ import navBarRef from '../../components/navBarRef';
 import { thinBrownBorder } from '../../components/border';
 import { WithShadow } from '../../components/Shadow';
 import { useContainerDims, useElementDims } from './useDims';
+import { Link } from '@tanstack/react-router';
 
 export type ScrollSection = {
   image: PostCardImage;
@@ -222,6 +223,23 @@ export const ProjectPage = ({
             mx: { base: 4, lg: 0 },
           })}
         >
+          <Link
+            to="/projects"
+            hash="root"
+            className={css({
+              color: 'brand.darkBrown',
+              fontWeight: 'bold',
+              fontSize: { base: 'md', md: 'lg' },
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+              _hover: { color: 'brand.brown' },
+              mb: 4,
+              display: 'inline-block',
+              ml: { base: 2, md: 4 },
+            })}
+          >
+            ← Back
+          </Link>
           <WithShadow>
             <div
               className={css({

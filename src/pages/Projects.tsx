@@ -87,36 +87,43 @@ const projectCards = [
     image: parachute,
     alt: 'Parachute',
     title: 'Parachute',
+    linkTo: '/parachute',
   },
   {
     image: workTop,
     alt: 'Mud Kitchen - Work Top',
     title: 'Mud Kitchen - Work Top',
+    linkTo: '/work-top',
   },
   {
     image: fireCircle,
     alt: 'Fire Circle',
     title: 'Fire Circle',
+    linkTo: '/fire-circle',
   },
   {
     image: chalkboard,
     alt: 'Fencing and Chalkboard',
     title: 'Fencing and Chalkboard',
+    linkTo: '/chalkboard',
   },
   {
     image: sink,
     alt: 'Mud Kitchen - Sink',
     title: 'Mud Kitchen - Sink',
+    linkTo: '/sink',
   },
   {
     image: kitchen,
     alt: 'Forest School Kitchen',
     title: 'Forest School Kitchen',
+    linkTo: '/kitchen',
   },
   {
     image: sandpitCover,
     alt: 'Sandpit Cover',
     title: 'Sandpit Cover',
+    linkTo: '/sandpit-cover',
   },
 ];
 

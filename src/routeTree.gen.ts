@@ -12,16 +12,23 @@
 
 import { Route as rootRoute } from './routes/__root';
 import { Route as WorkshopImport } from './routes/workshop';
+import { Route as WorkTopImport } from './routes/work-top';
+import { Route as SinkImport } from './routes/sink';
 import { Route as SheltersImport } from './routes/shelters';
 import { Route as SchoolsImport } from './routes/schools';
+import { Route as SandpitCoverImport } from './routes/sandpit-cover';
 import { Route as SanctuaryImport } from './routes/sanctuary';
 import { Route as ProjectsImport } from './routes/projects';
+import { Route as ParachuteImport } from './routes/parachute';
+import { Route as KitchenImport } from './routes/kitchen';
 import { Route as GardenSofasImport } from './routes/garden-sofas';
 import { Route as GardenIdeasImport } from './routes/garden-ideas';
+import { Route as FireCircleImport } from './routes/fire-circle';
 import { Route as DeckingImport } from './routes/decking';
 import { Route as CosyBenchImport } from './routes/cosy-bench';
 import { Route as ContactImport } from './routes/contact';
 import { Route as CompostingToiletImport } from './routes/composting-toilet';
+import { Route as ChalkboardImport } from './routes/chalkboard';
 import { Route as AdventureImport } from './routes/adventure';
 import { Route as AboutImport } from './routes/about';
 import { Route as IndexImport } from './routes/index';
@@ -31,6 +38,18 @@ import { Route as IndexImport } from './routes/index';
 const WorkshopRoute = WorkshopImport.update({
   id: '/workshop',
   path: '/workshop',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const WorkTopRoute = WorkTopImport.update({
+  id: '/work-top',
+  path: '/work-top',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const SinkRoute = SinkImport.update({
+  id: '/sink',
+  path: '/sink',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -46,6 +65,12 @@ const SchoolsRoute = SchoolsImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
+const SandpitCoverRoute = SandpitCoverImport.update({
+  id: '/sandpit-cover',
+  path: '/sandpit-cover',
+  getParentRoute: () => rootRoute,
+} as any);
+
 const SanctuaryRoute = SanctuaryImport.update({
   id: '/sanctuary',
   path: '/sanctuary',
@@ -58,6 +83,18 @@ const ProjectsRoute = ProjectsImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
+const ParachuteRoute = ParachuteImport.update({
+  id: '/parachute',
+  path: '/parachute',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const KitchenRoute = KitchenImport.update({
+  id: '/kitchen',
+  path: '/kitchen',
+  getParentRoute: () => rootRoute,
+} as any);
+
 const GardenSofasRoute = GardenSofasImport.update({
   id: '/garden-sofas',
   path: '/garden-sofas',
@@ -67,6 +104,12 @@ const GardenSofasRoute = GardenSofasImport.update({
 const GardenIdeasRoute = GardenIdeasImport.update({
   id: '/garden-ideas',
   path: '/garden-ideas',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const FireCircleRoute = FireCircleImport.update({
+  id: '/fire-circle',
+  path: '/fire-circle',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -91,6 +134,12 @@ const ContactRoute = ContactImport.update({
 const CompostingToiletRoute = CompostingToiletImport.update({
   id: '/composting-toilet',
   path: '/composting-toilet',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const ChalkboardRoute = ChalkboardImport.update({
+  id: '/chalkboard',
+  path: '/chalkboard',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -137,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdventureImport;
       parentRoute: typeof rootRoute;
     };
+    '/chalkboard': {
+      id: '/chalkboard';
+      path: '/chalkboard';
+      fullPath: '/chalkboard';
+      preLoaderRoute: typeof ChalkboardImport;
+      parentRoute: typeof rootRoute;
+    };
     '/composting-toilet': {
       id: '/composting-toilet';
       path: '/composting-toilet';
@@ -165,6 +221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeckingImport;
       parentRoute: typeof rootRoute;
     };
+    '/fire-circle': {
+      id: '/fire-circle';
+      path: '/fire-circle';
+      fullPath: '/fire-circle';
+      preLoaderRoute: typeof FireCircleImport;
+      parentRoute: typeof rootRoute;
+    };
     '/garden-ideas': {
       id: '/garden-ideas';
       path: '/garden-ideas';
@@ -177,6 +240,20 @@ declare module '@tanstack/react-router' {
       path: '/garden-sofas';
       fullPath: '/garden-sofas';
       preLoaderRoute: typeof GardenSofasImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/kitchen': {
+      id: '/kitchen';
+      path: '/kitchen';
+      fullPath: '/kitchen';
+      preLoaderRoute: typeof KitchenImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/parachute': {
+      id: '/parachute';
+      path: '/parachute';
+      fullPath: '/parachute';
+      preLoaderRoute: typeof ParachuteImport;
       parentRoute: typeof rootRoute;
     };
     '/projects': {
@@ -193,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SanctuaryImport;
       parentRoute: typeof rootRoute;
     };
+    '/sandpit-cover': {
+      id: '/sandpit-cover';
+      path: '/sandpit-cover';
+      fullPath: '/sandpit-cover';
+      preLoaderRoute: typeof SandpitCoverImport;
+      parentRoute: typeof rootRoute;
+    };
     '/schools': {
       id: '/schools';
       path: '/schools';
@@ -205,6 +289,20 @@ declare module '@tanstack/react-router' {
       path: '/shelters';
       fullPath: '/shelters';
       preLoaderRoute: typeof SheltersImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/sink': {
+      id: '/sink';
+      path: '/sink';
+      fullPath: '/sink';
+      preLoaderRoute: typeof SinkImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/work-top': {
+      id: '/work-top';
+      path: '/work-top';
+      fullPath: '/work-top';
+      preLoaderRoute: typeof WorkTopImport;
       parentRoute: typeof rootRoute;
     };
     '/workshop': {
@@ -223,16 +321,23 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
   '/about': typeof AboutRoute;
   '/adventure': typeof AdventureRoute;
+  '/chalkboard': typeof ChalkboardRoute;
   '/composting-toilet': typeof CompostingToiletRoute;
   '/contact': typeof ContactRoute;
   '/cosy-bench': typeof CosyBenchRoute;
   '/decking': typeof DeckingRoute;
+  '/fire-circle': typeof FireCircleRoute;
   '/garden-ideas': typeof GardenIdeasRoute;
   '/garden-sofas': typeof GardenSofasRoute;
+  '/kitchen': typeof KitchenRoute;
+  '/parachute': typeof ParachuteRoute;
   '/projects': typeof ProjectsRoute;
   '/sanctuary': typeof SanctuaryRoute;
+  '/sandpit-cover': typeof SandpitCoverRoute;
   '/schools': typeof SchoolsRoute;
   '/shelters': typeof SheltersRoute;
+  '/sink': typeof SinkRoute;
+  '/work-top': typeof WorkTopRoute;
   '/workshop': typeof WorkshopRoute;
 }
 
@@ -240,16 +345,23 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/about': typeof AboutRoute;
   '/adventure': typeof AdventureRoute;
+  '/chalkboard': typeof ChalkboardRoute;
   '/composting-toilet': typeof CompostingToiletRoute;
   '/contact': typeof ContactRoute;
   '/cosy-bench': typeof CosyBenchRoute;
   '/decking': typeof DeckingRoute;
+  '/fire-circle': typeof FireCircleRoute;
   '/garden-ideas': typeof GardenIdeasRoute;
   '/garden-sofas': typeof GardenSofasRoute;
+  '/kitchen': typeof KitchenRoute;
+  '/parachute': typeof ParachuteRoute;
   '/projects': typeof ProjectsRoute;
   '/sanctuary': typeof SanctuaryRoute;
+  '/sandpit-cover': typeof SandpitCoverRoute;
   '/schools': typeof SchoolsRoute;
   '/shelters': typeof SheltersRoute;
+  '/sink': typeof SinkRoute;
+  '/work-top': typeof WorkTopRoute;
   '/workshop': typeof WorkshopRoute;
 }
 
@@ -258,16 +370,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute;
   '/about': typeof AboutRoute;
   '/adventure': typeof AdventureRoute;
+  '/chalkboard': typeof ChalkboardRoute;
   '/composting-toilet': typeof CompostingToiletRoute;
   '/contact': typeof ContactRoute;
   '/cosy-bench': typeof CosyBenchRoute;
   '/decking': typeof DeckingRoute;
+  '/fire-circle': typeof FireCircleRoute;
   '/garden-ideas': typeof GardenIdeasRoute;
   '/garden-sofas': typeof GardenSofasRoute;
+  '/kitchen': typeof KitchenRoute;
+  '/parachute': typeof ParachuteRoute;
   '/projects': typeof ProjectsRoute;
   '/sanctuary': typeof SanctuaryRoute;
+  '/sandpit-cover': typeof SandpitCoverRoute;
   '/schools': typeof SchoolsRoute;
   '/shelters': typeof SheltersRoute;
+  '/sink': typeof SinkRoute;
+  '/work-top': typeof WorkTopRoute;
   '/workshop': typeof WorkshopRoute;
 }
 
@@ -277,48 +396,69 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/adventure'
+    | '/chalkboard'
     | '/composting-toilet'
     | '/contact'
     | '/cosy-bench'
     | '/decking'
+    | '/fire-circle'
     | '/garden-ideas'
     | '/garden-sofas'
+    | '/kitchen'
+    | '/parachute'
     | '/projects'
     | '/sanctuary'
+    | '/sandpit-cover'
     | '/schools'
     | '/shelters'
+    | '/sink'
+    | '/work-top'
     | '/workshop';
   fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | '/about'
     | '/adventure'
+    | '/chalkboard'
     | '/composting-toilet'
     | '/contact'
     | '/cosy-bench'
     | '/decking'
+    | '/fire-circle'
     | '/garden-ideas'
     | '/garden-sofas'
+    | '/kitchen'
+    | '/parachute'
     | '/projects'
     | '/sanctuary'
+    | '/sandpit-cover'
     | '/schools'
     | '/shelters'
+    | '/sink'
+    | '/work-top'
     | '/workshop';
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/adventure'
+    | '/chalkboard'
     | '/composting-toilet'
     | '/contact'
     | '/cosy-bench'
     | '/decking'
+    | '/fire-circle'
     | '/garden-ideas'
     | '/garden-sofas'
+    | '/kitchen'
+    | '/parachute'
     | '/projects'
     | '/sanctuary'
+    | '/sandpit-cover'
     | '/schools'
     | '/shelters'
+    | '/sink'
+    | '/work-top'
     | '/workshop';
   fileRoutesById: FileRoutesById;
 }
@@ -327,16 +467,23 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   AboutRoute: typeof AboutRoute;
   AdventureRoute: typeof AdventureRoute;
+  ChalkboardRoute: typeof ChalkboardRoute;
   CompostingToiletRoute: typeof CompostingToiletRoute;
   ContactRoute: typeof ContactRoute;
   CosyBenchRoute: typeof CosyBenchRoute;
   DeckingRoute: typeof DeckingRoute;
+  FireCircleRoute: typeof FireCircleRoute;
   GardenIdeasRoute: typeof GardenIdeasRoute;
   GardenSofasRoute: typeof GardenSofasRoute;
+  KitchenRoute: typeof KitchenRoute;
+  ParachuteRoute: typeof ParachuteRoute;
   ProjectsRoute: typeof ProjectsRoute;
   SanctuaryRoute: typeof SanctuaryRoute;
+  SandpitCoverRoute: typeof SandpitCoverRoute;
   SchoolsRoute: typeof SchoolsRoute;
   SheltersRoute: typeof SheltersRoute;
+  SinkRoute: typeof SinkRoute;
+  WorkTopRoute: typeof WorkTopRoute;
   WorkshopRoute: typeof WorkshopRoute;
 }
 
@@ -344,16 +491,23 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdventureRoute: AdventureRoute,
+  ChalkboardRoute: ChalkboardRoute,
   CompostingToiletRoute: CompostingToiletRoute,
   ContactRoute: ContactRoute,
   CosyBenchRoute: CosyBenchRoute,
   DeckingRoute: DeckingRoute,
+  FireCircleRoute: FireCircleRoute,
   GardenIdeasRoute: GardenIdeasRoute,
   GardenSofasRoute: GardenSofasRoute,
+  KitchenRoute: KitchenRoute,
+  ParachuteRoute: ParachuteRoute,
   ProjectsRoute: ProjectsRoute,
   SanctuaryRoute: SanctuaryRoute,
+  SandpitCoverRoute: SandpitCoverRoute,
   SchoolsRoute: SchoolsRoute,
   SheltersRoute: SheltersRoute,
+  SinkRoute: SinkRoute,
+  WorkTopRoute: WorkTopRoute,
   WorkshopRoute: WorkshopRoute,
 };
 
@@ -370,16 +524,23 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/adventure",
+        "/chalkboard",
         "/composting-toilet",
         "/contact",
         "/cosy-bench",
         "/decking",
+        "/fire-circle",
         "/garden-ideas",
         "/garden-sofas",
+        "/kitchen",
+        "/parachute",
         "/projects",
         "/sanctuary",
+        "/sandpit-cover",
         "/schools",
         "/shelters",
+        "/sink",
+        "/work-top",
         "/workshop"
       ]
     },
@@ -391,6 +552,9 @@ export const routeTree = rootRoute
     },
     "/adventure": {
       "filePath": "adventure.tsx"
+    },
+    "/chalkboard": {
+      "filePath": "chalkboard.tsx"
     },
     "/composting-toilet": {
       "filePath": "composting-toilet.tsx"
@@ -404,11 +568,20 @@ export const routeTree = rootRoute
     "/decking": {
       "filePath": "decking.tsx"
     },
+    "/fire-circle": {
+      "filePath": "fire-circle.tsx"
+    },
     "/garden-ideas": {
       "filePath": "garden-ideas.tsx"
     },
     "/garden-sofas": {
       "filePath": "garden-sofas.tsx"
+    },
+    "/kitchen": {
+      "filePath": "kitchen.tsx"
+    },
+    "/parachute": {
+      "filePath": "parachute.tsx"
     },
     "/projects": {
       "filePath": "projects.tsx"
@@ -416,11 +589,20 @@ export const routeTree = rootRoute
     "/sanctuary": {
       "filePath": "sanctuary.tsx"
     },
+    "/sandpit-cover": {
+      "filePath": "sandpit-cover.tsx"
+    },
     "/schools": {
       "filePath": "schools.tsx"
     },
     "/shelters": {
       "filePath": "shelters.tsx"
+    },
+    "/sink": {
+      "filePath": "sink.tsx"
+    },
+    "/work-top": {
+      "filePath": "work-top.tsx"
     },
     "/workshop": {
       "filePath": "workshop.tsx"
